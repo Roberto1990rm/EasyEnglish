@@ -5,12 +5,29 @@
 @section('content')
 <div class="containerHome">
     <div class="container my-5">
-        <h1 class="display-4 text-center">Bienvenido a EasyEnglish</h1>
-        <p class="lead text-center">Tu plataforma para aprender inglés de forma fácil y divertida.</p>
+        <h1 class="h1Home display-4 text-center">
+            <span class="word1">Bienvenido</span> 
+            <span class="word2">a</span> 
+            <span class="easy">Easy</span><span class="english">English</span>
+        </h1>
+        <p class="p1Home lead text-center">
+            <span class="">Tu</span> 
+            <span class="">plataforma</span> 
+            <span class="">para</span> 
+            <span class="">aprender</span> 
+            <span class="">inglés</span> 
+            <span class="">de</span> 
+            <span class="">forma</span> 
+            <span class="">fácil</span> 
+            <span class="">y</span> 
+            <span class="">divertida.</span>
+        </p>
         <div class="text-center">
             <a href="#cursos" class="btn btn-primary btn-lg">Explorar nuestros cursos</a>
         </div>
     </div>
+</div>
+
 
     <div class="container my-5" id="cursos">
         <div class="row">
