@@ -9,6 +9,7 @@
         <script src="http∫s://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="{{ asset('css/home.css') }}">
         <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+        <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
 
     </head>
     
@@ -37,8 +38,51 @@
                         <a class="nav-link" href="#">Contacto</a>
                     </li>
                 </ul>
+                       <!-- Left Side Of Navbar -->
+                       <ul class="navbar-nav me-auto">
+
+                       </ul>
+   
+                       <!-- Right Side Of Navbar -->
+                       <ul class="navbar-nav ms-auto">
+                           <!-- Authentication Links -->
+                           @guest
+                               @if (Route::has('login'))
+                                   <li class="nav-item">
+                                       <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                   </li>
+                               @endif
+   
+                               @if (Route::has('register'))
+                                   <li class="nav-item">
+                                       <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                   </li>
+                               @endif
+                           @else
+                               <li class="nav-item dropdown">
+                                   <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                       {{ Auth::user()->name }}
+                                   </a>
+   
+                                   <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                       <a class="dropdown-item" href="{{ route('logout') }}"
+                                          onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                           {{ __('Logout') }}
+                                       </a>
+   
+                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                           @csrf
+                                       </form>
+                                   </div>
+                               </li>
+                           @endguest
+                       </ul>
             </div>
+            
+
         </div>
+
     </nav>
 
     <!-- Main Content -->
@@ -47,7 +91,7 @@
     </div>
 
     <!-- Footer -->
-    <footer>
+    <footer class="fixed-bottom">
         <p>&copy; 2025 EasyEnglish. Todos los derechos reservados.</p>
         <p><a href="#" class="footer-link">Política de privacidad</a> | <a href="#" class="footer-link">Términos de servicio</a></p>
     </footer>
