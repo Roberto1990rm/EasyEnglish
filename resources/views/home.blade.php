@@ -33,7 +33,8 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card shadow-sm">
-                    <img src="https://via.placeholder.com/500x300?text=Curso+de+Ingl%C3%A9s" class="card-img-top" alt="Curso de Inglés">
+                    <img src="{{ asset('images/basico1.jpg') }}" class="card-img-top" alt="Curso de Inglés">
+
                     <div class="card-body">
                         <h5 class="card-title">Curso Básico de Inglés</h5>
                         <p class="card-text">Aprende los conceptos básicos del inglés con clases interactivas y dinámicas.</p>
@@ -43,7 +44,8 @@
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card shadow-sm">
-                    <img src="https://via.placeholder.com/500x300?text=Curso+de+Ingl%C3%A9s+Intermedio" class="card-img-top" alt="Curso Intermedio de Inglés">
+                    <img src="{{ asset('images/basico2.jpg') }}" class="card-img-top" alt="Curso de Inglés">
+
                     <div class="card-body">
                         <h5 class="card-title">Curso Intermedio de Inglés</h5>
                         <p class="card-text">Amplía tus conocimientos del inglés con lecciones y ejercicios de nivel intermedio.</p>
@@ -53,7 +55,8 @@
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card shadow-sm">
-                    <img src="https://via.placeholder.com/500x300?text=Curso+de+Ingl%C3%A9s+Avanzado" class="card-img-top" alt="Curso Avanzado de Inglés">
+                    <img src="{{ asset('images/basico3.jpg') }}" class="card-img-top" alt="Curso de Inglés">
+
                     <div class="card-body">
                         <h5 class="card-title">Curso Avanzado de Inglés</h5>
                         <p class="card-text">Perfecciona tu inglés con clases avanzadas centradas en fluidez y comprensión.</p>
