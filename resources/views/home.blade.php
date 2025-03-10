@@ -3,6 +3,7 @@
 @section('title', 'Bienvenido a EasyEnglish')
 
 @section('content')
+<div class="containerHome">
     <div class="container my-5">
         <h1 class="display-4 text-center">Bienvenido a EasyEnglish</h1>
         <p class="lead text-center">Tu plataforma para aprender inglés de forma fácil y divertida.</p>
@@ -45,4 +46,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

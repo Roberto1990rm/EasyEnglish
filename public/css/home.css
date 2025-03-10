@@ -1,0 +1,84 @@
+/* home.css */
+
+/* Estilos para el cuerpo */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #343a40;
+
+    }
+
+/* Estilo para la sección hero */
+
+.containerHome{
+    background-image: url('/images/home.jpg');
+
+    background-size: cover; /* Cubre toda la pantalla sin distorsionarse */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 100vh; /* Altura completa de la ventana */
+}
+
+
+/* Estilo para los botones CTA */
+.cta-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.25rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.cta-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para los cursos */
+.card {
+    border-radius: 10px;
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    background-color: #ffffff;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.card-body .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.card-body .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Estilo del footer */
+footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
