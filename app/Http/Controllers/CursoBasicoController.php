@@ -31,33 +31,20 @@ class CursoBasicoController extends Controller
             'image' => $path
         ]);
 
-        return redirect()->route('curso_basico.index')->with('success', 'Lección creada correctamente.');
+        return redirect()->route('curso.basico.index')->with('success', 'Lección creada correctamente.');
     }
 
     public function index()
     {
-        $lecciones = [
-            ['id' => 1, 'title' => 'Lección 1', 'image' => 'leccion1.jpg', 'description' => 'Descripción de la Lección 1'],
-            ['id' => 2, 'title' => 'Lección 2', 'image' => 'leccion2.jpg', 'description' => 'Descripción de la Lección 2'],
-            ['id' => 3, 'title' => 'Lección 3', 'image' => 'leccion3.jpg', 'description' => 'Descripción de la Lección 3']
-        ];
-
+        $lecciones = Leccion::all(); // Obtener todas las lecciones
         return view('curso_basico.index', compact('lecciones'));
     }
 
     public function show($id)
     {
-        $lecciones = [
-            1 => ['title' => 'Lección 1', 'image' => 'leccion1.jpg', 'description' => 'Contenido completo de la Lección 1'],
-            2 => ['title' => 'Lección 2', 'image' => 'leccion2.jpg', 'description' => 'Contenido completo de la Lección 2'],
-            3 => ['title' => 'Lección 3', 'image' => 'leccion3.jpg', 'description' => 'Contenido completo de la Lección 3']
-        ];
-
-        if (!isset($lecciones[$id])) {
-            abort(404);
-        }
-
-        return view('curso_basico.show', ['leccion' => $lecciones[$id]]);
+        $leccion = Leccion::findOrFail($id); // 🔥 Asegura que se obtiene un objeto, no un array
+    
+        return view('curso_basico.show', compact('leccion'));
     }
 
 

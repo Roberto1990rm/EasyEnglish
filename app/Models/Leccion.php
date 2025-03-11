@@ -9,5 +9,6 @@ class Leccion extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'image', 'description'];
+    protected $table = 'lecciones'; // 🔥 Fijamos el nombre correcto de la tabla
+    protected $fillable = ['title', 'description', 'image'];
 }
