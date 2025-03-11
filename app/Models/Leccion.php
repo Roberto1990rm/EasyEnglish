@@ -11,4 +11,11 @@ class Leccion extends Model
 
     protected $table = 'lecciones'; // 🔥 Fijamos el nombre correcto de la tabla
     protected $fillable = ['title', 'description', 'image'];
+
+
+    public function pronouns()
+{
+    return $this->hasMany(Pronoun::class, 'lesson_id');
+}
+
 }

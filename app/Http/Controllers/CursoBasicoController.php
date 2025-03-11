@@ -40,12 +40,12 @@ class CursoBasicoController extends Controller
         return view('curso_basico.index', compact('lecciones'));
     }
 
+  
+
     public function show($id)
     {
-        $leccion = Leccion::findOrFail($id); // 🔥 Asegura que se obtiene un objeto, no un array
+        $leccion = Leccion::with('pronouns')->findOrFail($id); // Cargar lección con sus pronouns
     
         return view('curso_basico.show', compact('leccion'));
     }
-
-
 }
