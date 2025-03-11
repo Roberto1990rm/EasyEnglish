@@ -33,8 +33,7 @@
                         <a class="nav-link active" href="/">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Cursos</a>
-                    </li>
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sobre nosotros</a>
                     </li>

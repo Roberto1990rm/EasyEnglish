@@ -3,3 +3,73 @@
    text-align: center;
    font-size: 20px;
 }
+
+/* Contenedor del carrusel */
+.pronouns-slider-container {
+   position: relative;
+   width: 100%;
+   overflow: hidden;
+   padding: 20px 0;
+}
+
+/* Slider con transición suave */
+.pronouns-slider {
+   display: flex;
+   gap: 20px;
+   transition: transform 0.5s ease-in-out;
+   will-change: transform;
+}
+
+/* Cada card */
+.pronoun-card {
+   flex: 0 0 300px;
+   scroll-snap-align: center;
+}
+
+/* Estilos de las cards */
+.pronoun-card .card {
+   border-radius: 15px;
+   transition: transform 0.3s ease-in-out;
+   background: #ffffff;
+   padding: 15px;
+}
+
+.pronoun-card .card:hover {
+   transform: scale(1.05);
+   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen dentro de las cards */
+.pronoun-card .card-img-top {
+   max-height: 200px;
+   object-fit: cover;
+   border-radius: 10px;
+}
+
+/* Botones de navegación */
+.slider-btn {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background: rgba(0, 0, 0, 0.6);
+   color: white;
+   border: none;
+   padding: 15px;
+   cursor: pointer;
+   font-size: 20px;
+   border-radius: 50%;
+   z-index: 10;
+   transition: 0.3s;
+}
+
+.slider-btn.left {
+   left: 10px;
+}
+
+.slider-btn.right {
+   right: 10px;
+}
+
+.slider-btn:hover {
+   background: rgba(0, 0, 0, 0.9);
+}
