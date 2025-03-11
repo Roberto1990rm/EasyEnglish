@@ -38,7 +38,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Curso Básico de Inglés</h5>
                         <p class="card-text">Aprende los conceptos básicos del inglés con clases interactivas y dinámicas.</p>
-                        <a href="#" class="btn btn-primary">Ver más</a>
+                        <a href="{{ route('curso.basico.index') }}" class="btn btn-primary">Ver más</a>
                     </div>
                 </div>
             </div>
