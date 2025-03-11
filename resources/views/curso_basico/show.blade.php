@@ -3,25 +3,25 @@
 @section('content')
 
 <div class="text-center">
-<a href="{{ route('pronouns.create', $leccion->id) }}" class="btn btn-primary mt-3">Agregar Pronombre</a>
+<a href="{{ route('pronouns.create', $leccion->id) }}" class="btn btn-primary mt-3">Agregar entrada</a>
 </div>
 <div class="container">
-    <h1 class="text-center">{{ $leccion->title }}</h1>
+    <h1 class="p1Home mt-3  text-center">{{ $leccion->title }}</h1>
 
     <!-- Imagen de la lección -->
     
 
-    <p class="descripcion1">{{ $leccion->description }}</p>
+    <p class="text-center">{{ $leccion->description }}</p>
 
     <!-- Sección de Pronombres -->
-    <h2 class="text-center">Pronouns</h2>
+ 
     <div class="row">
         @foreach($leccion->pronouns as $pronoun)
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
                     <!-- Imagen del pronombre -->
                     @if($pronoun->image)
-                        <img src="{{ asset('storage/' . $pronoun->image) }}" class="card-img-top" alt="{{ $pronoun->pronoun }}">
+                        <img style="height: 250px;" src="{{ asset('storage/' . $pronoun->image) }}" class="card-img-top" alt="{{ $pronoun->pronoun }}">
                     @else
                         <img src="{{ asset('images/default.jpg') }}" class="card-img-top" alt="Imagen no disponible">
                     @endif
@@ -57,6 +57,9 @@
         @endforeach
     </div>
 
-    <a href="{{ route('curso.basico.index') }}" class="btn btn-secondary mt-4">Volver al curso</a>
+    <div class="text-center mb-3">
+    <a href="{{ route('curso.basico.index') }}" class="btn btn-secondary mt-4">Volver a cursos</a>
+</div>
+
 </div>
 @endsection

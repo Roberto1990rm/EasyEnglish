@@ -38,7 +38,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Curso Básico de Inglés</h5>
                         <p class="card-text">Aprende los conceptos básicos del inglés con clases interactivas y dinámicas.</p>
+                        <div class="text-center">
                         <a href="{{ route('curso.basico.index') }}" class="btn btn-primary">Ver más</a>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -49,7 +51,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Curso Intermedio de Inglés</h5>
                         <p class="card-text">Amplía tus conocimientos del inglés con lecciones y ejercicios de nivel intermedio.</p>
-                        <a href="#" class="btn btn-primary">Ver más</a>
+                        <div class="text-center">
+                            <a href="#" class="btn btn-primary">Ver más</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -60,14 +64,17 @@
                     <div class="card-body">
                         <h5 class="card-title">Curso Avanzado de Inglés</h5>
                         <p class="card-text">Perfecciona tu inglés con clases avanzadas centradas en fluidez y comprensión.</p>
+                        <div class="text-center">
                         <a href="#" class="btn btn-primary">Ver más</a>
+                    </div>
+
                     </div>
                 </div>
             </div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
-                        <div class="card"  style="margin-bottom: 90px;">
+                        <div class="card"  style="margin-bottom: 0px;">
                             <div class="card-header">{{ __('Dashboard') }}</div>
             
                             <div class="card-body">

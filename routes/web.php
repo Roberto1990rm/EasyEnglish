@@ -19,6 +19,7 @@ Route::get('/curso-basico/create', [CursoBasicoController::class, 'create'])->na
 Route::post('/curso-basico/store', [CursoBasicoController::class, 'store'])->name('curso_basico.store');
 Route::get('/curso-basico', [CursoBasicoController::class, 'index'])->name('curso.basico.index');
 Route::get('/curso-basico/{id}', [CursoBasicoController::class, 'show'])->name('curso.basico.show');
+Route::delete('/curso-basico/{id}', [CursoBasicoController::class, 'destroy'])->name('curso.basico.destroy');
 
 
 Route::get('/curso-basico/{lesson_id}/pronouns/create', [PronounController::class, 'create'])->name('pronouns.create');

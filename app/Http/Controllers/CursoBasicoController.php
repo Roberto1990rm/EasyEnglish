@@ -48,4 +48,16 @@ class CursoBasicoController extends Controller
     
         return view('curso_basico.show', compact('leccion'));
     }
+
+
+    public function destroy($id)
+{
+    $leccion = Leccion::findOrFail($id);
+
+   
+
+    $leccion->delete();
+
+    return redirect()->route('curso.basico.index')->with('success', 'Lección eliminada correctamente.');
+}
 }

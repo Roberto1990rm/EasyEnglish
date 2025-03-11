@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{ asset('css/cursoBasicoShow.css') }}">
         <link rel="stylesheet" href="{{ asset('css/home.css') }}">
         <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     </head>
     
@@ -19,7 +20,10 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="#">EasyEnglish</a>
+            <a class="navbar-brand" href="/">
+                <img src="{{ asset('images/favicon.png') }}" alt="EasyEnglish Logo" width="40" height="40">
+            </a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,7 +33,7 @@
                         <a class="nav-link active" href="/">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cursos</a>
+                        <a class="nav-link" href="/">Cursos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sobre nosotros</a>
@@ -86,7 +90,7 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="containerHome mt-4">
+    <div class=" mt-4" style="padding-bottom: 100px;">
         @yield('content') <!-- Esto permitirá que se muestre el contenido de cada vista -->
     </div>
 
