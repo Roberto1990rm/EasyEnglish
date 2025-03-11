@@ -65,7 +65,7 @@
                         <h5 class="card-title">Curso Avanzado de Inglés</h5>
                         <p class="card-text">Perfecciona tu inglés con clases avanzadas centradas en fluidez y comprensión.</p>
                         <div class="text-center">
-                        <a href="#" class="btn btn-primary">Ver más</a>
+                        <a href="#" class="btn btn-primary">Ver más </a>
                     </div>
 
                     </div>
