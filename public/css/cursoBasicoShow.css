@@ -16,18 +16,6 @@
 
 }
 
-@media (max-width: 700px) {
-   .cardmobile-only {
-      margin-left: 300px;
-   }
-
-   
-
-}
-@media (max-width: 880px) {
-  .cardmobile-only {
-    margin-left: 20%;
-  }
 
 
 }

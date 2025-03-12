@@ -35,7 +35,7 @@
     </div>
 
     <!-- Grid de Cards de Lecciones -->
-    <div class="cardmobile-only cards-grid mt-5">
+    <div class=" cards-grid mt-5">
         @foreach($lecciones as $leccion)
             <div class="card-item">
                 <div class="card fixed-card">
