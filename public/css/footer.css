@@ -1,6 +1,7 @@
 
 /* Estilo del footer */
 footer {
+    padding-top: 10px;
     background-color: #f8f9fa;
     text-align: center;
 }
