@@ -217,12 +217,14 @@ body {
     background-color: rgba(158, 35, 35, 0.8); /* 0.8 es el nivel de opacidad, ajústalo según necesites */
 }
 
-
+.card-body {
+    background-color: rgba(255, 255, 255, 0.8); /* 0.8 es el nivel de opacidad, ajústalo según necesites */
+}
 
 .card-text {
     font-size: 1rem;
     color: #ffffff;
-    text-shadow: 1px 1px 2px #000000; /* sombra blanca para el texto */
+    text-shadow: 1px 1px 2px #ffffff; /* sombra blanca para el texto */
 }
 
 card-text1{

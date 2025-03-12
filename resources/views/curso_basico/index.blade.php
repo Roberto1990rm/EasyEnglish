@@ -42,7 +42,7 @@
                     <img src="{{ asset('storage/' . $leccion->image) }}" alt="{{ $leccion->title }}" class="card-img">
                     <div class="card-body">
                         <h5 class="card-title">{{ $leccion->title }}</h5>
-                        <p class="card-text">{{ Str::limit($leccion->description, 100) }}</p>
+                        <p style="color: black;" class="card-text">{{ Str::limit($leccion->description, 100) }}</p>
                         <div class="card-actions">
                             <a href="{{ route('curso.basico.show', $leccion->id) }}" class="btn btn-primary btn-sm" title="Ver más">
                                 <i class="fas fa-eye"></i>
@@ -64,7 +64,7 @@
 
 <div class="custom-home-button text-center mt-4">
     <a href="{{ url('/') }}" class="custom-btn" title="Volver al Home">
-        <i class="bi bi-house-fill fs-3"></i> Regresar al Curso Básico
+        <i class="bi bi-house-fill fs-3"></i> Home
     </a>
 </div>
 @endsection
