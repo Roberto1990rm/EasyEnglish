@@ -5,9 +5,7 @@
        margin-left: 460px;
     }
 
-    .cardmobile-only{
-      margin-left: 60px;
-    }
+    
 
 }
 @media (max-width: 880px) {
@@ -15,9 +13,6 @@
       margin-left: 520px;
    }
 
-   .cardmobile-only{
-     margin-left: 60px;
-   }
 
 }
 
