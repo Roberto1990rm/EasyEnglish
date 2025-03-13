@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+        <link rel="icon" type="image/png" href="{{ asset('images/logo1.png') }}">
     </head>
     
 
@@ -20,7 +20,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="{{ asset('images/favicon.png') }}" alt="EasyEnglish Logo" width="40" height="40">
+                <img style="width: auto; height: 45px;" src="{{ asset('images/logo1.png') }}" alt="EasyEnglish Logo" width="40" height="40">
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
