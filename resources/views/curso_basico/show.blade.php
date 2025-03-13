@@ -58,6 +58,12 @@
                         <p class="text-center"><strong>Ejemplo 2:</strong> <span class="text-success">{{ $pronoun->example_2 }}</span></p>
                     </div>
                 </div>
+                <form action="{{ route('pronouns.destroy', ['leccion_id' => $leccion->id, 'id' => $pronoun->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este pronoun?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+                
             </div>
         </div>
         @endforeach

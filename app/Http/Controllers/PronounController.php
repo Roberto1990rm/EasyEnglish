@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pronoun;
 use App\Models\Leccion;
+use Illuminate\Support\Facades\Storage;
 
 class PronounController extends Controller
 {
@@ -50,4 +51,32 @@ class PronounController extends Controller
 
         return redirect()->route('curso.basico.show', $lesson_id)->with('success', 'Pronoun created successfully!');
     }
+
+
+
+
+    public function destroy($lesson_id, $id)
+{
+    // Buscar el registro por su ID, si no lo encuentra lanza un error 404
+    $pronoun = Pronoun::findOrFail($id);
+
+    // Eliminar los archivos asociados si existen
+    if ($pronoun->image) {
+        Storage::disk('public')->delete($pronoun->image);
+    }
+    if ($pronoun->video) {
+        Storage::disk('public')->delete($pronoun->video);
+    }
+    if ($pronoun->audio) {
+        Storage::disk('public')->delete($pronoun->audio);
+    }
+
+    // Eliminar el registro de la base de datos
+    $pronoun->delete();
+
+    // Redireccionar con un mensaje de éxito
+    return redirect()->route('curso.basico.show', $lesson_id)
+                     ->with('success', 'Pronoun deleted successfully!');
+}
+
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\CursoBasicoController;
 use App\Http\Controllers\PronounController;
 use Illuminate\Support\Facades\Auth;
 
+
 use App\Models\Leccion;
 
 
@@ -24,3 +25,4 @@ Route::delete('/curso-basico/{id}', [CursoBasicoController::class, 'destroy'])->
 
 Route::get('/curso-basico/{lesson_id}/pronouns/create', [PronounController::class, 'create'])->name('pronouns.create');
 Route::post('/curso-basico/{lesson_id}/pronouns/store', [PronounController::class, 'store'])->name('pronouns.store');
+Route::delete('/leccion/{leccion_id}/pronouns/{id}', [PronounController::class, 'destroy'])->name('pronouns.destroy');
