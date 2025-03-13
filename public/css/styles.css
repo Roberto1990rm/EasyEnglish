@@ -464,8 +464,8 @@ footer {
 
 @media (min-width: 950px) {
     .pronouns-slider > .pronoun-card {
-         flex:auto;
-         max-width:auto;
+        flex: 0 0 25%;
+        max-width: 25%;
     }
 }
 
