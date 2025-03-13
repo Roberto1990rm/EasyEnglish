@@ -23,7 +23,7 @@
             <span>divertida.</span>
         </p>
         <div class="text-center mt-5">
-            <a href="#cursos" class="btn btn-primary btn-lg">Explorar nuestros cursos</a>
+            <a href="#cursos" class="custom-add-btn">Explorar nuestros cursos</a>
         </div>
     </div>
 </div>
