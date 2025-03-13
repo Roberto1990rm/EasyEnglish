@@ -18,7 +18,7 @@
 @if($leccion->pronouns->count() > 0)
 <div class="pronouns-slider-container">
     <button id="prev-slide" class="slider-btn left">&#10094;</button>
-    <div class="pronouns-slider">
+    <div class="card-item pronouns-slider">
         @foreach($leccion->pronouns as $pronoun)
         <div class="pronoun-card p-2">
             <div class="innovative-card shadow">
