@@ -371,13 +371,12 @@ footer {
     }
 
     .postit-container {
-        margin-left: -180px;
+        margin-left: -120px;
     }
 }
 
 
 
-.postit-container
 
 @media (max-width: 768px) {
     .dynamic-layout1 {
