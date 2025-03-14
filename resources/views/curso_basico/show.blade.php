@@ -1,91 +1,116 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container mt-4">
+    <!-- Botón para agregar entrada -->
+    <div class="text-center mb-4">
+        <a href="{{ route('pronouns.create', $leccion->id) }}" class="custom-add-btn">
+            <i class="bi bi-plus-circle-fill"></i> Agregar entrada
+        </a>
+    </div>
 
-<div style="margin-bottom: -35px;" class="text-center">
-    <a href="{{ route('pronouns.create', $leccion->id) }}" class="custom-add-btn">
-        <i class="bi bi-plus-circle-fill"></i> Agregar entrada
-    </a>
-</div>
+    <!-- Información de la lección -->
+    <div style="margin-bottom: -30px;" class="custom-lesson-info text-center">
+        <h1 class="p1Home display-4">{{ $leccion->title }}</h1>
+        <p class=" lead">{{ $leccion->description }}</p>
+    </div>
 
-<<div class="custom-lesson-info container">
-    <h1 class="custom-lesson-title text-center">{{ $leccion->title }}</h1>
-    <p class="custom-lesson-description text-center">{{ $leccion->description }}</p>
-</div>
-
-
-<!-- Carrusel Deslizante de Pronombres -->
-@if($leccion->pronouns->count() > 0)
-<div class="pronouns-slider-container">
-    <button id="prev-slide" class="slider-btn left">&#10094;</button>
-    <div class="card-item pronouns-slider">
-        @foreach($leccion->pronouns as $pronoun)
-        <div class="pronoun-card p-2">
-            <div class="innovative-card shadow">
-                <!-- Contenedor de la imagen con clip-path -->
-                <div class="innovative-card-img-container">
-                    @if($pronoun->image)
-                        <img src="{{ asset('storage/' . $pronoun->image) }}" class="innovative-card-img" alt="{{ $pronoun->pronoun }}">
-                    @else
-                        <img src="{{ asset('images/default.jpg') }}" class="innovative-card-img" alt="Imagen no disponible">
-                    @endif
-                </div>
-                <!-- Contenido de la card -->
-                <div class="innovative-card-content p-3">
-                    <h5 class="innovative-card-title fw-bold text-center">{{ $pronoun->pronoun }}</h5>
-                    <p class="innovative-card-description text-center text-muted">
-                        {{ Str::limit($pronoun->description, 100) }}
-                    </p>
-                    @if($pronoun->audio)
-                        <div class="innovative-card-audio text-center my-2">
-                            <audio controls class="w-100">
-                                <source src="{{ asset('storage/' . $pronoun->audio) }}" type="audio/mpeg">
-                                Tu navegador no soporta el audio.
-                            </audio>
+    <!-- Carrusel de Pronombres -->
+    @if($leccion->pronouns->count() > 0)
+    <div class="position-relative">
+        <div class="pronouns-slider-container overflow-hidden">
+            <div class="d-flex pronouns-slider transition">
+                @foreach($leccion->pronouns as $pronoun)
+                <div class="pronoun-card p-3">
+                    <div class="card shadow-sm border-0">
+                        @if($pronoun->image)
+                        <img src="{{ asset('storage/' . $pronoun->image) }}" class="card-img-top" alt="{{ $pronoun->pronoun }}">
+                        @else
+                        <img src="{{ asset('images/default.jpg') }}" class="card-img-top" alt="Imagen no disponible">
+                        @endif
+                        <div class="card-body">
+                            <h5 class="card-title text-center text-primary">{{ $pronoun->pronoun }}</h5>
+                            <p class="card-text text-center text-muted">{{ Str::limit($pronoun->description, 100) }}</p>
+                            
+                            @if($pronoun->audio)
+                            <div class="text-center my-2">
+                                <audio controls class="w-100">
+                                    <source src="{{ asset('storage/' . $pronoun->audio) }}" type="audio/mpeg">
+                                    Tu navegador no soporta el audio.
+                                </audio>
+                            </div>
+                            @endif
+                            
+                            @if($pronoun->video)
+                            <div class="text-center my-2">
+                                <video controls class="w-100 rounded">
+                                    <source src="{{ asset('storage/' . $pronoun->video) }}" type="video/mp4">
+                                    Tu navegador no soporta el video.
+                                </video>
+                            </div>
+                            @endif
+                            
+                            <ul class="list-group list-group-flush my-2">
+                                <li class="list-group-item">
+                                    <strong>Traducción:</strong> <span class="text-dark">{{ $pronoun->translation }}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Ejemplo 1:</strong> <span class="text-primary">{{ $pronoun->example_1 }}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Ejemplo 2:</strong> <span class="text-success">{{ $pronoun->example_2 }}</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="d-flex justify-content-center mt-3">
+                                <form action="{{ route('pronouns.destroy', ['leccion_id' => $leccion->id, 'id' => $pronoun->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este pronoun?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
+                                        <i class="fas fa-trash-alt"></i> Eliminar
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-                    @endif
-                    @if($pronoun->video)
-                        <div class="innovative-card-video text-center my-2">
-                            <video controls class="w-100 rounded shadow-sm">
-                                <source src="{{ asset('storage/' . $pronoun->video) }}" type="video/mp4">
-                                Tu navegador no soporta el video.
-                            </video>
-                        </div>
-                    @endif
-                    <div class="innovative-card-info mt-3">
-                        <p class="text-center text-dark"><strong>Traducción:</strong> {{ $pronoun->translation }}</p>
-                        <p class="text-center"><strong>Ejemplo 1:</strong> <span class="text-primary">{{ $pronoun->example_1 }}</span></p>
-                        <p class="text-center"><strong>Ejemplo 2:</strong> <span class="text-success">{{ $pronoun->example_2 }}</span></p>
                     </div>
-                    <div class="card-actions">
-                        <form action="{{ route('pronouns.destroy', ['leccion_id' => $leccion->id, 'id' => $pronoun->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este pronoun?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm mb-2"  title="Eliminar">
-                               
-                                <i class="fas fa-trash-alt"></i></button>
-                        </form>
-                        </div>
                 </div>
-             
+                @endforeach
             </div>
         </div>
-        @endforeach
+        <!-- Botones del carrusel -->
+        <button id="prev-slide" class="slider-btn btn btn-outline-secondary position-absolute top-50 start-0 translate-middle-y">&#10094;</button>
+        <button id="next-slide" class="slider-btn btn btn-outline-secondary position-absolute top-50 end-0 translate-middle-y">&#10095;</button>
     </div>
-    <button id="next-slide" class="slider-btn right">&#10095;</button>
-</div>
-@else
+    @else
     <p class="text-center mt-4 text-danger">No hay pronombres disponibles para esta lección.</p>
-@endif
+    @endif
 
-<div style="margin-bottom: -0px;" class="custom-home-button text-center mt-4">
-    <a href="{{ route('curso.basico.index') }}" class="custom-btn">
-        <i class="bi bi-arrow-left-circle-fill"></i> Regresar al Curso Básico
-    </a>
+    <!-- Botón para regresar -->
+    <div class="text-center mt-5">
+        <a href="{{ route('curso.basico.index') }}" class="btn btn-primary">
+            <i class="bi bi-arrow-left-circle-fill"></i> Regresar al Curso Básico
+        </a>
+    </div>
 </div>
 
-</div>
+<!-- Estilos personalizados para el carrusel -->
+<style>
+.pronouns-slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.pronouns-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.pronoun-card {
+    min-width: 300px;
+    margin-right: 20px;
+}
+</style>
 
+<!-- Script para el carrusel -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const slider = document.querySelector(".pronouns-slider");
@@ -94,24 +119,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const pronounCards = document.querySelectorAll(".pronoun-card");
 
     let index = 0;
-    const cardWidth = pronounCards[0].offsetWidth + 20; // Tamaño de cada tarjeta + gap
+    const cardWidth = pronounCards[0].offsetWidth + 20; // Ancho de cada tarjeta + espacio
     const totalSlides = pronounCards.length;
 
     nextBtn.addEventListener("click", () => {
-        if (index < totalSlides - 1) {
-            index++;
-        } else {
-            index = 0; // Vuelve al inicio si está en el último slide
-        }
+        index = (index < totalSlides - 1) ? index + 1 : 0;
         slider.style.transform = `translateX(-${index * cardWidth}px)`;
     });
 
     prevBtn.addEventListener("click", () => {
-        if (index > 0) {
-            index--;
-        } else {
-            index = totalSlides - 1; // Va al último slide si está en el inicio
-        }
+        index = (index > 0) ? index - 1 : totalSlides - 1;
         slider.style.transform = `translateX(-${index * cardWidth}px)`;
     });
 });

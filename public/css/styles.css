@@ -136,9 +136,6 @@ footer {
     margin-bottom: 50px;
 }
 
-.containerHome {
-    /* Estilos específicos si se requieren */
-}
 
 /* ---------------------------------------------------------
    POST-IT STYLES
@@ -355,68 +352,9 @@ footer {
     background: rgba(0,0,0,0.9);
 }
 
-/* ---------------------------------------------------------
-   INNOVATIVE CARD (FUTURISTIC)
---------------------------------------------------------- */
-.innovative-card {
-    background: linear-gradient(135deg, #ff7e5f, #feb47b, #86a8e7);
-    background-size: 400% 400%;
-    animation: gradientShift 8s ease infinite;
-    border-radius: 20px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.innovative-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
 
-.innovative-card-img-container {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-}
-
-.innovative-card-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-    transition: transform 0.3s ease;
-}
-
-.innovative-card-img:hover {
-    transform: scale(1.05);
-}
-
-.innovative-card-content {
-    background: rgba(255,255,255,0.9);
-    padding: 20px;
-    border-top: 4px solid #ff7e5f;
-}
-
-.innovative-card-title {
-    color: #333;
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-}
-
-.innovative-card-description {
-    color: #555;
-    font-size: 0.95rem;
-    margin-bottom: 15px;
-}
-
-.innovative-card-info p {
-    margin: 5px 0;
-}
 
 /* ---------------------------------------------------------
    MEDIA QUERIES & RESPONSIVE
