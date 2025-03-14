@@ -420,18 +420,17 @@ footer {
             margin-left: 15%;
              margin-right: 15%;
         }
+
+        .card-item {
+            margin-left: 15%;
+             margin-right: 15%;
+        }
 }
 
 }
 
 
 
-@media (max-width: 676px) {
-    .dynamic-layout {
-        margin-left: 15%;
-         margin-right: 15%;
-    }
-}
 
 
 
