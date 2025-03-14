@@ -366,8 +366,16 @@ footer {
     .mobile-only {
         margin-left: 350px;
     }
+
+    .fixed-card{
+        width: 400px;
+    }
+
+
+
     .cardmobile-only {
         margin-left: 0%;
+        
     }
 
     .postit-container {
