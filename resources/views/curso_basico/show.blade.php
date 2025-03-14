@@ -85,12 +85,20 @@
     <p class="text-center mt-4 text-danger">No hay pronombres disponibles para esta lección.</p>
     @endif
 
-    <!-- Botón para regresar -->
-    <div class="text-center mt-5">
-        <a href="{{ route('curso.basico.index') }}" class="btn btn-primary">
-            <i class="bi bi-arrow-left-circle-fill"></i> Regresar al Curso Básico
+
+
+    <div class="custom-home-button text-center mt-2">
+        <a  href="{{ route('curso.basico.index') }}" class="custom-btn" title="Volver al Home">
+            <i class="bi bi-house-fill fs-3"></i> Curso Básico
         </a>
     </div>
+   
+    <!-- Botón para regresar -->
+  
+
+
+
+
 </div>
 
 <!-- Estilos personalizados para el carrusel -->

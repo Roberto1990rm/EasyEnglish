@@ -16,7 +16,7 @@ body {
     font-family: 'Bebas Neue', sans-serif;
     color: #cc0a0a;
     text-shadow: 3px 3px 10px rgba(239, 237, 237, 0.8);
-    font-size: 3rem;
+    font-size: 4rem;
     letter-spacing: 1px;
     font-weight: 900;
     -webkit-text-stroke: 1px black;
@@ -360,23 +360,24 @@ footer {
    MEDIA QUERIES & RESPONSIVE
 --------------------------------------------------------- */
 /* Ejemplo: Ajustes para dispositivos móviles */
-@media (max-width: 700px) {
-    .mobile-only {
-        margin-left: 460px;
-    }
-    .cardmobile-only {
-        margin-left: 0;
-    }
-}
 
-@media (max-width: 880px) {
+
+@media (max-width: 1000px) {
     .mobile-only {
-        margin-left: 520px;
+        margin-left: 350px;
     }
     .cardmobile-only {
         margin-left: 0%;
     }
+
+    .postit-container {
+        margin-left: -180px;
+    }
 }
+
+
+
+.postit-container
 
 @media (max-width: 768px) {
     .dynamic-layout1 {
@@ -406,4 +407,34 @@ footer {
         max-width: 25%;
     }
 }
+
+@media (max-width: 576px) {
+    #cursos {
+        padding-left: 15%;
+         padding-right: 15%;
+    }
+
+
+ @media (max-width: 676px) {
+        .p1Home {
+            margin-left: 15%;
+             margin-right: 15%;
+        }
+}
+
+}
+
+
+
+@media (max-width: 676px) {
+    .dynamic-layout {
+        margin-left: 15%;
+         margin-right: 15%;
+    }
+}
+
+
+
+
+
 
