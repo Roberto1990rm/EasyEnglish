@@ -360,11 +360,17 @@ footer {
    MEDIA QUERIES & RESPONSIVE
 --------------------------------------------------------- */
 /* Ejemplo: Ajustes para dispositivos móviles */
+@media (max-width: 750px) {
 
-
+    .cardmobile-only {
+        margin: 0 -20%;
+        
+    }
+}
+    
 @media (max-width: 1000px) {
     .mobile-only {
-        margin-left: 375px;
+        margin-left: 425px;
     }
 
     .fixed-card{
@@ -373,13 +379,8 @@ footer {
 
 
 
-    .cardmobile-only {
-        margin-left: 0%;
-        
-    }
 
     .postit-container {
-        margin-left: -120px;
     }
 }
 

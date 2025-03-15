@@ -76,9 +76,7 @@
             </div>
         </div>
     </div>
-    !-- Dashboard -->
-       
-        <!-- Fin Dashboard -->
+   
     </div>
 </div>
 @endsection
