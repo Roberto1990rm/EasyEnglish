@@ -12,7 +12,7 @@
     <!-- Información de la lección -->
     <div style="margin-bottom: -30px;" class="custom-lesson-info text-center">
         <h1 class="p1Home display-4">{{ $leccion->title }}</h1>
-        <p class=" lead">{{ $leccion->description }}</p>
+        <p class="lead">{{ $leccion->description }}</p>
     </div>
 
     <!-- Carrusel de Pronombres -->
@@ -22,15 +22,21 @@
             <div class="d-flex pronouns-slider transition">
                 @foreach($leccion->pronouns as $pronoun)
                 <div class="pronoun-card p-3">
-                    <div class="card shadow-sm border-0">
+                    <div class="card cardShow shadow-sm border-0">
                         @if($pronoun->image)
-                        <img src="{{ asset('storage/' . $pronoun->image) }}" class="card-img-top" alt="{{ $pronoun->pronoun }}">
+                        <img style="height: 320px;" src="{{ asset('storage/' . $pronoun->image) }}" class="card-img-top" alt="{{ $pronoun->pronoun }}">
                         @else
                         <img src="{{ asset('images/default.jpg') }}" class="card-img-top" alt="Imagen no disponible">
                         @endif
                         <div class="card-body">
                             <h5 class="card-title text-center text-primary">{{ $pronoun->pronoun }}</h5>
-                            <p class="card-text text-center text-muted">{{ Str::limit($pronoun->description, 100) }}</p>
+                            
+                            <!-- Caja de texto para la descripción con scroll -->
+                            <div class="scroll-box mb-3">
+                                <p class="card-text text-center text-muted">
+                                    {{ $pronoun->description }}
+                                </p>
+                            </div>
                             
                             @if($pronoun->audio)
                             <div class="text-center my-2">
@@ -50,24 +56,27 @@
                             </div>
                             @endif
                             
-                            <ul class="list-group list-group-flush my-2">
-                                <li class="list-group-item">
-                                    <strong>Traducción:</strong> <span class="text-dark">{{ $pronoun->translation }}</span>
-                                </li>
-                                <li class="list-group-item">
-                                    <strong>Ejemplo 1:</strong> <span class="text-primary">{{ $pronoun->example_1 }}</span>
-                                </li>
-                                <li class="list-group-item">
-                                    <strong>Ejemplo 2:</strong> <span class="text-success">{{ $pronoun->example_2 }}</span>
-                                </li>
-                            </ul>
+                            <!-- Caja de texto para la lista de ejemplos con scroll -->
+                            <div class="scroll-box">
+                                <ul class="list-group list-group-flush my-2">
+                                    <li class="list-group-item">
+                                        <strong>Traducción:</strong> <span class="text-dark">{{ $pronoun->translation }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Ejemplo 1:</strong> <span class="text-primary">{{ $pronoun->example_1 }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Ejemplo 2:</strong> <span class="text-success">{{ $pronoun->example_2 }}</span>
+                                    </li>
+                                </ul>
+                            </div>
                             
                             <div class="d-flex justify-content-center mt-3">
                                 <form action="{{ route('pronouns.destroy', ['leccion_id' => $leccion->id, 'id' => $pronoun->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este pronoun?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
-                                        <i class="fas fa-trash-alt"></i> Eliminar
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>
                             </div>
@@ -85,25 +94,12 @@
     <p class="text-center mt-4 text-danger">No hay pronombres disponibles para esta lección.</p>
     @endif
 
-
-
     <div class="custom-home-button text-center mt-2">
-        <a  href="{{ route('curso.basico.index') }}" class="custom-btn" title="Volver al Home">
+        <a href="{{ route('curso.basico.index') }}" class="custom-btn" title="Volver al Home">
             <i class="bi bi-house-fill fs-3"></i> Curso Básico
         </a>
     </div>
-   
-    <!-- Botón para regresar -->
-  
-
-
-
-
 </div>
-
-
-
-
 
 <!-- Script para el carrusel -->
 <script>
