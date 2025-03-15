@@ -391,6 +391,21 @@ footer {
     .dynamic-layout1 {
         margin-left: 50px;
     }
+
+    .cardHome{
+        margin: -0% -15%;
+    }
+
+
+    .btnHome{
+        margin-bottom: -40px;
+    }
+
+    .containerHome{
+        margin: 0% -10%;
+    }
+
+   
 }
 
 

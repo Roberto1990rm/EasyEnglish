@@ -22,7 +22,7 @@
             <span>y</span> 
             <span>divertida.</span>
         </p>
-        <div class="text-center mt-5">
+        <div class="btnHome text-center mt-5 ">
             <a href="#cursos" class="custom-add-btn">Explorar nuestros cursos</a>
         </div>
     </div>
@@ -31,7 +31,7 @@
      <<div class="container" id="cursos">
         <div class="row mt-5">
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card shadow-sm h-100">
+                <div class="card cardHome shadow-sm h-100">
                     <img src="{{ asset('images/basico1.jpg') }}" class="card-img-top" style="height:200px; object-fit:cover;" alt="Curso de Inglés">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title mt-1">Curso Básico de Inglés</h5>
@@ -46,7 +46,7 @@
             </div>
             
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card shadow-sm h-100">
+                <div class="card cardHome shadow-sm h-100">
                     <img src="{{ asset('images/basico2.jpg') }}" class="card-img-top" style="height:200px; object-fit:cover;" alt="Curso de Inglés">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title mt-1">Curso Intermedio de Inglés</h5>
@@ -61,7 +61,7 @@
             </div>
             
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card shadow-sm h-100">
+                <div class="card cardHome shadow-sm h-100">
                     <img src="{{ asset('images/basico3.jpg') }}" class="card-img-top" style="height:200px; object-fit:cover;" alt="Curso de Inglés">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title mt-1">Curso Avanzado de Inglés</h5>
