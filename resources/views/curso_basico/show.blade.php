@@ -114,7 +114,6 @@
 }
 .pronoun-card {
     min-width: 300px;
-    margin-right: 20px;
 }
 </style>
 
