@@ -314,8 +314,8 @@ footer {
 --------------------------------------------------------- */
 .pronouns-slider-container {
     position: relative;
+    width: 100%;
     overflow: hidden;
-    margin-top: 30px;
 }
 
 .pronouns-slider {
@@ -323,6 +323,11 @@ footer {
     gap: 20px;
     transition: transform 0.5s ease;
     will-change: transform;
+}
+
+.pronoun-card {
+    min-width: 400px;
+    max-height: 1000px;
 }
 
 .slider-btn {

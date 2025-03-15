@@ -101,21 +101,9 @@
 
 </div>
 
-<!-- Estilos personalizados para el carrusel -->
-<style>
-.pronouns-slider-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-.pronouns-slider {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-.pronoun-card {
-    min-width: 300px;
-}
-</style>
+
+
+
 
 <!-- Script para el carrusel -->
 <script>
