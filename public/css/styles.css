@@ -384,13 +384,14 @@ footer {
 @media (max-width: 750px) {
 
     .cardmobile-only {
-        margin: 0 -50%;
+        margin: 0 -30%;
         
     }
 }
     
 @media (max-width: 1000px) {
     .mobile-only {
+        margin-left: 425px;
     }
 
     .fixed-card{
