@@ -410,6 +410,7 @@ footer {
 
 @media (max-width: 768px) {
     .dynamic-layout1 {
+        margin-left: 50px;
     }
 
     .cardHome{
