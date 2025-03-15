@@ -7,7 +7,7 @@
 </a>
 </div>
 
-<div class="dynamic-layout container px-5 mt-5 mb-5">
+<div class="dynamic-layout container  mt-5 mb-5">
     <!-- Contenedor de Post-it: tres cards en la misma fila -->
     <div class="postit-container mb-5">
         
