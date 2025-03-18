@@ -28,12 +28,14 @@ footer {
 }
 
 nav {
+  
   background-image: url('/images/amarillo.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 50px;
+  margin-top: -15px;
 }
 
 .meow-script-regular {
@@ -60,11 +62,11 @@ nav {
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content:center;
 }
 
 .item {
-  width: calc(50% - 10px);
+  width: auto;
   background: lightblue;
   padding: 20px;
   text-align: center;
