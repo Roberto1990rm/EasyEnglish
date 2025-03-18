@@ -13,18 +13,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-
-
-
-
-
-
-
-
-
 </head>
-<body class="bg-gray-100">
+
+<body class="flex flex-col min-h-screen bg-gray-100">
     <!-- Navbar -->
     <nav class="bg-white shadow-md fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,7 +23,7 @@
                 <div class="flex items-center">
                     <a href="/" class="text-xl font-bold text-gray-800">MyWebsite</a>
                 </div>
-                <div class="hidden md:flex space-x-4">
+                <div class="flex items-center hidden md:flex space-x-4">
                     <a href="#" class="text-gray-600 hover:text-blue-600">Home</a>
                     <a href="#" class="text-gray-600 hover:text-blue-600">About</a>
                     <a href="#" class="text-gray-600 hover:text-blue-600">Services</a>
@@ -56,10 +47,15 @@
         </div>
     </nav>
 
-    <!-- Page Content -->
-    <div class="pt-16">
+    <!-- Contenido de la página -->
+    <main class="flex-grow pt-16">
         @yield('content')
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center  mt-auto">
+        <h1>Hola</h1>
+    </footer>
 
     <script>
         function toggleMenu() {
@@ -68,4 +64,5 @@
         }
     </script>
 </body>
+
 </html>
