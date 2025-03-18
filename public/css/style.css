@@ -1,0 +1,26 @@
+
+
+body {
+    margin-left: 10px;
+    margin-right: 10px;
+
+}  
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos bajen de línea */
+    justify-content: space-between; /* Distribuye el espacio entre las columnas */
+    
+  }
+  
+.item {
+    width: calc(50% - 10px); /* Cada elemento ocupa el 50% del contenedor */
+    background: lightblue;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
