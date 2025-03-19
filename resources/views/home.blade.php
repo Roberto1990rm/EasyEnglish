@@ -13,7 +13,9 @@
                     class="w-full h-40 object-cover rounded-md"
                 >
                 <h1 class="text-xl font-bold text-gray-800 mt-4">{{ $course->title }}</h1>
-                <p class="text-gray-600 mt-2">{{ $course->description }}</p>
+                <div class="descripcion-scroll text-gray-600 mt-2 prose max-w-none">
+                    {!! $course->description !!}
+                </div>
                 <p class="text-sm text-gray-500 mt-2">Autor: {{ $course->author }}</p>
             </div>
         @endforeach

@@ -3,10 +3,11 @@
 @section('title', 'Cursos disponibles')
 
 @section('content')
-        
+        @auth
 <div class="text-center items-center mb-3">
     <a href="{{ route('courses.create') }}" class="btn bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">+ Crear curso</a>
 </div>
+@endauth
 
 <div class="container mx-auto mb-2">
     @if($courses->isEmpty())
@@ -20,7 +21,9 @@
                     <img src="{{ asset('storage/' . $course->image) }}" class="w-full h-40 object-cover" alt="{{ $course->title }}">
                     <div class="p-4">
                         <h2 class="text-xl font-semibold text-gray-800">{{ $course->title }}</h2>
-                        <p class="text-gray-600 mt-2">{{ $course->description }}</p>
+                        <div class="descripcion-scroll text-gray-600 mt-2 prose max-w-none">
+                            {!! $course->description !!}
+                        </div>
                         <div class="text-sm text-gray-500 mt-3">
                             <i class="bi bi-person-fill"></i> {{ $course->author }}
                         </div>

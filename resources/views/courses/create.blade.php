@@ -25,13 +25,13 @@
             <input type="text" name="title" class="form-control w-full border rounded p-2" value="{{ old('title') }}" required>
         </div>
 
-        <div class="mb-4">
-            <label class="block text-gray-700">Descripción:</label>
-            <textarea name="description" class="form-control w-full border rounded p-2" rows="5" required>{{ old('description') }}</textarea>
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea class="form-control" id="editor" name="description" rows="5" required>{{ old('description') }}</textarea>
         </div>
 
         <div class="mb-4">
-            <label class="block text-gray-700">Imagen:</label>
+            <label class="block text-gray-700">Imagen principal:</label>
             <input type="file" name="image" class="form-control w-full border rounded p-2" required>
         </div>
 
@@ -39,5 +39,14 @@
         <a href="{{ route('courses.index') }}" class="btn btn-secondary px-4 py-2">Cancelar</a>
     </form>
 </div>
+
+<script src="https://cdn.ckeditor.com/4.18.0/full/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace('editor', {
+                extraAllowedContent: 'span(*); div(*); p(*); strong; em; u; h1; h2; h3; color;',
+                removePlugins: 'image,about',
+                height: 300
+            });
+        </script>
 
 @endsection
