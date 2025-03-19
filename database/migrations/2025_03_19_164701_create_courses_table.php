@@ -1,26 +1,26 @@
 <?php
+// database/migrations/2025_03_19_164701_create_courses_table.php
 
-namespace Database\Seeders;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Database\Seeder;
-use App\Models\Course;
-
-class CourseSeeder extends Seeder
+class CreateCoursesTable extends Migration // ✅ Corrige este nombre
 {
-    public function run()
+    public function up()
     {
-        Course::create([
-            'title' => 'Curso de Laravel Básico',
-            'description' => 'Aprende Laravel desde cero con este curso completo.',
-            'image' => 'images/laravel_course.jpg',
-            'author' => 'Juan Pérez'
-        ]);
+        Schema::create('courses', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->string('image');
+            $table->string('author');
+            $table->timestamps();
+        });
+    }
 
-        Course::create([
-            'title' => 'Curso de Vue.js Avanzado',
-            'description' => 'Domina Vue.js con este curso práctico y avanzado.',
-            'image' => 'images/vuejs_course.jpg',
-            'author' => 'María García'
-        ]);
+    public function down()
+    {
+        Schema::dropIfExists('courses');
     }
 }
