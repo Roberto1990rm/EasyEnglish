@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class HomeController extends Controller
 {
-  
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
+        // Obtener todos los cursos
+        $courses = Course::all();
+
+        // Pasar los cursos a la vista 'home'
+        return view('home', compact('courses'));
     }
 }

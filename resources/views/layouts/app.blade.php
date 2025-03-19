@@ -44,6 +44,7 @@
 
                 <!-- Links de navegación -->
                 <div class="flex space-x-6 relative">
+                    
                     <a href="{{ url('/') }}" class="text-gray-600 hover:text-blue-600 text-lg flex flex-col items-center md:flex-row md:space-x-2 tooltip-container">
                         <i class="fas fa-home md:hidden"></i> 
                         <span class="hidden md:inline">Home</span>
@@ -59,14 +60,19 @@
                         <span class="hidden md:inline">Contact</span>
                         <span class="tooltip">Contact</span>
                     </a>
+                   
+
                 </div>
 
                 <!-- Menú de usuario -->
                 <div class="items-center space-x-4">
+                    <a href="{{ route('courses.index') }}" class="text-gray-600 hover:text-blue-600 text-lg flex flex-col items-center md:flex-row md:space-x-2 tooltip-container">Cursos</a>
                     @guest
                         <a href="{{ route('login') }}" class="text-gray-600 hover:text-blue-600">Login</a>
                         <a href="{{ route('register') }}" class="text-gray-600 hover:text-blue-600">Register</a>
                     @else
+                    
+
                         <div class="relative">
                             <button id="userDropdownButton" onclick="toggleUserDropdown()" class="text-gray-600 hover:text-blue-600 flex items-center">
                                 <i class="bi bi-person-circle text-lg"></i>
