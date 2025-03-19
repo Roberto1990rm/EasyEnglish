@@ -3,7 +3,7 @@
 @section('title', 'Inicio')
 
 @section('content')
-<div class="container mx-auto px-4">
+<div class="container mx-auto px-4 mb-3">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         @foreach($courses as $course)
             <div class="bg-white shadow-md p-6 rounded-lg">
