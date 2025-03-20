@@ -51,10 +51,11 @@
 <nav class="bg-white shadow-md fixed w-full z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-            <a href="{{ url('/') }}" class="text-2xl font-bold text-blue-600">EasyEnglish</a>
-
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('images/logo1.png') }}" alt="EasyEnglish Logo" class="h-10">
+            </a>
             <!-- Menú Escritorio con textos -->
-            <div class="hidden md:flex space-x-8">
+            <div  class="hidden md:flex space-x-8">
                 <a href="{{ url('/') }}" class="text-gray-700 hover:text-blue-500">Inicio</a>
                 <a href="{{ route('courses.index') }}" class="text-gray-700 hover:text-blue-500">Cursos</a>
                 <a href="#" class="text-gray-700 hover:text-blue-500">Nosotros</a>
@@ -63,19 +64,19 @@
 
             <!-- Menú Móvil con Iconos y Etiquetas -->
             <div class="flex md:hidden justify-around items-center space-x-4">
-                <a href="{{ url('/') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
-                    <i class="bi bi-house-door-fill"></i>
+                <a style="background-color: rgb(165, 219, 219);" href="{{ url('/') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
+                    <i  class="bi bi-house-door-fill"></i>
                     <span class="tooltip">Inicio</span>
                 </a>
-                <a href="{{ route('courses.index') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
+                <a style="background-color: rgb(165, 219, 219);"  href="{{ route('courses.index') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i class="bi bi-book-fill"></i>
                     <span class="tooltip">Cursos</span>
                 </a>
-                <a href="#" class="menu-icon text-gray-700 hover:bg-gray-50">
+                <a style="background-color: rgb(165, 219, 219);"  href="#" class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i class="bi bi-info-circle-fill"></i>
                     <span class="tooltip">Nosotros</span>
                 </a>
-                <a href="#" class="menu-icon text-gray-700 hover:bg-gray-50">
+                <a style="background-color: rgb(165, 219, 219);"  href="#" class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i class="bi bi-envelope-fill"></i>
                     <span class="tooltip">Contacto</span>
                 </a>
@@ -117,7 +118,7 @@
     @yield('content')
 </main>
 
-<footer class="bg-gray-800 text-white text-center mt-auto py-4">
+<footer class="bg-gray-800 text-white text-center mt-auto">
     <p>&copy; {{ date('Y') }} EasyEnglish. Todos los derechos reservados.</p>
 </footer>
 
