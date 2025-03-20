@@ -6,7 +6,7 @@
 
 @auth
 @if(auth()->user()->admin)
-<div class="text-center items-center mb-3">
+<div class="text-center items-center mb-3 mt-2">
     <a href="{{ route('courses.create') }}" class="btn bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">+ Crear curso</a>
 </div>
 @endif
@@ -30,6 +30,11 @@
                             <i class="bi bi-person-fill"></i> {{ $course->author }}
                         </div>
                         <!-- Botón eliminar -->
+                        <div class="text-center">
+                            <a href="{{ route('courses.show', $course) }}" class="mt-3 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                                <i class="bi bi-eye-fill"></i> Ver Curso
+                            </a>
+                        </div>
 
                         @auth
                         @if(auth()->user()->admin)

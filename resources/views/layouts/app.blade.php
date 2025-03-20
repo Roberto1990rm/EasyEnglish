@@ -94,6 +94,9 @@
                         @if(auth()->user()->admin)
                             <div class="px-4 py-2 text-sm text-gray-500">Admin</div>
                             <a href="{{ route('courses.create') }}" class="block px-4 py-2 hover:bg-gray-100">Crear curso</a>
+                            <a href="{{ route('lessons.create') }}" class="block px-4 py-2 hover:bg-gray-100">
+                               Crear Lección
+                            </a>
                             <a href="{{ route('courses.index') }}" class="block px-4 py-2 hover:bg-gray-100">Gestionar cursos</a>
                             <div class="border-t my-1"></div>
                         @endif

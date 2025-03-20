@@ -10,4 +10,13 @@ class Course extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'image', 'author'];
+
+    /**
+     * Relación con las lecciones
+     * Un curso puede tener muchas lecciones
+     */
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
 }
