@@ -40,6 +40,44 @@ class CourseController extends Controller
         return redirect()->route('courses.index')->with('success', 'Curso creado correctamente.');
     }
 
+
+    public function edit(Course $course)
+{
+    return view('courses.edit', compact('course'));
+}
+
+public function update(Request $request, Course $course)
+{
+    $request->validate([
+        'title' => 'required|max:255',
+        'description' => 'required',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+    ]);
+
+    $imagePath = $course->image; // imagen actual por defecto
+
+    // Comprobar si se ha subido una nueva imagen
+    if ($request->hasFile('image')) {
+        // Eliminar la imagen anterior
+        if ($imagePath && Storage::disk('public')->exists($imagePath)) {
+            Storage::disk('public')->delete($imagePath);
+        }
+
+        // Guardar nueva imagen
+        $imagePath = $request->file('image')->store('images/courses', 'public');
+    }
+
+    $course->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'image' => $imagePath,
+        'author' => Auth::user()->name, // Opcional: puedes mantener o cambiar autor
+    ]);
+
+    return redirect()->route('courses.index')->with('success', 'Curso actualizado correctamente.');
+}
+
+
     public function destroy(Course $course)
 {
     // Eliminar imagen asociada si existe

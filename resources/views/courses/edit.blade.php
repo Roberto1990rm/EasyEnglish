@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Crear nuevo curso')
+@section('title', 'Editar curso')
 
 @section('content')
 
-<div style="margin-top: -15px;" class="container mx-auto px-4 py-8 ">
-    <div  class="text-center">
-    <h1 style="color:antiquewhite; text-shadow: black 3px 3px 6px;" class="text-3xl font-bold text-gray-800 mb-6">Crear Nuevo Curso</h1>
-</div>
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Editar Curso</h1>
+
     @if ($errors->any())
         <div class="bg-red-200 text-red-700 p-4 rounded mb-4">
             <ul>
@@ -18,25 +17,28 @@
         </div>
     @endif
 
-    <form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md">
+    <form action="{{ route('courses.update', $course) }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md">
         @csrf
+        @method('PUT')
 
         <div class="mb-4">
             <label class="block text-gray-700">Título del curso:</label>
-            <input type="text" name="title" class="form-control w-full border rounded p-2" value="{{ old('title') }}" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="description" class="form-label">Descripción</label>
-            <textarea class="form-control" id="editor" name="description" rows="5" required>{{ old('description') }}</textarea>
+            <input type="text" name="title" class="form-control w-full border rounded p-2" value="{{ old('title', $course->title) }}" required>
         </div>
 
         <div class="mb-4">
-            <label class="block text-gray-700">Imagen principal:</label>
-            <input type="file" name="image" class="form-control w-full border rounded p-2" required>
+            <label class="block text-gray-700">Descripción del curso:</label>
+            <textarea name="description" id="editor" class="form-control w-full border rounded p-2" rows="6">{{ old('description', $course->description) }}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Crear curso</button>
+        <div class="mb-4">
+            <label class="block text-gray-700">Imagen actual:</label>
+            <img src="{{ asset('storage/' . $course->image) }}" alt="Imagen actual" class="w-48 rounded-md mb-3">
+            <input type="file" name="image" class="form-control w-full border rounded p-2">
+            <small class="text-gray-500">(Opcional: deja vacío para mantener la imagen actual)</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Actualizar curso</button>
         <a href="{{ route('courses.index') }}" class="btn btn-secondary px-4 py-2">Cancelar</a>
     </form>
 </div>

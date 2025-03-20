@@ -3,12 +3,14 @@
 @section('title', 'Cursos disponibles')
 
 @section('content')
-        @auth
+
+@auth
+@if(auth()->user()->admin)
 <div class="text-center items-center mb-3">
     <a href="{{ route('courses.create') }}" class="btn bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">+ Crear curso</a>
 </div>
+@endif
 @endauth
-
 <div  class="container mx-auto mb-2">
     @if($courses->isEmpty())
         <p class="text-gray-600">No hay cursos disponibles por ahora.</p>
@@ -28,7 +30,7 @@
                             <i class="bi bi-person-fill"></i> {{ $course->author }}
                         </div>
                         <!-- Botón eliminar -->
-                        
+
                         @auth
                         @if(auth()->user()->admin)
                             <form action="{{ route('courses.destroy', $course) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este curso?');">
@@ -36,6 +38,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="mt-3 text-red-500 hover:text-red-700">Eliminar</button>
                             </form>
+                            <a style="color: blue;" href="{{ route('courses.edit', $course) }}">Editar curso</a>
                         @endif
                     @endauth
                     

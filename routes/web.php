@@ -16,4 +16,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
     Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
     Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+
+// Mostrar formulario de edición
+Route::get('courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit')->middleware('auth');
+
+// Guardar cambios del formulario edit
+Route::put('courses/{course}', [CourseController::class, 'update'])->name('courses.update')->middleware('auth');
+
 });
