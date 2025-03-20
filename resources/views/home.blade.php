@@ -5,8 +5,8 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-10">
-    <div  class="text-center mb-10">
-        <h1 style="color: white; text-shadow:black 3px 3px 6px;" class="text-5xl font-bold text-gray-800">Bienvenidos a EasyEnglish</h1>
+    <div style="margin-top: -15px;"  class="text-center mb-10">
+        <h1 style="color: rgb(247, 231, 6); text-shadow:black 3px 3px 6px;" class="text-5xl font-bold text-gray-800">Bienvenidos a EasyEnglish</h1>
         <p style="color: white; text-shadow:black 3px 3px 6px;" class="mt-4 text-lg text-gray-600">Explora nuestros cursos de inglés adaptados a todos los niveles.</p>
     </div>
 
@@ -43,7 +43,7 @@
         </ul>
     </section>
     @auth
-    <section class="text-center my-12">
+    <section style="margin-bottom: -10px;" class="text-center my-12">
         <a href="{{ route('courses.create') }}" class="bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300">
             Crear nuevo curso
         </a>
