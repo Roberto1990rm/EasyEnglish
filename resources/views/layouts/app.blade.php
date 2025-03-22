@@ -107,7 +107,8 @@
                             <div class="border-t my-1"></div>
                         @endif
 
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Mi Perfil</a>
+                        <a href="{{ route('profile') }}" class="block px-4 py-2 hover:bg-gray-100">Mi Perfil</a>
+
                         <a href="#" class="block px-4 py-2 hover:bg-gray-100">Configuración</a>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf

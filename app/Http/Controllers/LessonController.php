@@ -35,6 +35,7 @@ class LessonController extends Controller
 
         Lesson::create([
             'course_id' => $request->course_id,
+            'user_id' => auth()->id(), // 👈 AÑADIR ESTO
             'title' => $request->title,
             'description' => $request->description,
             'image1' => $image1,
@@ -47,6 +48,7 @@ class LessonController extends Controller
             'example2' => $request->example2,
             'translation2' => $request->translation2,
         ]);
+        
 
         return redirect()->route('courses.index')->with('success', 'Lección creada correctamente.');
     }

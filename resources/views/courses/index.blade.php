@@ -26,7 +26,7 @@
             <h1 style="color: rgb(6, 247, 243); -webkit-text-stroke: 1px black; text-stroke: 1px black;"
                 style="color: rgb(247, 231, 6); text-shadow:black 3px 3px 6px;"
                 class="boldonse-regular text-5xl font-bold text-gray-800 ">Bienvenidos a EasyEnglish</h1>
-            <p style="color: white; text-shadow:black 3px 3px 6px;" class="mt-4 text-lg text-gray-600">Explora nuestros
+            <p style="color: rgb(5, 5, 5); text-shadow:rgb(171, 169, 169) 3px 3px 6px;" class="mt-4 text-lg text-gray-600">Explora nuestros
                 cursos
                 de inglés adaptados a todos los niveles.</p>
         </div>
