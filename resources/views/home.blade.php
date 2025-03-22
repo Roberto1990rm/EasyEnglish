@@ -4,22 +4,22 @@
 
 @section('content')
 
-<div style="margin-top: -30px;" class="bg-white py-16">
+<div style="margin-top: -65px;" class="bg-white py-16">
     <div class="container mx-auto px-4 max-w-7xl">
         <!-- Encabezado -->
-        <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-800 mb-4">
+        <div class="text-center">
+            <h1 style="color: aquamarine; text-shadow: black 3px 3px 7px;" class="boldonse-regular text-5xl font-bold text-gray-800 mb-3 ">
                 Conoce EasyEnglish
             </h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-2">
                 Somos más que una plataforma de enseñanza: somos una comunidad apasionada por el aprendizaje del inglés.
             </p>
         </div>
 
         <!-- Sección del Equipo / Historia -->
-        <div class="grid md:grid-cols-2 gap-10 mb-16 items-center">
+        <div class="grid md:grid-cols-2 gap-10 mb-10 items-center">
             <img src="{{ asset('images/about-team.jpg') }}" alt="Nuestro equipo" class="rounded-lg shadow-lg">
-            <div>
+            <div class="rounded" style="background-color: blanchedalmond; padding: 5px;">
                 <h2 class="text-2xl font-bold text-gray-800 mb-3">¿Quiénes somos?</h2>
                 <p class="text-gray-700 leading-relaxed">
                     EasyEnglish nace del deseo de democratizar el aprendizaje del idioma inglés para todos, sin importar edad o ubicación. Nuestro equipo está formado por docentes certificados, diseñadores instruccionales y desarrolladores que creen en una educación accesible, interactiva y divertida.
