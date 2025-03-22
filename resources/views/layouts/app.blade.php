@@ -58,11 +58,16 @@
                 <img src="{{ asset('images/logo1.png') }}" alt="EasyEnglish Logo" class="h-10">
             </a>
             <!-- Menú Escritorio con textos -->
-            <div  class="hidden md:flex space-x-8">
-                <a href="{{ url('/') }}" class="text-gray-700 hover:text-blue-500">Inicio</a>
-                <a href="{{ route('courses.index') }}" class="text-gray-700 hover:text-blue-500">Cursos</a>
-                <a href="{{ route('about') }}" class="text-gray-700 hover:text-blue-500">Nosotros</a>
-                <a href="{{ route('contact.show') }}" class="text-gray-700 hover:text-blue-500">Contacto</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="{{ url('/') }}" class="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 transition">
+                    Inicio
+                </a>
+                <a href="{{ route('courses.index') }}" class="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-green-500 to-lime-500 hover:from-green-600 hover:to-lime-600 transition">
+                    Cursos
+                </a>
+                <a href="{{ route('contact.show') }}" class="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 transition">
+                    Contacto
+                </a>
             </div>
 
             <!-- Menú Móvil con Iconos y Etiquetas -->
@@ -75,11 +80,7 @@
                     <i class="bi bi-book-fill"></i>
                     <span class="tooltip">Cursos</span>
                 </a>
-                <a style="background-color: rgb(165, 219, 219);" href="{{ route('about') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
-                    <i class="bi bi-info-circle-fill"></i>
-                    <span class="tooltip">Nosotros</span>
-                </a>
-                
+    
 
                 <a style="background-color: rgb(165, 219, 219);"  href="{{ route('contact.show') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i class="bi bi-envelope-fill"></i>

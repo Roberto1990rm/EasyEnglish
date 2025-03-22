@@ -1,72 +1,65 @@
-<!-- resources/views/welcome.blade.php -->
 @extends('layouts.app')
 
-@section('title', 'Bienvenidos a EasyEnglish')
+@section('title', 'Sobre Nosotros | EasyEnglish')
 
 @section('content')
 
-
-    <style>
-        .boldonse-regular {
-            font-family: "Boldonse", system-ui;
-            font-weight: 400;
-            font-style: normal;
-        }
-    </style>
-
-    <div class="container mx-auto px-4 py-10">
-        <div style="margin-top: -15px;" class="text-center mb-10">
-            <h1 style="color: rgb(6, 247, 243); -webkit-text-stroke: 1px black; text-stroke: 1px black;"
-                style="color: rgb(247, 231, 6); text-shadow:black 3px 3px 6px;"
-                class="boldonse-regular text-5xl font-bold text-gray-800 ">Bienvenidos a EasyEnglish</h1>
-            <p style="color: white; text-shadow:black 3px 3px 6px;" class="mt-4 text-lg text-gray-600">Explora nuestros cursos
-                de inglés adaptados a todos los niveles.</p>
+<div style="margin-top: -30px;" class="bg-white py-16">
+    <div class="container mx-auto px-4 max-w-7xl">
+        <!-- Encabezado -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-800 mb-4">
+                Conoce EasyEnglish
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Somos más que una plataforma de enseñanza: somos una comunidad apasionada por el aprendizaje del inglés.
+            </p>
         </div>
 
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            @foreach ($courses as $course)
-                <a href="{{ route('courses.show', $course->id) }}" class="block">
-                    <div
-                        class="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 hover:shadow-xl">
-                        <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->title }}"
-                            class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h2 class="text-2xl font-bold text-gray-800">{{ $course->title }}</h2>
-                            <div class="descripcion-scroll mt-2 text-gray-600 prose max-w-none">
-                                {!! $course->description !!}
-                            </div>
-                            <p class="text-sm text-gray-500 mt-3"><i class="bi bi-person"></i> Autor: {{ $course->author }}
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            @endforeach
-        </section>
+        <!-- Sección del Equipo / Historia -->
+        <div class="grid md:grid-cols-2 gap-10 mb-16 items-center">
+            <img src="{{ asset('images/about-team.jpg') }}" alt="Nuestro equipo" class="rounded-lg shadow-lg">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-3">¿Quiénes somos?</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    EasyEnglish nace del deseo de democratizar el aprendizaje del idioma inglés para todos, sin importar edad o ubicación. Nuestro equipo está formado por docentes certificados, diseñadores instruccionales y desarrolladores que creen en una educación accesible, interactiva y divertida.
+                </p>
+            </div>
+        </div>
 
-        <section style="opacity: 0.9; margin-bottom: -10px;" class="my-16 bg-blue-100 rounded-lg p-8 text-center">
-            <h2 class="text-3xl font-bold text-gray-800">¿Por qué elegir EasyEnglish?</h2>
-            <ul class="mt-6 text-gray-700 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <li class="flex flex-col items-center">
-                    <i class="bi bi-journal-check text-4xl text-blue-600"></i>
-                    <span class="mt-2 font-semibold">Cursos personalizados</span>
-                </li>
-                <li class="flex flex-col items-center">
-                    <i class="bi bi-people-fill text-4xl text-blue-600"></i>
-                    <span class="mt-2 font-semibold">Profesores calificados</span>
-                </li>
-                <li class="flex flex-col items-center">
-                    <i class="bi bi-clock-fill text-4xl text-blue-600"></i>
-                    <span class="mt-2 font-semibold">Flexibilidad horaria</span>
-                </li>
-            </ul>
-        </section>
-        @auth
-            <section style="margin-bottom: -10px;" class="text-center my-12">
-                <a href="{{ route('courses.create') }}"
-                    class="bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300">
-                    Crear nuevo curso
-                </a>
-            </section>
-        @endauth
+        <!-- Misión, Visión, Valores -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16 text-center">
+            <div class="bg-blue-50 rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-semibold text-blue-700 mb-2">Nuestra Misión</h3>
+                <p class="text-gray-600">
+                    Brindar herramientas de aprendizaje efectivas y accesibles para dominar el inglés desde cualquier parte del mundo.
+                </p>
+            </div>
+            <div class="bg-blue-50 rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-semibold text-blue-700 mb-2">Nuestra Visión</h3>
+                <p class="text-gray-600">
+                    Ser la plataforma educativa de referencia en enseñanza del inglés en Latinoamérica y el mundo.
+                </p>
+            </div>
+            <div class="bg-blue-50 rounded-lg p-6 shadow-md">
+                <h3 class="text-xl font-semibold text-blue-700 mb-2">Nuestros Valores</h3>
+                <ul class="text-gray-600 text-left list-disc list-inside">
+                    <li>Accesibilidad</li>
+                    <li>Innovación</li>
+                    <li>Pasión por enseñar</li>
+                    <li>Calidad humana</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-xl p-10 text-center shadow-lg">
+            <h2 class="text-3xl font-bold mb-4">¿Listo para comenzar a aprender con nosotros?</h2>
+            <p class="mb-6 text-lg">Únete a miles de estudiantes que ya están mejorando su inglés con EasyEnglish.</p>
+            <a href="{{ route('register') }}" class="inline-block bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">
+                Crear una cuenta
+            </a>
+        </div>
     </div>
+</div>
 @endsection

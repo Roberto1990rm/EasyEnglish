@@ -11,13 +11,36 @@
 </div>
 @endif
 @endauth
+
+<style>
+    .boldonse-regular {
+        font-family: "Boldonse", system-ui;
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
+
+<div class="container mx-auto px-4 py-10">
+    <div style="margin-top: -15px;" class="text-center mb-2">
+        <h1 style="color: rgb(6, 247, 243); -webkit-text-stroke: 1px black; text-stroke: 1px black;"
+            style="color: rgb(247, 231, 6); text-shadow:black 3px 3px 6px;"
+            class="boldonse-regular text-5xl font-bold text-gray-800 ">Bienvenidos a EasyEnglish</h1>
+        <p style="color: white; text-shadow:black 3px 3px 6px;" class="mt-4 text-lg text-gray-600">Explora nuestros cursos
+            de inglés adaptados a todos los niveles.</p>
+    </div>
+
+
 <div  class="container mx-auto mb-2">
     @if($courses->isEmpty())
         <p class="text-gray-600">No hay cursos disponibles por ahora.</p>
     @else
-    <h1 style="text-shadow: rgb(15, 15, 15) 4px 4px 7px" class="text-white text-center text-3xl font-bold text-gray-800 mb-3">Cursos Disponibles</h1>
+    <div class="bg-orange-400 bg-opacity-90 rounded-lg shadow-md text-center py-6 px-4 mb-8">
+    <h2 class="text-3xl font-extrabold text-white mb-2" style="text-shadow: 2px 2px 5px black;">
+        Cursos disponibles
+    </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 pt-3">
 
-        <div  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pt-3">
             @foreach($courses as $course)
                 <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                     <img src="{{ asset('storage/' . $course->image) }}" class="w-full h-40 object-cover" alt="{{ $course->title }}">
@@ -52,5 +75,23 @@
             @endforeach
         </div>
     @endif
+
+    <section style="opacity: 0.9; margin-bottom: -10px;" class="my-16 bg-blue-100 rounded-lg p-8 text-center">
+        <h2 class="text-3xl font-bold text-gray-800">¿Por qué elegir EasyEnglish?</h2>
+        <ul class="mt-6 text-gray-700 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <li class="flex flex-col items-center">
+                <i class="bi bi-journal-check text-4xl text-blue-600"></i>
+                <span class="mt-2 font-semibold">Cursos personalizados</span>
+            </li>
+            <li class="flex flex-col items-center">
+                <i class="bi bi-people-fill text-4xl text-blue-600"></i>
+                <span class="mt-2 font-semibold">Profesores calificados</span>
+            </li>
+            <li class="flex flex-col items-center">
+                <i class="bi bi-clock-fill text-4xl text-blue-600"></i>
+                <span class="mt-2 font-semibold">Flexibilidad horaria</span>
+            </li>
+        </ul>
+    </section>
 </div>
 @endsection
