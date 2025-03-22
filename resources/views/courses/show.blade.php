@@ -5,6 +5,17 @@
 @section('content')
 
 <div class="container mx-auto px-4 py-8">
+
+    @auth
+    @if(auth()->user()->role == 1)
+        <div class="text-center mb-4">
+            <a href="{{ route('lessons.create') }}" class="btn btn-primary px-4 py-2">
+                Crear Lección
+            </a>
+        </div>
+    @endif
+@endauth
+
     <!-- Información del Curso -->
     <div class="bg-white shadow-md rounded-lg p-6 mb-8">
         <h1 class="text-3xl font-bold text-gray-800">{{ $course->title }}</h1>

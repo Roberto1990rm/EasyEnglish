@@ -4,9 +4,24 @@
 @section('title', 'Bienvenidos a EasyEnglish')
 
 @section('content')
+
+
+<style>
+
+
+
+.boldonse-regular {
+  font-family: "Boldonse", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+</style>
+
+
+
 <div class="container mx-auto px-4 py-10">
     <div style="margin-top: -15px;"  class="text-center mb-10">
-        <h1 style="color: rgb(247, 231, 6); text-shadow:black 3px 3px 6px;" class="text-5xl font-bold text-gray-800">Bienvenidos a EasyEnglish</h1>
+        <h1 style="color: rgb(6, 247, 243); -webkit-text-stroke: 1px black; text-stroke: 1px black;" style="color: rgb(247, 231, 6); text-shadow:black 3px 3px 6px;" class="boldonse-regular text-5xl font-bold text-gray-800 ">Bienvenidos a EasyEnglish</h1>
         <p style="color: white; text-shadow:black 3px 3px 6px;" class="mt-4 text-lg text-gray-600">Explora nuestros cursos de inglés adaptados a todos los niveles.</p>
     </div>
 

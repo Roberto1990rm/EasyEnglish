@@ -27,6 +27,8 @@ nav{
 }
 
 
+
+
 .content, main {
   flex: 1; 
   background-image: url('/images/maderaRoja.jpg');
