@@ -5,8 +5,12 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::view('/sobre-nosotros', 'about')->name('about');
+Route::get('/contacto', [ContactController::class, 'show'])->name('contact.show');
+Route::post('/contacto', [ContactController::class, 'send'])->name('contact.send');
 
 Auth::routes();
 

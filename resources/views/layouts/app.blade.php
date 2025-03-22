@@ -61,8 +61,8 @@
             <div  class="hidden md:flex space-x-8">
                 <a href="{{ url('/') }}" class="text-gray-700 hover:text-blue-500">Inicio</a>
                 <a href="{{ route('courses.index') }}" class="text-gray-700 hover:text-blue-500">Cursos</a>
-                <a href="#" class="text-gray-700 hover:text-blue-500">Nosotros</a>
-                <a href="#" class="text-gray-700 hover:text-blue-500">Contacto</a>
+                <a href="{{ route('about') }}" class="text-gray-700 hover:text-blue-500">Nosotros</a>
+                <a href="{{ route('contact.show') }}" class="text-gray-700 hover:text-blue-500">Contacto</a>
             </div>
 
             <!-- Menú Móvil con Iconos y Etiquetas -->
@@ -75,11 +75,13 @@
                     <i class="bi bi-book-fill"></i>
                     <span class="tooltip">Cursos</span>
                 </a>
-                <a style="background-color: rgb(165, 219, 219);"  href="#" class="menu-icon text-gray-700 hover:bg-gray-50">
+                <a style="background-color: rgb(165, 219, 219);" href="{{ route('about') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i class="bi bi-info-circle-fill"></i>
                     <span class="tooltip">Nosotros</span>
                 </a>
-                <a style="background-color: rgb(165, 219, 219);"  href="#" class="menu-icon text-gray-700 hover:bg-gray-50">
+                
+
+                <a style="background-color: rgb(165, 219, 219);"  href="{{ route('contact.show') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i class="bi bi-envelope-fill"></i>
                     <span class="tooltip">Contacto</span>
                 </a>
