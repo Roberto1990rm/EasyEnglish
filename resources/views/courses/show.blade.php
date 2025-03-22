@@ -19,22 +19,25 @@
         <!-- Información del Curso -->
         <div class="bg-white shadow-md rounded-lg p-6 mb-8">
             <h1 class="text-3xl font-bold text-gray-800">{{ $course->title }}</h1>
-            <img src="{{ asset('storage/' . $course->image) }}" class="w-full h-60 object-cover rounded-md my-4"
+            <img style="height: auto;" src="{{ asset('storage/' . $course->image) }}" class="w-full h-60 object-cover rounded-md my-4"
                 alt="{{ $course->title }}">
             <div class="prose max-w-none text-gray-700">
                 {!! $course->description !!}
             </div>
             <p class="text-sm text-gray-500 mt-2">Autor: {{ $course->author }}</p>
         </div>
-        <div class="text-center">
-            <!-- Lista de Lecciones -->
-            <h2 style="color: azure; text-shadow:black 3px 3px 6px;" class="text-2xl font-bold text-gray-800 mb-4">Lecciones
-                del Curso</h2>
-        </div>
-        @if ($course->lessons->isEmpty())
 
-            <p class="text-gray-600">No hay lecciones disponibles para este curso aún.</p>
-        @else
+        <div class="bg-yellow-400 bg-opacity-90 rounded-lg shadow-md text-center py-6 px-4 mb-8">
+            <h2 class="text-3xl font-extrabold text-white mb-2" style="text-shadow: 2px 2px 5px black;">
+                Lecciones del Curso
+            </h2>
+        
+            @if ($course->lessons->isEmpty())
+                <p class="text-gray-100 text-lg mt-2">
+                    No hay lecciones disponibles para este curso aún.
+                </p>
+            @endif
+        </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($course->lessons as $lesson)
                     <div class="bg-white shadow-md rounded-lg p-6">
@@ -134,7 +137,6 @@
                         @endauth
                     </div>
                 @endforeach
-        @endif
 
         <div id="imageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-80">
             <div class="relative max-w-4xl mx-auto">
