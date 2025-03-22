@@ -6,30 +6,46 @@
 <div style="margin-top: -20px;" class="container bg-white mx-auto px-4 py-16 max-w-5xl">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <!-- Información de contacto / branding -->
-        <div class="text-center space-y-6">
+        <div style="margin-top: -25px;" class="text-center space-y-6">
             <h1 class="text-4xl font-bold text-blue-800 mb-2">Contáctanos</h1>
             <p class="text-gray-600 text-lg">
                 ¿Tienes dudas, sugerencias o simplemente quieres saludar? ¡Estamos aquí para ayudarte! Completa el formulario y te responderemos lo antes posible.
             </p>
 
             <div class="space-y-3 text-gray-700">
+                <!-- Dirección / Mapa -->
                 <div class="flex items-center gap-3">
                     <i class="bi bi-geo-alt-fill text-blue-600 text-xl"></i>
-                    <span>Buenos Aires, Argentina</span>
+                    <a href="https://www.google.com/maps?q=Av.+Corrientes+348,+Buenos+Aires,+Argentina" target="_blank" class="hover:underline">
+                        Av. Corrientes 348, Buenos Aires
+                    </a>
                 </div>
+            
+                <!-- Correo -->
                 <div class="flex items-center gap-3">
                     <i class="bi bi-envelope-fill text-blue-600 text-xl"></i>
-                    <span>easyenglish.contacto@gmail.com</span>
+                    <a href="mailto:easyenglish.contacto@gmail.com" class="hover:underline">
+                        easyenglish.contacto@gmail.com
+                    </a>
                 </div>
+            
+                <!-- Teléfono -->
                 <div class="flex items-center gap-3">
                     <i class="bi bi-telephone-fill text-blue-600 text-xl"></i>
-                    <span>+54 9 11 1234 5678</span>
+                    <a href="tel:+5491112345678" class="hover:underline">
+                        +54 9 11 1234 5678
+                    </a>
                 </div>
+            
+                <!-- Instagram -->
                 <div class="flex items-center gap-3">
                     <i class="bi bi-instagram text-pink-500 text-xl"></i>
-                    <a href="#" class="hover:underline" target="_blank">@easyenglish</a>
+                    <a href="https://instagram.com/easyenglish" class="hover:underline" target="_blank">
+                        @easyenglish
+                    </a>
                 </div>
             </div>
+            
 
             <img src="{{ asset('images/about-team.jpg') }}" alt="Contáctanos" class="w-3/4 mt-6 hidden md:block">
         </div>

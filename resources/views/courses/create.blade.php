@@ -4,9 +4,9 @@
 
 @section('content')
 
-<div style="margin-top: -15px;" class="container mx-auto px-4 py-8 ">
+<div style="margin-top: -25px;" class="container mx-auto px-4 py-8 ">
     <div  class="text-center">
-    <h1 style="color:antiquewhite; text-shadow: black 3px 3px 6px;" class="text-3xl font-bold text-gray-800 mb-6">Crear Nuevo Curso</h1>
+    <h1 style="color:rgb(30, 29, 29); text-shadow: rgb(215, 214, 214) 3px 3px 6px;" class="text-3xl font-bold text-gray-800 mb-6">Crea un nuevo curso</h1>
 </div>
     @if ($errors->any())
         <div class="bg-red-200 text-red-700 p-4 rounded mb-4">

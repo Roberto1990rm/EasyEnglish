@@ -13,15 +13,16 @@ Route::get('/contacto', [ContactController::class, 'show'])->name('contact.show'
 Route::post('/contacto', [ContactController::class, 'send'])->name('contact.send');
 
 Auth::routes();
-
+Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
-    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+   
+
     Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
 
 // Mostrar formulario de edición
