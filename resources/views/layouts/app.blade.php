@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Honk&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -47,18 +47,44 @@
             transition: all 0.2s ease-in-out;
         }
 
+        .boldonse-regular {
+  font-family: "Boldonse", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.tektur {
+  font-family: "Tektur", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.honk- {
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 15,
+    "SHLN" 50;
+}
+
+
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-100">
 
-<nav class="bg-white shadow-md fixed w-full z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<nav class=" bg-white shadow-md fixed w-full z-50">
+    <div style="font-size: 13.5px;" class="boldonse-regular max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <a href="{{ url('/') }}">
                 <img src="{{ asset('images/logo1.png') }}" alt="EasyEnglish Logo" class="h-10">
             </a>
             <!-- Menú Escritorio con textos -->
-            <div class="hidden md:flex space-x-6">
+            <div style="text-shadow: black 2px 2px 4px;" class="hidden md:flex space-x-6">
                 <a href="{{ url('/') }}" class="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 transition">
                     Inicio
                 </a>
@@ -96,7 +122,7 @@
                         <i class="bi bi-chevron-down"></i>
                     </button>
 
-                    <div id="userDropdown" class="absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
+                    <div style="text-shadow: rgb(106, 104, 104) 1px 1px 2px;" id="userDropdown" class="tektur absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
                         @if(auth()->user()->admin)
                             <div class="px-4 py-2 text-sm text-gray-500">Admin</div>
                             <a href="{{ route('courses.create') }}" class="block px-4 py-2 hover:bg-gray-100">Crear curso</a>
@@ -109,7 +135,7 @@
 
                         <a href="{{ route('profile') }}" class="block px-4 py-2 hover:bg-gray-100">Mi Perfil</a>
 
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Configuración</a>
+                        
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="w-full text-left block px-4 py-2 hover:bg-gray-100">Logout</button>
@@ -124,7 +150,7 @@
     </div>
 </nav>
 
-<main class="flex-grow pt-20">
+<main class="tektur flex-grow pt-20">
     @yield('content')
 </main>
 
