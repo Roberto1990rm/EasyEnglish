@@ -18,6 +18,10 @@
         </div>
     @endif
 
+
+    
+    
+
     <form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md">
         @csrf
 
@@ -28,7 +32,8 @@
 
         <div class="mb-3">
             <label for="description" class="form-label">Descripción</label>
-            <textarea class="form-control" id="editor" name="description" rows="5" required>{{ old('description') }}</textarea>
+            <textarea class="form-control" id="editor" name="description" rows="5">{{ old('description') }}</textarea>
+
         </div>
 
         <div class="mb-4">
@@ -42,8 +47,7 @@
 </div>
 
 <!-- TinyMCE desde CDNJS (sin API key) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js" crossorigin="anonymous"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   tinymce.init({
     selector: '#editor',
@@ -51,10 +55,14 @@
     toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | link blockquote',
     menubar: false,
     branding: false,
-    font_family_formats: 'Arial=arial,helvetica,sans-serif;Georgia=georgia,serif;Times New Roman=times new roman;Courier New=courier new,courier;Verdana=verdana,geneva,sans-serif',
-    fontsize_formats: '10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
-    height: 400
+    height: 400,
+    setup: function (editor) {
+      editor.on('change', function () {
+        editor.save(); // actualiza el textarea real con el contenido
+      });
+    }
   });
 </script>
+
 
 @endsection

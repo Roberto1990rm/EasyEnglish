@@ -44,6 +44,7 @@ class CourseController extends Controller
             'author' => Auth::user()->name,  // Toma el nombre del usuario autenticado
         ]);
 
+
         return redirect()->route('courses.index')->with('success', 'Curso creado correctamente.');
     }
 

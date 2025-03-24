@@ -42,7 +42,7 @@ class LessonController extends Controller
             'image1' => $image1,
             'image2' => $image2,
             'image3' => $image3,
-            'video' => $request->video ?? $lesson->video,
+            'video' => $request->video,
             'audio' => $audio,
             'example1' => $request->example1,
             'translation1' => $request->translation1,
