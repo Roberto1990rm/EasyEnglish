@@ -25,6 +25,7 @@ class LessonController extends Controller
             'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'image3' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'audio' => 'nullable|mimes:mp3,wav|max:5120',
+            
         ]);
 
         // Almacenar imágenes
@@ -41,7 +42,7 @@ class LessonController extends Controller
             'image1' => $image1,
             'image2' => $image2,
             'image3' => $image3,
-            'video' => $request->video,
+            'video' => $request->video ?? $lesson->video,
             'audio' => $audio,
             'example1' => $request->example1,
             'translation1' => $request->translation1,
@@ -69,17 +70,26 @@ public function update(Request $request, Lesson $lesson)
         'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         'image3' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         'audio' => 'nullable|mimes:mp3,wav|max:5120',
+        'video' => 'nullable|string|max:255', // ✅ Añadir esta línea
+
     ]);
 
     // Guardar imágenes y audio si son reemplazados
     $lesson->update([
         'title' => $request->title,
         'description' => $request->description,
-        'video' => $request->video,
+        'video' => $request->filled('video') ? $request->video : $lesson->video,
+
         'image1' => $request->file('image1') ? $request->file('image1')->store('images/lessons', 'public') : $lesson->image1,
         'image2' => $request->file('image2') ? $request->file('image2')->store('images/lessons', 'public') : $lesson->image2,
         'image3' => $request->file('image3') ? $request->file('image3')->store('images/lessons', 'public') : $lesson->image3,
         'audio' => $request->file('audio') ? $request->file('audio')->store('audio/lessons', 'public') : $lesson->audio,
+    
+        // 👇 Añadí estos campos:
+        'example1' => $request->example1,
+        'translation1' => $request->translation1,
+        'example2' => $request->example2,
+        'translation2' => $request->translation2,
     ]);
 
     return redirect()->route('courses.show', $lesson->course_id)->with('success', 'Lección actualizada correctamente.');

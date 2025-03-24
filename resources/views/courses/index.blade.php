@@ -4,6 +4,9 @@
 
 @section('content')
 
+@php use Illuminate\Support\Facades\Storage; @endphp
+
+
     @auth
         @if (auth()->user()->admin)
             <div class="text-center items-center mt-1">
@@ -26,7 +29,8 @@
             <h1 style="color: rgb(6, 247, 243); -webkit-text-stroke: 1px black; text-stroke: 1px black;"
                 style="color: rgb(247, 231, 6); text-shadow:black 3px 3px 6px;"
                 class="boldonse-regular text-5xl font-bold text-gray-800 ">Bienvenidos a EasyEnglish</h1>
-            <p style="color: rgb(5, 5, 5); text-shadow:rgb(171, 169, 169) 3px 3px 6px;" class="mt-4 text-lg text-gray-600">Explora nuestros
+            <p style="color: rgb(5, 5, 5); text-shadow:rgb(171, 169, 169) 3px 3px 6px;" class="mt-4 text-lg text-gray-600">
+                Explora nuestros
                 cursos
                 de inglés adaptados a todos los niveles.</p>
         </div>
@@ -45,8 +49,17 @@
 
                     @foreach ($courses as $course)
                         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                            <img src="{{ asset('storage/' . $course->image) }}" class="w-full h-40 object-cover"
-                                alt="{{ $course->title }}">
+                            @php
+    $imagePath = $course->image && Storage::disk('public')->exists($course->image)
+        ? asset('storage/' . $course->image)
+        : asset('images/default.jpg');
+@endphp
+                            <img 
+                            src="{{ $imagePath }}" 
+                            class="w-full h-40 object-cover rounded-t" 
+                            alt="{{ $course->title }}"
+                        >
+
                             <div class="p-4">
                                 <h2 class="text-xl font-semibold text-gray-800">{{ $course->title }}</h2>
                                 <div class="descripcion-scroll text-gray-600 mt-2 prose max-w-none">
@@ -82,7 +95,8 @@
                 </div>
             @endif
 
-            <section style="opacity: 0.9; margin-bottom: -15px; margin-top: 10px;" class="my-16 bg-blue-100 rounded-lg p-8 text-center">
+            <section style="opacity: 0.9; margin-bottom: -15px; margin-top: 10px;"
+                class="my-16 bg-blue-100 rounded-lg p-8 text-center">
                 <h2 class="text-3xl font-bold text-gray-800">¿Por qué elegir EasyEnglish?</h2>
                 <ul class="mt-6 text-gray-700 grid grid-cols-1 md:grid-cols-3 gap-4">
                     <li class="flex flex-col items-center">

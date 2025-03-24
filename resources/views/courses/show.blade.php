@@ -4,6 +4,8 @@
 
 @section('content')
 
+@php use Illuminate\Support\Facades\Storage; @endphp
+
     <div class="container mx-auto px-4 py-8">
 
         @auth
@@ -19,8 +21,16 @@
         <!-- Información del Curso -->
         <div class="bg-white shadow-md rounded-lg p-6 mb-8">
             <h1 class="text-3xl font-bold text-gray-800">{{ $course->title }}</h1>
-            <img style="height: auto;" src="{{ asset('storage/' . $course->image) }}" class="w-full h-60 object-cover rounded-md my-4"
-                alt="{{ $course->title }}">
+            @php
+            $imagePath = $course->image && Storage::disk('public')->exists($course->image)
+                ? asset('storage/' . $course->image)
+                : asset('images/default.jpg');
+        @endphp
+                                    <img 
+                                    src="{{ $imagePath }}" 
+                                    class="w-full h-40 object-cover rounded-t" 
+                                    alt="{{ $course->title }}"
+                                >
             <div class="prose max-w-none text-gray-700">
                 {!! $course->description !!}
             </div>

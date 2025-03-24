@@ -1,11 +1,10 @@
 <?php
-// database/migrations/2025_03_19_164701_create_courses_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCoursesTable extends Migration // ✅ Corrige este nombre
+class CreateCoursesTable extends Migration
 {
     public function up()
     {
@@ -13,7 +12,7 @@ class CreateCoursesTable extends Migration // ✅ Corrige este nombre
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable()->default('images/default.jpg'); // ← aquí el cambio
             $table->string('author');
             $table->timestamps();
         });

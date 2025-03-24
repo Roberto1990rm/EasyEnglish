@@ -4,6 +4,9 @@
 
 @section('content')
 
+@php use Illuminate\Support\Facades\Storage; @endphp
+
+
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold text-gray-800 mb-6">Editar Curso</h1>
 
@@ -33,7 +36,16 @@
 
         <div class="mb-4">
             <label class="block text-gray-700">Imagen actual:</label>
-            <img src="{{ asset('storage/' . $course->image) }}" alt="Imagen actual" class="w-48 rounded-md mb-3">
+            @php
+    $imagePath = $course->image && Storage::disk('public')->exists($course->image)
+        ? asset('storage/' . $course->image)
+        : asset('images/default.jpg');
+@endphp
+            <img 
+            src="{{ $imagePath }}" 
+            class="w-40 h-40 object-cover rounded-t mb-2" 
+            alt="{{ $course->title }}"
+        >
             <input type="file" name="image" class="form-control w-full border rounded p-2">
             <small class="text-gray-500">(Opcional: deja vacío para mantener la imagen actual)</small>
         </div>
