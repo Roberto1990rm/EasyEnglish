@@ -47,18 +47,23 @@
             </div>
 
             <!-- Imágenes -->
+            <!-- Imágenes -->
             <div class="mb-4">
                 <label class="block text-gray-700">Imagen 1:</label>
-                <input type="file" name="image1" class="form-control w-full border rounded p-2">
+                <input type="file" name="image1" accept="image/*" capture="environment"
+                    class="form-control w-full border rounded p-2">
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Imagen 2:</label>
-                <input type="file" name="image2" class="form-control w-full border rounded p-2">
+                <input type="file" name="image2" accept="image/*" capture="environment"
+                    class="form-control w-full border rounded p-2">
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Imagen 3:</label>
-                <input type="file" name="image3" class="form-control w-full border rounded p-2">
+                <input type="file" name="image3" accept="image/*" capture="environment"
+                    class="form-control w-full border rounded p-2">
             </div>
+
 
             <!-- Video -->
             <div class="mb-4">
