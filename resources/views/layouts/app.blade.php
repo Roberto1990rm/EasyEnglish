@@ -97,18 +97,18 @@
             </div>
 
             <!-- Menú Móvil con Iconos y Etiquetas -->
-            <div class="flex md:hidden justify-around items-center space-x-4">
-                <a style="background-color: rgb(165, 219, 219);" href="{{ url('/') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
+            <div class="flex md:hidden justify-around items-center space-x-8">
+                <a style="background-color: rgb(250, 162, 0);" href="{{ url('/') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i  class="bi bi-house-door-fill"></i>
                     <span class="tooltip">Inicio</span>
                 </a>
-                <a style="background-color: rgb(165, 219, 219);"  href="{{ route('courses.index') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
+                <a style="background-color: rgb(0, 250, 29);"  href="{{ route('courses.index') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i class="bi bi-book-fill"></i>
                     <span class="tooltip">Cursos</span>
                 </a>
     
 
-                <a style="background-color: rgb(165, 219, 219);"  href="{{ route('contact.show') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
+                <a style="background-color: rgb(246, 0, 250);"  href="{{ route('contact.show') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i class="bi bi-envelope-fill"></i>
                     <span class="tooltip">Contacto</span>
                 </a>
