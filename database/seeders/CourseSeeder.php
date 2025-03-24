@@ -2,70 +2,63 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Course;
 use App\Models\Lesson;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Models\Example;
+use Illuminate\Database\Seeder;
 
 class CourseSeeder extends Seeder
 {
     public function run(): void
     {
-        $course1 = Course::create([
-            'title' => 'Inglés Básico',
-            'description' => 'Un curso introductorio para comenzar tu viaje con el inglés.',
+        $course = Course::create([
+            'title' => 'Gramática Fundamental',
+            'description' => 'Aprende la base del inglés con lecciones claras y prácticas.',
             'image' => 'images/default.jpg',
             'author' => 'Admin',
         ]);
 
-        $course2 = Course::create([
-            'title' => 'Inglés Intermedio',
-            'description' => 'Mejora tu gramática y vocabulario en inglés.',
-            'image' => 'images/default.jpg',
-            'author' => 'Admin',
+        $lesson = Lesson::create([
+            'course_id' => $course->id,
+            'user_id' => 1,
+            'title' => 'El verbo "to be"',
+            'description' => '
+                <p>El verbo <strong>"to be"</strong> es uno de los más importantes en inglés. Se traduce como <em>"ser" o "estar"</em> y se usa para describir identidad, estado, profesión, edad y más.</p>
+                
+                <h3>Forma del verbo "to be" en presente:</h3>
+                <table style="width: 100%; border-collapse: collapse;" border="1" cellpadding="6">
+                    <thead>
+                        <tr style="background-color: #f3f3f3;">
+                            <th>Pronombre</th>
+                            <th>Verbo "to be"</th>
+                            <th>Ejemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>I</td><td>am</td><td>I am a teacher.</td></tr>
+                        <tr><td>You</td><td>are</td><td>You are happy.</td></tr>
+                        <tr><td>He</td><td>is</td><td>He is tall.</td></tr>
+                        <tr><td>She</td><td>is</td><td>She is a doctor.</td></tr>
+                        <tr><td>It</td><td>is</td><td>It is cold.</td></tr>
+                        <tr><td>We</td><td>are</td><td>We are friends.</td></tr>
+                        <tr><td>They</td><td>are</td><td>They are students.</td></tr>
+                    </tbody>
+                </table>
+                <p>También se usa para describir ubicaciones y emociones.</p>
+            ',
+            'video' => 'https://www.youtube.com/watch?v=2e4v4zZy3uY',
         ]);
 
-        // Lecciones para el curso 1
-        Lesson::create([
-            'course_id' => $course1->id,
-            'title' => 'Saludos y Presentaciones',
-            'description' => 'Aprende a saludar y presentarte en inglés.',
-            'user_id' => 1,
-            'video' => 'https://www.youtube.com/watch?v=abcd1234',
-            'example1' => 'Hello, my name is John.',
-            'translation1' => 'Hola, mi nombre es John.',
-        ]);
+        $examples = [
+            ['example' => 'I am tired.', 'translation' => 'Estoy cansado.'],
+            ['example' => 'She is at home.', 'translation' => 'Ella está en casa.'],
+            ['example' => 'They are my friends.', 'translation' => 'Ellos son mis amigos.'],
+            ['example' => 'It is a beautiful day.', 'translation' => 'Es un día hermoso.'],
+            ['example' => 'We are ready.', 'translation' => 'Estamos listos.'],
+        ];
 
-        Lesson::create([
-            'course_id' => $course1->id,
-            'title' => 'Números y Colores',
-            'description' => 'Vocabulario básico de números y colores.',
-            'user_id' => 1,
-            'video' => 'https://www.youtube.com/watch?v=efgh5678',
-            'example1' => 'The sky is blue.',
-            'translation1' => 'El cielo es azul.',
-        ]);
-
-        // Lecciones para el curso 2
-        Lesson::create([
-            'course_id' => $course2->id,
-            'title' => 'Tiempos Verbales',
-            'description' => 'Presente simple, pasado simple y futuro.',
-            'user_id' => 1,
-            'video' => 'https://www.youtube.com/watch?v=ijkl9012',
-            'example1' => 'I study English every day.',
-            'translation1' => 'Estudio inglés todos los días.',
-        ]);
-
-        Lesson::create([
-            'course_id' => $course2->id,
-            'title' => 'Conversación Básica',
-            'description' => 'Frases comunes en diálogos cotidianos.',
-            'user_id' => 1,
-            'video' => 'https://www.youtube.com/watch?v=mnop3456',
-            'example1' => 'How are you?',
-            'translation1' => '¿Cómo estás?',
-        ]);
+        foreach ($examples as $item) {
+            $lesson->examples()->create($item);
+        }
     }
 }

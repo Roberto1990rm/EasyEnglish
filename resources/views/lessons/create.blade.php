@@ -74,22 +74,18 @@
             </div>
 
             <!-- Ejemplos y Traducciones -->
-            <div class="mb-4">
-                <label class="block text-gray-700">Ejemplo 1:</label>
-                <input type="text" name="example1" class="form-control w-full border rounded p-2" required>
+            <div id="example-container">
+                <label class="block text-gray-700 mb-2">Ejemplos y Traducciones:</label>
+                
+                <div class="example-group mb-4">
+                    <textarea name="examples[0][text]" class="editor form-control w-full border rounded p-2 mb-2" placeholder="Ejemplo..." required></textarea>
+                    <textarea name="examples[0][translation]" class="editor form-control w-full border rounded p-2" placeholder="Traducción..." required></textarea>
+                </div>
             </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Traducción 1:</label>
-                <input type="text" name="translation1" class="form-control w-full border rounded p-2" required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Ejemplo 2:</label>
-                <input type="text" name="example2" class="form-control w-full border rounded p-2">
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700">Traducción 2:</label>
-                <input type="text" name="translation2" class="form-control w-full border rounded p-2">
-            </div>
+            
+            <button type="button" id="add-example" class="bg-green-600 text-white px-3 py-2 rounded mb-6">
+                + Añadir otro ejemplo
+            </button>
 
             <button type="submit" class="btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Crear
                 lección</button>
@@ -103,4 +99,39 @@
     <script>
         CKEDITOR.replace('editor');
     </script>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+        let exampleIndex = 1;
+    
+        function initEditor(selector) {
+            setTimeout(() => {
+                CKEDITOR.replace(selector);
+            }, 100);
+        }
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            CKEDITOR.replaceAll('editor');
+    
+            document.getElementById('add-example').addEventListener('click', () => {
+                const container = document.getElementById('example-container');
+    
+                const group = document.createElement('div');
+                group.classList.add('example-group', 'mb-4');
+    
+                group.innerHTML = `
+                    <textarea name="examples[${exampleIndex}][text]" class="editor form-control w-full border rounded p-2 mb-2" placeholder="Ejemplo..." required></textarea>
+                    <textarea name="examples[${exampleIndex}][translation]" class="editor form-control w-full border rounded p-2" placeholder="Traducción..." required></textarea>
+                `;
+    
+                container.appendChild(group);
+    
+                // Iniciar CKEditor en los nuevos campos
+                initEditor(`examples[${exampleIndex}][text]`);
+                initEditor(`examples[${exampleIndex}][translation]`);
+    
+                exampleIndex++;
+            });
+        });
+    </script>
+    
 @endsection
