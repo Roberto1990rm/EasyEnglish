@@ -12,10 +12,12 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Admin',
-            'email' => 'robertoramirezmoreno@gmail.com',
-            'password' => Hash::make('12345678'),
+            'name' => 'Super Admin',
+            'email' => 'admin@easyenglish.com',
+            'password' => bcrypt('admin123'),
             'admin' => 1,
+            'subscriber' => 1,
         ]);
+        
     }
 }

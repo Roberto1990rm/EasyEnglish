@@ -40,4 +40,22 @@ class UserController extends Controller
 
         return back()->with('success', 'Usuario eliminado correctamente.');
     }
+
+    public function toggleAdmin(User $user)
+{
+    if (!auth()->user()->admin) {
+        abort(403);
+    }
+
+    // Protege al superadmin (puedes usar también ID: $user->id === 1)
+    if ($user->email === 'admin@easyenglish.com') {
+        return back()->with('error', 'No puedes modificar al superadministrador.');
+    }
+
+    $user->admin = !$user->admin;
+    $user->save();
+
+    return back()->with('success', 'Rol de administrador actualizado.');
+}
+
 }

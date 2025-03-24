@@ -33,6 +33,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/usuarios/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
+Route::post('/admin/usuarios/{user}/toggle-admin', [App\Http\Controllers\UserController::class, 'toggleAdmin'])->name('admin.users.toggleAdmin');
+
+
 // Autenticación
 Auth::routes();
 
