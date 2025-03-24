@@ -78,7 +78,7 @@ public function update(Request $request, Lesson $lesson)
     $lesson->update([
         'title' => $request->title,
         'description' => $request->description,
-        'video' => $request->filled('video') ? $request->video : $lesson->video,
+        'video' => $request->video, // Simplemente guarda lo que venga, aunque sea null o vacío
 
         'image1' => $request->file('image1') ? $request->file('image1')->store('images/lessons', 'public') : $lesson->image1,
         'image2' => $request->file('image2') ? $request->file('image2')->store('images/lessons', 'public') : $lesson->image2,
