@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProfileController;
 
 // Página principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -21,6 +22,9 @@ Route::post('/contacto', [ContactController::class, 'send'])->name('contact.send
 Route::middleware('auth')->get('/perfil', function () {
     return view('profile');
 })->name('profile');
+
+Route::post('/perfil/update', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/perfil/delete-image', [ProfileController::class, 'deleteImage'])->name('profile.deleteImage');
 
 // Autenticación
 Auth::routes();

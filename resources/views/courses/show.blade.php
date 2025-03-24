@@ -40,7 +40,7 @@
         </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($course->lessons as $lesson)
-                    <div class="bg-white shadow-md rounded-lg p-6">
+                    <div id="lesson-{{ $lesson->id }}" class="bg-white shadow-md rounded-lg p-6">
                         <h3 class="text-xl font-bold text-blue-600">{{ $lesson->title }}</h3>
                         <div class="prose max-w-none text-gray-600 mt-2">
                             {!! $lesson->description !!}
@@ -149,7 +149,18 @@
 
     </div>
 
+
+
+    <div class="text-center mt-8">
+        <a href="{{ route('courses.index') }}"
+           class="inline-flex items-center px-5 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">
+            <i class="bi bi-arrow-left-circle-fill mr-2 text-xl"></i>
+            Volver a Cursos
+        </a>
+    </div>
 @endsection
+
+
 
 
 <script>
