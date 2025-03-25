@@ -13,7 +13,8 @@ class ChatComponent extends Component
     public $users;
     public $messageLimit = 6;
 
-    protected $listeners = ['loadMoreMessages']; // 🧠 Escucha evento del scroll
+    protected $listeners = ['loadMoreMessages','deleteConversation']; // 🧠 Escucha evento del scroll
+
 
     public function mount()
     {
@@ -76,8 +77,26 @@ class ChatComponent extends Component
         $this->messageLimit += 3;
     }
 
+    public function deleteConversation()
+{
+    if (!$this->recipientId) return;
+
+    Message::where(function ($q) {
+        $q->where('user_id', auth()->id())
+          ->where('recipient_id', $this->recipientId);
+    })->orWhere(function ($q) {
+        $q->where('user_id', $this->recipientId)
+          ->where('recipient_id', auth()->id());
+    })->delete();
+
+    $this->reset('message'); // limpia el input
+}
+
+
     public function render()
     {
         return view('livewire.chat-component');
     }
+
+    
 }
