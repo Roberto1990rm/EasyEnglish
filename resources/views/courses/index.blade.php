@@ -4,7 +4,7 @@
 
 @section('content')
 
-@php use Illuminate\Support\Facades\Storage; @endphp
+    @php use Illuminate\Support\Facades\Storage; @endphp
 
 
     @auth
@@ -22,13 +22,21 @@
             font-weight: 400;
             font-style: normal;
         }
+
+        .bungee-tint-regular {
+            font-family: "Bungee Tint", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            text-shadow:rgb(92, 91, 91) 3px 3px 5px;
+            font-size: 53px;
+        }
     </style>
 
-    <div class="container mx-auto px-4 py-10">
+    <div class="container mx-auto px-0 py-10">
         <div style="margin-top: -15px;" class="text-center mb-2">
             <h1 style="color: rgb(6, 247, 243); -webkit-text-stroke: 1px black; text-stroke: 1px black;"
                 style="color: rgb(247, 231, 6); text-shadow:black 3px 3px 6px;"
-                class="boldonse-regular text-5xl font-bold text-gray-800 ">Bienvenidos a EasyEnglish</h1>
+                class="bungee-tint-regular  text-5xl font-bold text-gray-800 ">Bienvenidos a EasyEnglish</h1>
             <p style="color: rgb(5, 5, 5); text-shadow:rgb(171, 169, 169) 3px 3px 6px;" class="mt-4 text-lg text-gray-600">
                 Explora nuestros
                 cursos
@@ -50,15 +58,13 @@
                     @foreach ($courses as $course)
                         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                             @php
-    $imagePath = $course->image && Storage::disk('public')->exists($course->image)
-        ? asset('storage/' . $course->image)
-        : asset('images/default.jpg');
-@endphp
-                            <img 
-                            src="{{ $imagePath }}" 
-                            class="w-full h-40 object-cover rounded-t" 
-                            alt="{{ $course->title }}"
-                        >
+                                $imagePath =
+                                    $course->image && Storage::disk('public')->exists($course->image)
+                                        ? asset('storage/' . $course->image)
+                                        : asset('images/default.jpg');
+                            @endphp
+                            <img src="{{ $imagePath }}" class="w-full h-45 object-cover rounded-t"
+                                alt="{{ $course->title }}">
 
                             <div class="p-4">
                                 <h2 class="text-xl font-semibold text-gray-800">{{ $course->title }}</h2>

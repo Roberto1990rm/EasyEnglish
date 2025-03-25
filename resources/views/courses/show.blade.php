@@ -5,7 +5,7 @@
 @section('content')
 @php use Illuminate\Support\Facades\Storage; @endphp
 
-<div class="container mx-auto px-4 py-8">
+<div class="container mx-auto px-0 py-10">
     @auth
         @if (auth()->user()->admin)
             <div class="text-center mb-4">
@@ -17,22 +17,23 @@
     @endauth
 
     <!-- Información del Curso -->
-    <div class="bg-white shadow-md rounded-lg p-6 mb-8 text-center">
+    <div class="bg-white shadow-md rounded-lg  mb-8 text-center pt-3 pb-3">
         <h1 class="text-3xl font-bold text-gray-800">{{ $course->title }}</h1>
         @php
             $imagePath = $course->image && Storage::disk('public')->exists($course->image)
                 ? asset('storage/' . $course->image)
                 : asset('images/default.jpg');
         @endphp
-        <img src="{{ $imagePath }}" class="w-full h-40 object-cover rounded-t my-4" alt="{{ $course->title }}">
-        <div class="prose max-w-none text-gray-700">
+        <img src="{{ $imagePath }}" class="w-50 h-50 object-cover rounded-t my-4 block mx-auto" alt="{{ $course->title }}">
+
+        <div class="  text-gray-700">
             {!! $course->description !!}
         </div>
         <p class="text-sm text-gray-500 mt-2">Autor: {{ $course->author }}</p>
     </div>
 
     <!-- Título de lecciones -->
-    <div class="bg-yellow-400 bg-opacity-90 rounded-lg shadow-md text-center py-6 px-4 mb-8">
+    <div class="bg-yellow-400 bg-opacity-90 rounded-lg shadow-md text-center py-2 px-4 mb-8">
         <h2 class="text-3xl font-extrabold text-white mb-2" style="text-shadow: 2px 2px 5px black;">
             Lecciones del Curso
         </h2>
