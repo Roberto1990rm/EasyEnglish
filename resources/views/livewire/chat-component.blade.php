@@ -6,6 +6,9 @@
         <i x-show="open" class="bi bi-x-lg"></i>
     </button>
 
+
+
+    
     <!-- Ventana del chat -->
     <div x-show="open" class=" bg-white w-80 h-[450px] flex flex-col shadow-lg rounded-b-lg border border-gray-300">
 
