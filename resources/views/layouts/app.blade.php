@@ -83,6 +83,7 @@
             <a href="{{ url('/') }}">
                 <img src="{{ asset('images/logo1.png') }}" alt="EasyEnglish Logo" class="h-10">
             </a>
+            
             <!-- Menú Escritorio con textos -->
             <div style="text-shadow: black 2px 2px 4px;" class="hidden md:flex space-x-6">
                 <a href="{{ url('/') }}" class="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 transition">
@@ -117,8 +118,15 @@
             <div class="relative flex items-center">
                 @auth
                     <button id="userDropdownBtn" class="flex items-center space-x-2 text-gray-700 hover:text-blue-500">
-                        <i class="bi bi-person-circle text-xl"></i>
-                        <span class="hidden md:inline">{{ auth()->user()->name }}</span>
+                        <i class="hidden md:inline  bi bi-person-circle text-xl"></i>
+                        <span class="flex items-center gap-1">
+                            {{ auth()->user()->name }}
+                            @if(auth()->user()->subscriber)
+                                <span class="text-blue-400" title="Usuario Premium">
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                            @endif
+                        </span>
                         <i class="bi bi-chevron-down"></i>
                     </button>
 
