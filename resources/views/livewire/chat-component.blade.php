@@ -1,4 +1,4 @@
-<div x-data="{ open: true }" class="fixed bottom-4 right-4 z-50">
+<div style="margin-bottom: 18px;" x-data="{ open: false }" class="fixed bottom-4 right-4 z-50">
     <!-- Botón para minimizar/expandir -->
     <button @click="open = !open"
         class="bg-blue-600 text-white px-3 py-2 rounded-t-md shadow-md hover:bg-blue-700 transition">
@@ -7,7 +7,7 @@
     </button>
 
     <!-- Ventana del chat -->
-    <div x-show="open" class="bg-white w-80 h-[450px] flex flex-col shadow-lg rounded-b-lg border border-gray-300">
+    <div x-show="open" class=" bg-white w-80 h-[450px] flex flex-col shadow-lg rounded-b-lg border border-gray-300">
 
         <!-- Selector de destinatario -->
         <div class="p-2 border-b bg-gray-100">

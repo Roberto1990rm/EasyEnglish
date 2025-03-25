@@ -64,12 +64,16 @@ nav{
 
 
 footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   background: #333;
   color: white;
   text-align: center;
   padding: 5px;
+  z-index: 40;
 }
-
+s
 
 ------------- HOME ----
 
