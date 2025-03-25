@@ -28,7 +28,7 @@
             font-weight: 400;
             font-style: normal;
             text-shadow:rgb(92, 91, 91) 3px 3px 5px;
-            font-size: 53px;
+            font-size: 42px;
         }
     </style>
 

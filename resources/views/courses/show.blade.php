@@ -167,7 +167,7 @@
                                         {{ auth()->check() ? 'Suscríbete para visualizar' : 'Inicia sesión para acceder' }}
                                     </span>
                                 </a>
-                            @endif∫
+                            @endif
                         </div>
                     @endforeach
                 </div>
