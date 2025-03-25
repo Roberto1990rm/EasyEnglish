@@ -115,8 +115,18 @@
                 </a>
             </div>
 
+
+          
+
+
+
+
+
             <div class="relative flex items-center">
                 @auth
+                <div>
+                    @livewire('unread-messages-icon')
+                </div>
                     <button id="userDropdownBtn" class="flex items-center space-x-2 text-gray-700 hover:text-blue-500">
                         <i class="hidden md:inline  bi bi-person-circle text-xl"></i>
                         <span class="flex items-center gap-1">
@@ -161,6 +171,9 @@
 <main class="tektur flex-grow pt-20">
     @yield('content')
 </main>
+@auth
+    @livewire('chat-component')
+@endauth
 
 <footer class="bg-gray-800 text-white text-center mt-auto">
     <p>&copy; {{ date('Y') }} EasyEnglish. Todos los derechos reservados.</p>
