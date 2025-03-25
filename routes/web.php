@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SubscriptionController;
 
 // ==========================
 // Página principal y estáticas
@@ -71,3 +72,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/lessons/{lesson}', [LessonController::class, 'update'])->name('lessons.update');
     Route::delete('/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
 });
+
+
+Route::get('/subscribe', [SubscriptionController::class, 'show'])->name('subscribe');
+Route::post('/subscribe/checkout', [SubscriptionController::class, 'checkout'])->name('subscribe.checkout');
+Route::get('/subscribe/success', [SubscriptionController::class, 'success'])->name('subscribe.success');
+

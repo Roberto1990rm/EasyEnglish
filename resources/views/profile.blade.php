@@ -41,9 +41,13 @@
                         @if (auth()->user()->subscriber)
                             <span class="text-green-600 font-semibold">Suscrito ✅</span>
                         @else
-                            <span class="text-red-500 font-semibold">No suscrito ❌</span>
+                            <a href="{{ route('subscribe') }}" class="text-red-500 font-semibold hover:underline">
+                                No suscrito ❌ (Haz clic para suscribirte)
+                            </a>
                         @endif
                     </p>
+                    
+                    
                 </div>
                 <!-- Imagen de perfil -->
                 <div class="text-center mb-6">

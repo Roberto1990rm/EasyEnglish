@@ -42,13 +42,36 @@
         @endif
     </div>
 
+    <!-- Navegador de Lecciones -->
+    <div class="flex flex-wrap justify-center gap-2 mb-6 px-4">
+        @foreach ($course->lessons as $index => $lesson)
+            <button
+                onclick="goToSlide({{ $index }})"
+                class="px-4 py-1 rounded-full text-white text-sm font-semibold transition whitespace-nowrap hover:scale-105"
+                style="background-color: hsl({{ $index * 45 }}, 80%, 50%)"
+                title="Ir a {{ $lesson->title }}"
+            >
+                {{ Str::limit($lesson->title, 20) }}
+            </button>
+        @endforeach
+    </div>
+
+
     <!-- Carrusel de Lecciones -->
     <div class="relative  text-center" id="lesson-carousel">
         <div id="carousel-wrapper" class="overflow-hidden transition-all duration-500 ease-in-out relative">
             <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
-                @foreach ($course->lessons as $lesson)
-                    <div class="min-w-full px-4 box-border">
-                        <div class="bg-white shadow-md rounded-lg p-6">
+                @php
+                    $isSubscribed = auth()->check() && auth()->user()->subscriber;
+                @endphp
+
+                @foreach ($course->lessons as $index => $lesson)
+                    @php
+                        $canView = $isSubscribed || $index === 0;
+                    @endphp
+
+                    <div class="min-w-full px-4 box-border relative">
+                        <div class="bg-white shadow-md rounded-lg p-6 {{ !$canView ? 'opacity-30 blur-sm pointer-events-none select-none' : '' }}">
                             <h3 class="text-xl font-bold text-blue-600">{{ $lesson->title }}</h3>
 
                             <div class="lesson-description overflow-x-auto mt-4 text-gray-700">
@@ -128,6 +151,14 @@
                                 @endif
                             @endauth
                         </div>
+
+                        @if (!$canView)
+                            <!-- Filtro con mensaje de suscripción -->
+                            <a href="{{ route('subscribe') }}" class="absolute inset-0 flex items-center justify-center z-10">
+                                <div class="absolute inset-0  bg-opacity-60 rounded-lg"></div>
+                                <span class="text-red-500 text-2xl font-bold z-20">🔒 Suscríbete para visualizar</span>
+                            </a>
+                        @endif
                     </div>
                 @endforeach
             </div>
@@ -201,7 +232,14 @@
     document.getElementById('imageModal').addEventListener('click', function(e) {
         if (e.target === this) closeModal();
     });
+
+    // 👉 Agrega esta función al final
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+    }
 </script>
+
 
 <style>
 .lesson-description table {

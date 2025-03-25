@@ -112,5 +112,117 @@ class CourseSeeder extends Seeder
         foreach ($examples2 as $item) {
             $lesson2->examples()->create($item);
         }
+
+
+        // ... (todo tu código anterior)
+
+// Lección 3: Artículos definidos e indefinidos
+$lesson3 = Lesson::create([
+    'course_id' => $course->id,
+    'user_id' => 1,
+    'title' => 'Artículos definidos e indefinidos',
+    'description' => '
+        <p>Los artículos en inglés son <strong>"a", "an"</strong> (indefinidos) y <strong>"the"</strong> (definido).</p>
+        <ul>
+            <li><strong>a</strong> se usa antes de palabras que comienzan con sonido consonántico: <em>a dog</em></li>
+            <li><strong>an</strong> se usa antes de palabras que comienzan con sonido vocálico: <em>an apple</em></li>
+            <li><strong>the</strong> se usa para referirse a algo específico o ya mencionado: <em>the book</em></li>
+        </ul>
+    ',
+    'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/kDdTgxv04n4" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
+]);
+
+$examples3 = [
+    ['example' => 'I saw <span style="color:blue;">a</span> bird.', 'translation' => 'Vi <strong>un</strong> pájaro.'],
+    ['example' => 'She has <span style="color:blue;">an</span> idea.', 'translation' => 'Ella tiene <strong>una</strong> idea.'],
+    ['example' => 'Please open <span style="color:blue;">the</span> window.', 'translation' => 'Por favor abre <strong>la</strong> ventana.'],
+];
+
+foreach ($examples3 as $item) {
+    $lesson3->examples()->create($item);
+}
+
+// Segundo Curso: Vocabulario Esencial
+$course2 = Course::create([
+    'title' => 'Vocabulario Esencial',
+    'description' => 'Aprende palabras clave y expresiones para comunicarte desde el primer día.',
+    'image' => 'images/default.jpg',
+    'author' => 'Admin',
+]);
+
+// Lección 1: Saludos
+$lesson4 = Lesson::create([
+    'course_id' => $course2->id,
+    'user_id' => 1,
+    'title' => 'Saludos en inglés',
+    'description' => '
+        <p>Los saludos son fundamentales para empezar una conversación:</p>
+        <ul>
+            <li><strong>Hello</strong> – Hola</li>
+            <li><strong>Good morning</strong> – Buenos días</li>
+            <li><strong>Good afternoon</strong> – Buenas tardes</li>
+            <li><strong>Good evening</strong> – Buenas noches (al llegar)</li>
+            <li><strong>Goodbye</strong> – Adiós</li>
+        </ul>
+    ',
+    'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/o6kU8VeuA5c" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
+]);
+
+$examples4 = [
+    ['example' => '<span style="color:blue;">Hello</span>, how are you?', 'translation' => '<strong>Hola</strong>, ¿cómo estás?'],
+    ['example' => '<span style="color:blue;">Good morning</span>, class.', 'translation' => '<strong>Buenos días</strong>, clase.'],
+];
+
+// Lección 2: Colores
+$lesson5 = Lesson::create([
+    'course_id' => $course2->id,
+    'user_id' => 1,
+    'title' => 'Colores básicos',
+    'description' => '
+        <p>Aprender los colores te permite describir objetos:</p>
+        <ul>
+            <li><strong>Red</strong> – Rojo</li>
+            <li><strong>Blue</strong> – Azul</li>
+            <li><strong>Green</strong> – Verde</li>
+            <li><strong>Yellow</strong> – Amarillo</li>
+            <li><strong>Black</strong> – Negro</li>
+        </ul>
+    ',
+    'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/R7WMDsZ4Gyc" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
+]);
+
+$examples5 = [
+    ['example' => 'The car is <span style="color:blue;">red</span>.', 'translation' => 'El coche es <strong>rojo</strong>.'],
+    ['example' => 'I like <span style="color:blue;">blue</span>.', 'translation' => 'Me gusta el <strong>azul</strong>.'],
+];
+
+// Lección 3: Números del 1 al 10
+$lesson6 = Lesson::create([
+    'course_id' => $course2->id,
+    'user_id' => 1,
+    'title' => 'Números del 1 al 10',
+    'description' => '
+        <p>Los números básicos son esenciales para contar y entender cantidades:</p>
+        <p><strong>One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten</strong></p>
+    ',
+    'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/DR-cfDsHCGA" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
+]);
+
+$examples6 = [
+    ['example' => 'I have <span style="color:blue;">three</span> dogs.', 'translation' => 'Tengo <strong>tres</strong> perros.'],
+    ['example' => 'She is <span style="color:blue;">five</span> years old.', 'translation' => 'Ella tiene <strong>cinco</strong> años.'],
+];
+
+// Asociar ejemplos
+foreach ($examples4 as $item) {
+    $lesson4->examples()->create($item);
+}
+foreach ($examples5 as $item) {
+    $lesson5->examples()->create($item);
+}
+foreach ($examples6 as $item) {
+    $lesson6->examples()->create($item);
+}
+
     }
 }
