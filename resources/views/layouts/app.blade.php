@@ -97,7 +97,7 @@
             </div>
 
             <!-- Menú Móvil con Iconos y Etiquetas -->
-            <div class="flex md:hidden justify-around items-center space-x-8">
+            <div class="flex md:hidden justify-around items-center space-x-2">
                 <a style="background-color: rgb(250, 162, 0);" href="{{ url('/') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i  class="bi bi-house-door-fill"></i>
                     <span class="tooltip">Inicio</span>

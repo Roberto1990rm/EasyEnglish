@@ -8,7 +8,7 @@
     <div class="container mx-auto px-4 max-w-7xl">
         <!-- Encabezado -->
         <div class="text-center">
-            <h1 style=" text-shadow: black 3px 3px 7px; font-size: 70px;" class="honk-  text-5xl  text-gray-800 mb-4 mt-2 fst-italic">
+            <h1 style="font-size: 60px;" class="honk-    mb-2  fst-italic">
                 Conoce EasyEnglish
             </h1>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-2">

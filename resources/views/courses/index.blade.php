@@ -34,9 +34,7 @@
 
     <div class="container mx-auto px-0 py-10">
         <div style="margin-top: -15px;" class="text-center mb-2">
-            <h1 style="color: rgb(6, 247, 243); -webkit-text-stroke: 1px black; text-stroke: 1px black;"
-                style="color: rgb(247, 231, 6); text-shadow:black 3px 3px 6px;"
-                class="bungee-tint-regular  text-5xl font-bold text-gray-800 ">Bienvenidos a EasyEnglish</h1>
+            <h1 class="bungee-tint-regular   font-bold  ">Bienvenidos a EasyEnglish</h1>
             <p style="color: rgb(5, 5, 5); text-shadow:rgb(171, 169, 169) 3px 3px 6px;" class="mt-4 text-lg text-gray-600">
                 Explora nuestros
                 cursos

@@ -43,7 +43,7 @@
     </div>
 
     <!-- Carrusel de Lecciones -->
-    <div class="relative w-full max-w-4xl mx-auto text-center" id="lesson-carousel">
+    <div class="relative  text-center" id="lesson-carousel">
         <div id="carousel-wrapper" class="overflow-hidden transition-all duration-500 ease-in-out relative">
             <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
                 @foreach ($course->lessons as $lesson)
@@ -134,11 +134,11 @@
         </div>
 
         <!-- Flechas -->
-        <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100 z-10">
-            <i class="bi bi-chevron-left text-2xl text-blue-700"></i>
+        <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2  p-2 rounded-full shadow hover:bg-gray-100 z-10">
+            <i class="bi bi-chevron-left text-2xl text-black-900"></i>
         </button>
-        <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100 z-10">
-            <i class="bi bi-chevron-right text-2xl text-blue-700"></i>
+        <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-grey p-2 rounded-full shadow hover:bg-gray-100 z-10">
+            <i class="bi bi-chevron-right text-2xl text-black-900"></i>
         </button>
     </div>
 
@@ -152,7 +152,7 @@
 
     <div class="text-center mt-8">
         <a href="{{ route('courses.index') }}" class="inline-flex items-center px-5 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">
-            <i class="bi bi-arrow-left-circle-fill mr-2 text-xl"></i> Volver a Cursos
+            <i class="bi bi-arrow-left-circle-fill mr-2 text-xl"></i> Cursos
         </a>
     </div>
 </div>
