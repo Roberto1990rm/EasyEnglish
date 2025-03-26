@@ -11,8 +11,12 @@
 
         <!-- Selector de destinatario -->
         <div class="p-2 border-b bg-gray-100">
-            <label for="recipient" class="text-sm font-bold text-gray-600">Enviar a:</label>
+            
+            <label for="recipient" class="text-sm font-bold 
+            text-gray-600">Enviar a:</label>
+            
             <select wire:model="recipientId" id="recipient" class="w-full mt-1 border rounded text-sm p-1">
+                <option value="">-- Selecciona un usuario --</option>
                 @foreach ($users as $user)
                     @continue($user->id === optional(auth()->user())->id)
             
