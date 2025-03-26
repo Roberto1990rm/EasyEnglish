@@ -224,5 +224,123 @@ foreach ($examples6 as $item) {
     $lesson6->examples()->create($item);
 }
 
+$course3 = Course::create([
+    'title' => 'Verbos Comunes en Presente',
+    'description' => 'Domina los verbos más usados en inglés con ejemplos claros y prácticos.',
+    'image' => 'images/default.jpg',
+    'author' => 'Admin',
+]);
+
+$lesson7 = Lesson::create([
+    'course_id' => $course3->id,
+    'user_id' => 1,
+    'title' => 'El verbo "have"',
+    'description' => '
+        <p>El verbo <strong>have</strong> significa "tener". Se usa para hablar de posesiones o relaciones:</p>
+        <p><em>I have a car. / She has a sister.</em></p>
+    ',
+    'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/2Fq13fFF4DY" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
+]);
+$lesson7->examples()->createMany([
+    ['example' => 'I <span style="color:blue;">have</span> a dog.', 'translation' => 'Yo <strong>tengo</strong> un perro.'],
+    ['example' => 'She <span style="color:blue;">has</span> a cat.', 'translation' => 'Ella <strong>tiene</strong> un gato.'],
+]);
+
+$lesson8 = Lesson::create([
+    'course_id' => $course3->id,
+    'user_id' => 1,
+    'title' => 'El verbo "like"',
+    'description' => '
+        <p><strong>Like</strong> se usa para expresar gustos y preferencias:</p>
+        <p><em>I like pizza. / They like music.</em></p>
+    ',
+    'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/YhWTU7fFgQM" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
+]);
+$lesson8->examples()->createMany([
+    ['example' => 'We <span style="color:blue;">like</span> English.', 'translation' => 'Nosotros <strong>gustamos</strong> del inglés.'],
+    ['example' => 'He <span style="color:blue;">likes</span> chocolate.', 'translation' => 'Él <strong>gusta</strong> del chocolate.'],
+]);
+
+$lesson9 = Lesson::create([
+    'course_id' => $course3->id,
+    'user_id' => 1,
+    'title' => 'El verbo "go"',
+    'description' => '
+        <p>El verbo <strong>go</strong> significa "ir". Se usa para indicar movimiento:</p>
+        <p><em>I go to school. / They go to work.</em></p>
+    ',
+    'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/8R5vDLTtqa8" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
+]);
+$lesson9->examples()->createMany([
+    ['example' => 'I <span style="color:blue;">go</span> to the gym.', 'translation' => 'Yo <strong>voy</strong> al gimnasio.'],
+    ['example' => 'They <span style="color:blue;">go</span> shopping.', 'translation' => 'Ellos <strong>van</strong> de compras.'],
+]);
+
+
+$course4 = Course::create([
+    'title' => 'Frases Útiles para Principiantes',
+    'description' => 'Aprende frases prácticas para sobrevivir en inglés desde el primer día.',
+    'image' => 'images/default.jpg',
+    'author' => 'Admin',
+]);
+
+$lesson10 = Lesson::create([
+    'course_id' => $course4->id,
+    'user_id' => 1,
+    'title' => 'Pedir ayuda',
+    'description' => '
+        <p>Algunas frases comunes para pedir ayuda:</p>
+        <ul>
+            <li>Can you help me?</li>
+            <li>I need help.</li>
+            <li>Can you repeat that?</li>
+        </ul>
+    ',
+    'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/3uGmQp3lzaA" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
+]);
+$lesson10->examples()->createMany([
+    ['example' => '<span style="color:blue;">Can you help me</span>, please?', 'translation' => '¿<strong>Puedes ayudarme</strong>, por favor?'],
+    ['example' => '<span style="color:blue;">I need help</span>.', 'translation' => '<strong>Necesito ayuda</strong>.'],
+]);
+
+$lesson11 = Lesson::create([
+    'course_id' => $course4->id,
+    'user_id' => 1,
+    'title' => 'Hacer compras',
+    'description' => '
+        <p>Frases útiles al ir de compras:</p>
+        <ul>
+            <li>How much is it?</li>
+            <li>I want this.</li>
+            <li>Do you have it in blue?</li>
+        </ul>
+    ',
+    'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/S2lEtuS7o8o" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
+]);
+$lesson11->examples()->createMany([
+    ['example' => '<span style="color:blue;">How much is it</span>?', 'translation' => '¿<strong>Cuánto cuesta</strong>?'],
+    ['example' => '<span style="color:blue;">I want this</span>.', 'translation' => '<strong>Quiero esto</strong>.'],
+]);
+
+$lesson12 = Lesson::create([
+    'course_id' => $course4->id,
+    'user_id' => 1,
+    'title' => 'En un restaurante',
+    'description' => '
+        <p>Frases comunes para ordenar comida:</p>
+        <ul>
+            <li>I would like a coffee.</li>
+            <li>Can I see the menu?</li>
+            <li>The bill, please.</li>
+        </ul>
+    ',
+    'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/hXre9F8a-Rc" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
+]);
+$lesson12->examples()->createMany([
+    ['example' => '<span style="color:blue;">I would like</span> a sandwich.', 'translation' => '<strong>Quisiera</strong> un sándwich.'],
+    ['example' => '<span style="color:blue;">The bill</span>, please.', 'translation' => '<strong>La cuenta</strong>, por favor.'],
+]);
+
+
     }
 }
