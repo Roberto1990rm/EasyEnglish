@@ -171,9 +171,7 @@
 <main class="tektur flex-grow pt-20">
     @yield('content')
 </main>
-@auth
     @livewire('chat-component')
-@endauth
 
 <footer class="bg-gray-800 text-white text-center mt-auto">
     <p>&copy; {{ date('Y') }} EasyEnglish. Todos los derechos reservados.</p>
