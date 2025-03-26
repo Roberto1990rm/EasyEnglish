@@ -11,28 +11,34 @@
 
         <!-- Selector de destinatario -->
         <div class="p-2 border-b bg-gray-100">
-            
+
             <label for="recipient" class="text-sm font-bold 
             text-gray-600">Enviar a:</label>
-            
+
+
             <select wire:model="recipientId" id="recipient" class="w-full mt-1 border rounded text-sm p-1">
                 <option value="">-- Selecciona un usuario --</option>
                 @foreach ($users as $user)
                     @continue($user->id === optional(auth()->user())->id)
-            
+
                     {{-- Si el usuario NO está logueado o NO es admin y el destinatario no es admin, ocultarlo --}}
                     @if (!optional(auth()->user())->admin && !$user->admin)
                         @continue
                     @endif
-            
+
                     <option value="{{ $user->id }}">
-                        {{ $user->name }}
-                        @if($user->admin) (Admin) @endif
-                        @if($user->isOnline()) 🟢 @else 🔴 @endif
+                        {{ $user->name }} @if($user->admin) - 👩‍🏫 Teacher @endif
                     </option>
+                    
+                @if ($user->isOnline())
+                    🟢
+                @else
+                    🔴
+                @endif
+                </option>
                 @endforeach
             </select>
-            
+
         </div>
 
         <!-- Mensajes con scroll inteligente -->
@@ -58,8 +64,19 @@
                     el.scrollTop = el.scrollHeight;
                 }, 50);
             }
-        }" x-init="init" x-ref="scroll" class="flex-1 overflow-y-auto p-2 space-y-2 text-sm bg-white">
+        }" x-init="init" x-ref="scroll"
+            class="flex-1 overflow-y-auto p-2 space-y-2 text-sm bg-white">
             @foreach ($this->messages as $msg)
+                @if (is_null($msg->user_id))
+                    <div class="bg-yellow-100 text-gray-800 p-2 rounded text-sm">
+                        <div class="flex items-center gap-2">
+                            <img src="{{ asset('images/easybot.png') }}" class="w-6 h-6 rounded-full" alt="Bot">
+                            <strong>EasyBot</strong>
+                        </div>
+                        <div class="mt-1">{!! $msg->content !!}</div>
+                    </div>
+                @endif
+
                 @if (is_null($msg->user_id))
                     <!-- Mensaje del bot -->
                     <div class="bg-yellow-100 text-gray-800 p-2 rounded text-sm">
@@ -71,7 +88,8 @@
                     </div>
                 @else
                     <!-- Mensaje normal -->
-                    <div class="p-2 rounded {{ $msg->user_id === auth()->id() ? 'bg-blue-100 text-right' : 'bg-gray-100 text-left' }}">
+                    <div
+                        class="p-2 rounded {{ $msg->user_id === auth()->id() ? 'bg-blue-100 text-right' : 'bg-gray-100 text-left' }}">
                         <strong>{{ $msg->sender->name }}
                             @if ($msg->sender->admin)
                                 <span class="text-yellow-500">(Admin)</span>
@@ -97,7 +115,9 @@
             @endforeach
             <!-- Botón para eliminar conversación -->
             <div class="text-center p-2 border-t bg-gray-100">
-                <button onclick="if (confirm('¿Estás seguro de que quieres eliminar toda la conversación? Esta acción no se puede deshacer.')) { Livewire.dispatch('deleteConversation') }" class="text-red-600 text-sm hover:underline">
+                <button
+                    onclick="if (confirm('¿Estás seguro de que quieres eliminar toda la conversación? Esta acción no se puede deshacer.')) { Livewire.dispatch('deleteConversation') }"
+                    class="text-red-600 text-sm hover:underline">
                     🗑️ Eliminar conversación
                 </button>
             </div>
@@ -105,7 +125,8 @@
 
         <!-- Input para escribir mensaje -->
         <form wire:submit.prevent="sendMessage" class="p-2 border-t bg-gray-50 flex">
-            <input type="text" wire:model="message" class="flex-1 px-2 py-1 text-sm border rounded" placeholder="Escribe tu mensaje...">
+            <input type="text" wire:model="message" class="flex-1 px-2 py-1 text-sm border rounded"
+                placeholder="Escribe tu mensaje...">
             <button type="submit" class="ml-2 text-blue-600 font-bold">Enviar</button>
         </form>
     </div>

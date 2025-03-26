@@ -50,42 +50,68 @@ class ChatComponent extends Component
     }
 
     public function sendMessage()
-{
-    if (trim($this->message) === '') return;
-
-    $user = auth()->user();
-    $this->loadUsers(); // asegúrate de que los usuarios están cargados (por si acaso)
-
-    // ✅ Caso: no logueado → respuesta de EasyBot (sin guardar)
-    if (!$user) {
-        $this->messages[] = (object)[
-            'user_id' => null,
-            'sender' => (object)['name' => 'EasyBot', 'admin' => true],
-            'content' => '👋 Para hablar con nuestros profesores necesitas <a href="' . route('register') . '" class="text-blue-600 underline">registrarte aquí</a>.',
-            'created_at' => now(),
-            'read_at' => now(),
-        ];
-        $this->message = '';
-        return;
-    }
-
-    // ⚠️ Usuario logado pero NO suscriptor y está intentando hablar con un ADMIN
-    $recipient = $this->recipientId ? User::find($this->recipientId) : null;
-    if ($user && !$user->subscriber && !$user->admin) {
-        if ($recipient && $recipient->admin) {
+    {
+        if (trim($this->message) === '') return;
+    
+        $user = auth()->user();
+        $this->loadUsers(); // Asegura que la lista de usuarios esté siempre actualizada
+    
+        // ✅ Caso: no logueado → respuesta de EasyBot (sin guardar)
+        if (!$user) {
             $this->messages[] = (object)[
                 'user_id' => null,
                 'sender' => (object)['name' => 'EasyBot', 'admin' => true],
-                'content' => '🛑 Para chatear con nuestros profesores necesitas una suscripción. <a href="' . route('subscribe') . '" class="text-blue-600 underline">Suscríbete aquí</a> 😊',
+                'content' => '👋 Para hablar con nuestros profesores necesitas <a href="' . route('register') . '" class="text-blue-600 underline">registrarte aquí</a>.',
                 'created_at' => now(),
                 'read_at' => now(),
             ];
             $this->message = '';
             return;
         }
-
-        // Evitar que hable con otros usuarios que no sean admin
-        if (!$recipient || !$recipient->admin) {
+    
+        // ❗ Si no hay destinatario seleccionado
+        if (!$this->recipientId) {
+            $this->messages[] = (object)[
+                'user_id' => null,
+                'sender' => (object)['name' => 'EasyBot', 'admin' => true],
+                'content' => '⚠️ Por favor selecciona un profesor antes de enviar tu mensaje.',
+                'created_at' => now(),
+                'read_at' => now(),
+            ];
+            $this->message = '';
+            return;
+        }
+    
+        $recipient = User::find($this->recipientId);
+    
+        // ⚠️ Si no existe el destinatario (poco probable, pero seguro es seguro)
+        if (!$recipient) {
+            $this->messages[] = (object)[
+                'user_id' => null,
+                'sender' => (object)['name' => 'EasyBot', 'admin' => true],
+                'content' => '❌ No se ha encontrado el usuario al que intentas escribir.',
+                'created_at' => now(),
+                'read_at' => now(),
+            ];
+            $this->message = '';
+            return;
+        }
+    
+        // ⚠️ Usuario logado pero NO suscriptor y no admin → intenta hablar con admin
+        if (!$user->subscriber && !$user->admin) {
+            if ($recipient->admin) {
+                $this->messages[] = (object)[
+                    'user_id' => null,
+                    'sender' => (object)['name' => 'EasyBot', 'admin' => true],
+                    'content' => '🛑 Para chatear con nuestros profesores necesitas una <a href="' . route('subscribe') . '" class="text-blue-600 underline">suscripción</a> 😊',
+                    'created_at' => now(),
+                    'read_at' => now(),
+                ];
+                $this->message = '';
+                return;
+            }
+    
+            // También impide que hable con otros usuarios normales
             $this->messages[] = (object)[
                 'user_id' => null,
                 'sender' => (object)['name' => 'EasyBot', 'admin' => true],
@@ -96,18 +122,17 @@ class ChatComponent extends Component
             $this->message = '';
             return;
         }
+    
+        // ✅ Usuario válido → guardar mensaje
+        Message::create([
+            'user_id' => $user->id,
+            'recipient_id' => $recipient->id,
+            'content' => $this->message,
+        ]);
+    
+        $this->message = '';
     }
-
-    // ✅ Usuario suscriptor o admin → mensaje real
-    Message::create([
-        'user_id' => $user->id,
-        'recipient_id' => $this->recipientId,
-        'content' => $this->message,
-    ]);
-
-    $this->message = '';
-}
-
+    
     
 public function addBotMessage($text)
 {
