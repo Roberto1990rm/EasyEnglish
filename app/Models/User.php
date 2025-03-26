@@ -40,10 +40,14 @@ class User extends Authenticatable
         return Cache::has('user-is-online-' . $this->id);
     }
 
-    public function unreadMessagesCount()
-    {
-        return Message::where('recipient_id', $this->id)
-            ->whereNull('read_at')
-            ->count();
-    }
+    
+public function unreadMessagesFromAuthUser()
+{
+    return Message::where('recipient_id', auth()->id())
+        ->where('user_id', $this->id)
+        ->whereNull('read_at')
+        ->exists();
+}
+
+
 }

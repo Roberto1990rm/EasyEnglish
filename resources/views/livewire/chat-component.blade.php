@@ -27,7 +27,16 @@
                     @endif
 
                     <option value="{{ $user->id }}">
-                        {{ $user->name }} @if($user->admin) - 👩‍🏫 Teacher @endif
+                        {{ $user->name }}
+                        @if($user->admin)
+                            - 👩‍🏫 Teacher
+                        @endif
+                    
+                        {{-- ✅ Indicador de mensaje no leído --}}
+                        @if($user->unreadMessagesFromAuthUser())
+                        <span class="ml-1 text-green-500">●</span>
+                    @endif
+                    
                     </option>
                     
                 @if ($user->isOnline())
