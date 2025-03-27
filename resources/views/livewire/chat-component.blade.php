@@ -51,7 +51,7 @@
         </div>
 
         <!-- Mensajes con scroll inteligente -->
-        <div wire:poll.3000ms x-data="{
+        <div wire:poll.4000ms x-data="{
             isFirstLoad: true,
             init() {
                 const el = $refs.scroll;

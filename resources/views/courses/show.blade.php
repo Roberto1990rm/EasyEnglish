@@ -55,7 +55,6 @@
             @endforeach
         </div>
 
-
         <!-- Carrusel de Lecciones -->
         <div class="relative  text-center" id="lesson-carousel">
             <div id="carousel-wrapper" class="overflow-hidden transition-all duration-500 ease-in-out relative">
@@ -71,70 +70,81 @@
 
                         <div class="min-w-full px-4 box-border relative">
                             <div
-                                class="bg-white shadow-md rounded-lg p-6 {{ !$canView ? 'opacity-30 blur-sm pointer-events-none select-none' : '' }}">
-                                <h3 class="text-xl font-bold text-blue-600">{{ $lesson->title }}</h3>
+                                class="bg-white shadow-md rounded-lg p-6 {{ !$canView ? 'opacity-30 blur-sm pointer-events-none select-none' : '' }}"
+                                x-data="{ showExercise: false }">
+                                <div x-show="!showExercise">
+                                    <h3 class="text-xl font-bold text-blue-600">{{ $lesson->title }}</h3>
 
-                                <div class="lesson-description overflow-x-auto mt-4 text-gray-700">
-                                    {!! $lesson->description !!}
-                                </div>
-
-                                <!-- Imágenes -->
-                                <div class="flex space-x-2 mt-3">
-                                    @foreach (['image1', 'image2', 'image3'] as $img)
-                                        @if ($lesson->$img)
-                                            <img src="{{ asset('storage/' . $lesson->$img) }}"
-                                                class="w-1/3 h-20 object-cover rounded cursor-pointer"
-                                                onclick="openModal('{{ asset('storage/' . $lesson->$img) }}')">
-                                        @endif
-                                    @endforeach
-                                </div>
-
-                                <!-- Video -->
-                                @if ($lesson->video)
-                                    @php
-                                        preg_match(
-                                            '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i',
-                                            $lesson->video,
-                                            $matches,
-                                        );
-                                        $youtubeID = $matches[1] ?? null;
-                                    @endphp
-
-                                    @if ($youtubeID)
-                                        <div class="mt-4 w-full max-w-lg mx-auto">
-                                            <div class="relative w-full" style="padding-top: 56.25%;">
-                                                <iframe class="absolute top-0 left-0 w-full h-full rounded"
-                                                    src="https://www.youtube.com/embed/{{ $youtubeID }}" frameborder="0"
-                                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                    allowfullscreen>
-                                                </iframe>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endif
-
-                                <!-- Audio -->
-                                @if ($lesson->audio)
-                                    <div class="mt-4">
-                                        <audio controls class="w-full">
-                                            <source src="{{ asset('storage/' . $lesson->audio) }}" type="audio/mpeg">
-                                        </audio>
+                                    <div class="lesson-description overflow-x-auto mt-4 text-gray-700">
+                                        {!! $lesson->description !!}
                                     </div>
-                                @endif
 
-                                <!-- Ejemplos -->
-                                @if ($lesson->examples->count())
-                                    <div class="mt-4 p-4 bg-gray-100 rounded">
-                                        @foreach ($lesson->examples as $example)
-                                            <div class="mb-3">
-                                                <p class="text-gray-800 font-semibold">Ejemplo:</p>
-                                                <div class="prose text-gray-800">{!! $example->example !!}</div>
-                                                <p class="text-gray-600 mt-1"><em>Traducción:</em> {!! $example->translation !!}
-                                                </p>
-                                            </div>
+                                    <!-- Imágenes -->
+                                    <div class="flex space-x-2 mt-3">
+                                        @foreach (['image1', 'image2', 'image3'] as $img)
+                                            @if ($lesson->$img)
+                                                <img src="{{ asset('storage/' . $lesson->$img) }}"
+                                                    class="w-1/3 h-20 object-cover rounded cursor-pointer"
+                                                    onclick="openModal('{{ asset('storage/' . $lesson->$img) }}')">
+                                            @endif
                                         @endforeach
                                     </div>
-                                @endif
+
+                                    <!-- Video -->
+                                    @if ($lesson->video)
+                                        @php
+                                            preg_match(
+                                                '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i',
+                                                $lesson->video,
+                                                $matches,
+                                            );
+                                            $youtubeID = $matches[1] ?? null;
+                                        @endphp
+
+                                        @if ($youtubeID)
+                                            <div class="mt-4 w-full max-w-lg mx-auto">
+                                                <div class="relative w-full" style="padding-top: 56.25%;">
+                                                    <iframe class="absolute top-0 left-0 w-full h-full rounded"
+                                                        src="https://www.youtube.com/embed/{{ $youtubeID }}" frameborder="0"
+                                                        allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen>
+                                                    </iframe>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endif
+
+                                    <!-- Audio -->
+                                    @if ($lesson->audio)
+                                        <div class="mt-4">
+                                            <audio controls class="w-full">
+                                                <source src="{{ asset('storage/' . $lesson->audio) }}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
+                                    @endif
+
+                                    <!-- Ejemplos -->
+                                    @if ($lesson->examples->count())
+                                        <div class="mt-4 p-4 bg-gray-100 rounded">
+                                            @foreach ($lesson->examples as $example)
+                                                <div class="mb-3">
+                                                    <p class="text-gray-800 font-semibold">Ejemplo:</p>
+                                                    <div class="prose text-gray-800">{!! $example->example !!}</div>
+                                                    <p class="text-gray-600 mt-1"><em>Traducción:</em> {!! $example->translation !!}</p>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <div x-show="showExercise">
+                                    @livewire('exercises', ['lesson' => $lesson], key('exercise-' . $lesson->id))
+                                </div>
+
+                                <div class="mt-4 flex justify-center gap-4">
+                                    <button @click="showExercise = false" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Lección</button>
+                                    <button @click="showExercise = true" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Ejercicios</button>
+                                </div>
 
                                 <!-- Acciones (editar/eliminar) -->
                                 @auth
@@ -158,7 +168,6 @@
                             </div>
 
                             @if (!$canView)
-                                <!-- Filtro con mensaje dinámico según login -->
                                 <a href="{{ auth()->check() ? route('subscribe') : route('login') }}"
                                     class="absolute inset-0 flex items-center justify-center z-10">
                                     <div class="absolute inset-0 bg-opacity-60 rounded-lg "></div>
@@ -173,7 +182,6 @@
                 </div>
             </div>
 
-            <!-- Flechas -->
             <button id="prevBtn"
                 class="absolute left-0 top-1/2 transform -translate-y-1/2  p-2 rounded-full shadow hover:bg-gray-100 z-10">
                 <i class="bi bi-chevron-left text-2xl text-black-900"></i>
@@ -184,7 +192,6 @@
             </button>
         </div>
 
-        <!-- Modal de imagen -->
         <div id="imageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-80">
             <div class="relative max-w-4xl mx-auto">
                 <button onclick="closeModal()"
@@ -194,7 +201,7 @@
             </div>
         </div>
 
-        <div class="text-center mt-8">
+        <div class="text-center mt-8 mb-6">
             <a href="{{ route('courses.index') }}"
                 class="inline-flex items-center px-5 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">
                 <i class="bi bi-arrow-left-circle-fill mr-2 text-xl"></i> Cursos
@@ -247,13 +254,11 @@
             if (e.target === this) closeModal();
         });
 
-        // 👉 Agrega esta función al final
         function goToSlide(index) {
             currentIndex = index;
             updateCarousel();
         }
     </script>
-
 
     <style>
         .lesson-description table {

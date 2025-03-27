@@ -9,6 +9,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\ExerciseController;
 
 // ==========================
 // Página principal y estáticas
@@ -78,3 +79,8 @@ Route::get('/subscribe', [SubscriptionController::class, 'show'])->name('subscri
 Route::post('/subscribe/checkout', [SubscriptionController::class, 'checkout'])->name('subscribe.checkout');
 Route::get('/subscribe/success', [SubscriptionController::class, 'success'])->name('subscribe.success');
 
+// routes/web.php
+Route::middleware('auth')->group(function () {
+    Route::post('/lessons/{lesson}/submit-exercises', [ExerciseController::class, 'submit'])->name('exercise.submit');
+    Route::delete('/lessons/{lesson}/reset-exercises', [ExerciseController::class, 'retry'])->name('exercise.retry');
+});

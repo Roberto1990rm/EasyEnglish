@@ -76,7 +76,7 @@ class LessonController extends Controller
             'audio' => 'nullable|mimes:mp3,wav|max:5120',
             'video' => 'nullable|string|max:555',
         ]);
-
+    
         $lesson->update([
             'title' => $request->title,
             'description' => $request->description,
@@ -86,23 +86,24 @@ class LessonController extends Controller
             'image3' => $request->file('image3') ? $request->file('image3')->store('images/lessons', 'public') : $lesson->image3,
             'audio' => $request->file('audio') ? $request->file('audio')->store('audio/lessons', 'public') : $lesson->audio,
         ]);
-
+    
         $lesson->examples()->delete();
-
+    
         if ($request->has('examples')) {
             foreach ($request->examples as $data) {
                 if (!empty($data['text']) || !empty($data['translation'])) {
                     $lesson->examples()->create([
-                        'example' => $data['text'], // 👈 importante
+                        'example' => $data['text'],
                         'translation' => $data['translation'],
+                        'solution' => $data['solution'] ?? null, // 👈 Aquí se guarda la solución
                     ]);
                 }
             }
         }
-
+    
         return redirect()->route('courses.show', $lesson->course_id)->with('success', 'Lección actualizada correctamente.');
     }
-
+    
     public function destroy(Lesson $lesson)
     {
         if ($lesson->image1) Storage::disk('public')->delete($lesson->image1);

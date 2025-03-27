@@ -71,14 +71,18 @@
             <h2 class="text-lg font-semibold text-gray-800 mb-2">Ejemplos y traducciones</h2>
             <div id="example-container">
                 @foreach ($lesson->examples as $i => $example)
-                    <div class="mb-4 example-group">
-                        <label class="block text-gray-700">Ejemplo:</label>
-                        <textarea name="examples[{{ $i }}][text]" class="form-control w-full border rounded p-2 ckeditor">{{ $example->example }}</textarea>
-
-                        <label class="block text-gray-700 mt-2">Traducción:</label>
-                        <textarea name="examples[{{ $i }}][translation]" class="form-control w-full border rounded p-2 ckeditor">{{ $example->translation }}</textarea>
-                    </div>
-                @endforeach
+                <div class="mb-4 example-group">
+                    <label class="block text-gray-700">Ejemplo:</label>
+                    <textarea name="examples[{{ $i }}][text]" class="form-control w-full border rounded p-2 ckeditor">{{ $example->example }}</textarea>
+            
+                    <label class="block text-gray-700 mt-2">Traducción:</label>
+                    <textarea name="examples[{{ $i }}][translation]" class="form-control w-full border rounded p-2 ckeditor">{{ $example->translation }}</textarea>
+            
+                    <label class="block text-gray-700 mt-2">Palabra que se ocultará en el ejercicio:</label>
+                    <input type="text" name="examples[{{ $i }}][solution]" value="{{ $example->solution }}" class="form-control w-full border rounded p-2" placeholder="Ej: is, are, run, table...">
+                </div>
+            @endforeach
+            
             </div>
 
             <button type="button" onclick="addExample()" class="bg-green-500 text-white px-4 py-2 rounded">
@@ -96,7 +100,6 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Reemplazar solo la descripción con config personalizada
         CKEDITOR.replace('description', {
             extraPlugins: 'colorbutton,colordialog',
             toolbar: [
@@ -109,7 +112,6 @@
             ]
         });
 
-        // Reemplazar todos los demás editores
         document.querySelectorAll('.ckeditor').forEach((textarea) => {
             CKEDITOR.replace(textarea, {
                 extraPlugins: 'colorbutton,colordialog',
@@ -138,11 +140,13 @@
 
             <label class="block text-gray-700 mt-2">Traducción:</label>
             <textarea name="examples[\${exampleCount}][translation]" class="form-control w-full border rounded p-2 ckeditor"></textarea>
+
+            <label class="block text-gray-700 mt-2">Palabra a ocultar (solution):</label>
+            <input type="text" name="examples[\${exampleCount}][solution]" class="form-control w-full border rounded p-2">
         `;
 
         container.appendChild(newGroup);
 
-        // Reemplazar dinámicamente con config de color
         const textareas = newGroup.querySelectorAll('.ckeditor');
         textareas.forEach((textarea) => {
             CKEDITOR.replace(textarea, {

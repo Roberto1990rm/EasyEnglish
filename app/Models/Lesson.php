@@ -32,4 +32,9 @@ class Lesson extends Model
     return $this->hasMany(Example::class);
 }
 
+public function exerciseResults()
+{
+    return $this->hasMany(\App\Models\ExerciseResult::class);
+}
+
 }
