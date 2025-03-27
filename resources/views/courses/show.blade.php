@@ -137,9 +137,13 @@
                                     @endif
                                 </div>
 
+                                @auth
+
                                 <div x-show="showExercise">
                                     @livewire('exercises', ['lesson' => $lesson], key('exercise-' . $lesson->id))
                                 </div>
+
+                                @endauth
 
                                 <div class="mt-4 flex justify-center gap-4">
                                     <button @click="showExercise = false" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Lección</button>
