@@ -36,7 +36,7 @@
             <button wire:click.prevent="retry" class="mt-2 text-blue-600 hover:underline">Rehacer ejercicio</button>
         @else
             <button type="submit"
-                class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
                 Enviar respuestas
             </button>
         @endif

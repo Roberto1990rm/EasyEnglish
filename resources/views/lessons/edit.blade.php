@@ -35,7 +35,7 @@
         <!-- Descripción -->
         <div class="mb-4">
             <label class="block text-gray-700">Descripción:</label>
-            <textarea name="description" id="description" class="form-control w-full border rounded p-2" rows="5">{{ old('description', $lesson->description) }}</textarea>
+            <textarea name="description" id="editor-description" class="form-control w-full border rounded p-2" rows="5">{{ old('description', $lesson->description) }}</textarea>
         </div>
 
         <!-- Imágenes -->
@@ -73,16 +73,15 @@
                 @foreach ($lesson->examples as $i => $example)
                 <div class="mb-4 example-group">
                     <label class="block text-gray-700">Ejemplo:</label>
-                    <textarea name="examples[{{ $i }}][text]" class="form-control w-full border rounded p-2 ckeditor">{{ $example->example }}</textarea>
-            
+                    <textarea name="examples[{{ $i }}][text]" class="editor form-control w-full border rounded p-2">{{ $example->example }}</textarea>
+
                     <label class="block text-gray-700 mt-2">Traducción:</label>
-                    <textarea name="examples[{{ $i }}][translation]" class="form-control w-full border rounded p-2 ckeditor">{{ $example->translation }}</textarea>
-            
+                    <textarea name="examples[{{ $i }}][translation]" class="editor form-control w-full border rounded p-2">{{ $example->translation }}</textarea>
+
                     <label class="block text-gray-700 mt-2">Palabra que se ocultará en el ejercicio:</label>
                     <input type="text" name="examples[{{ $i }}][solution]" value="{{ $example->solution }}" class="form-control w-full border rounded p-2" placeholder="Ej: is, are, run, table...">
                 </div>
-            @endforeach
-            
+                @endforeach
             </div>
 
             <button type="button" onclick="addExample()" class="bg-green-500 text-white px-4 py-2 rounded">
@@ -95,75 +94,51 @@
     </form>
 </div>
 
-<!-- CKEditor y script para ejemplos -->
-<script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
-
+<!-- TinyMCE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js" crossorigin="anonymous"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        CKEDITOR.replace('description', {
-            extraPlugins: 'colorbutton,colordialog',
-            toolbar: [
-                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline'] },
-                { name: 'colors', items: ['TextColor', 'BGColor'] },
-                { name: 'paragraph', items: ['NumberedList', 'BulletedList'] },
-                { name: 'insert', items: ['Link', 'Unlink'] },
-                { name: 'styles', items: ['Format'] },
-                { name: 'document', items: ['Source'] }
-            ]
+    function initTinyMCE(selector) {
+        tinymce.init({
+            selector: selector,
+            plugins: 'lists link table code',
+            toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | link blockquote',
+            menubar: false,
+            branding: false,
+            height: 300
         });
+    }
 
-        document.querySelectorAll('.ckeditor').forEach((textarea) => {
-            CKEDITOR.replace(textarea, {
-                extraPlugins: 'colorbutton,colordialog',
-                toolbar: [
-                    { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline'] },
-                    { name: 'colors', items: ['TextColor', 'BGColor'] },
-                    { name: 'paragraph', items: ['NumberedList', 'BulletedList'] },
-                    { name: 'insert', items: ['Link', 'Unlink'] },
-                    { name: 'styles', items: ['Format'] },
-                    { name: 'document', items: ['Source'] }
-                ]
-            });
+    document.addEventListener("DOMContentLoaded", function () {
+        initTinyMCE('#editor-description');
+        document.querySelectorAll('.editor').forEach(el => {
+            el.id = 'editor-' + Math.random().toString(36).substring(2, 15); // asegurar id único
+            initTinyMCE('#' + el.id);
         });
     });
 
     let exampleCount = {{ $lesson->examples->count() }};
-
     function addExample() {
         const container = document.getElementById('example-container');
+        const index = exampleCount++;
+
         const newGroup = document.createElement('div');
         newGroup.classList.add('mb-4', 'example-group');
-
         newGroup.innerHTML = `
             <label class="block text-gray-700">Ejemplo:</label>
-            <textarea name="examples[\${exampleCount}][text]" class="form-control w-full border rounded p-2 ckeditor"></textarea>
+            <textarea name="examples[${index}][text]" class="editor form-control w-full border rounded p-2"></textarea>
 
             <label class="block text-gray-700 mt-2">Traducción:</label>
-            <textarea name="examples[\${exampleCount}][translation]" class="form-control w-full border rounded p-2 ckeditor"></textarea>
+            <textarea name="examples[${index}][translation]" class="editor form-control w-full border rounded p-2"></textarea>
 
             <label class="block text-gray-700 mt-2">Palabra a ocultar (solution):</label>
-            <input type="text" name="examples[\${exampleCount}][solution]" class="form-control w-full border rounded p-2">
+            <input type="text" name="examples[${index}][solution]" class="form-control w-full border rounded p-2">
         `;
 
         container.appendChild(newGroup);
-
-        const textareas = newGroup.querySelectorAll('.ckeditor');
-        textareas.forEach((textarea) => {
-            CKEDITOR.replace(textarea, {
-                extraPlugins: 'colorbutton,colordialog',
-                toolbar: [
-                    { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline'] },
-                    { name: 'colors', items: ['TextColor', 'BGColor'] },
-                    { name: 'paragraph', items: ['NumberedList', 'BulletedList'] },
-                    { name: 'insert', items: ['Link', 'Unlink'] },
-                    { name: 'styles', items: ['Format'] },
-                    { name: 'document', items: ['Source'] }
-                ]
-            });
+        newGroup.querySelectorAll('.editor').forEach(el => {
+            el.id = 'editor-' + Math.random().toString(36).substring(2, 15);
+            initTinyMCE('#' + el.id);
         });
-
-        exampleCount++;
     }
 </script>
-
 @endsection

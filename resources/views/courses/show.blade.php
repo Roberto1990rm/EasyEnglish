@@ -20,11 +20,12 @@
         <div class="bg-white shadow-md rounded-lg  mb-8 text-center pt-3 pb-3">
             <h1 class="text-3xl font-bold text-gray-800">{{ $course->title }}</h1>
             @php
-                $imagePath =
-                    $course->image && Storage::disk('public')->exists($course->image)
-                        ? asset('storage/' . $course->image)
-                        : asset('images/default.jpg');
-            @endphp
+            $imagePath =
+                $course->image && Storage::disk('public')->exists($course->image)
+                    ? asset('storage/' . $course->image)
+                    : asset('images/default.jpg');
+        @endphp
+
             <img src="{{ $imagePath }}" class="w-50 h-50 object-cover rounded-t my-4 block mx-auto"
                 alt="{{ $course->title }}">
 
@@ -32,6 +33,54 @@
                 {!! $course->description !!}
             </div>
             <p class="text-sm text-gray-500 mt-2">Autor: {{ $course->author }}</p>
+            
+            @php
+                use App\Models\Lesson;
+
+                $userId = auth()->id();
+                $totalLessons = $course->lessons->count();
+
+                $completedLessons = Lesson::whereHas('exerciseResults', function ($q) use ($userId) {
+                    $q->where('user_id', $userId)->where('completed', true);
+                })
+                    ->where('course_id', $course->id)
+                    ->count();
+
+                $percentage = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+            @endphp
+
+
+
+            @auth
+            <div class="mt-4 text-center">
+                <p class="text-gray-600 mb-2">Progreso del curso</p>
+                <div class="flex justify-center items-center space-x-2">
+                    @for ($i = 0; $i < $totalLessons; $i++)
+                        <div class="w-5 h-5 rounded-full {{ $i < $completedLessons ? 'bg-blue-500' : 'bg-gray-300' }}">
+                        </div>
+                    @endfor
+                    <div class="text-xl ml-2">🏃</div>
+                </div>
+                <p class="text-sm text-gray-500 mt-1">{{ round($percentage) }}% completado ({{ $completedLessons }} de
+                    {{ $totalLessons }})</p>
+            </div>
+            @endauth
+
+            @php
+                use App\Models\ExerciseResult;
+
+                $userId = auth()->id();
+                $totalLessons = $course->lessons->count();
+
+                $completedLessons = \App\Models\Lesson::whereHas('exerciseResults', function ($q) use ($userId) {
+                    $q->where('user_id', $userId)->where('completed', true);
+                })
+                    ->where('course_id', $course->id)
+                    ->count();
+
+                $percentage = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+            @endphp
+
         </div>
 
         <!-- Título de lecciones -->
@@ -69,8 +118,7 @@
                         @endphp
 
                         <div class="min-w-full px-4 box-border relative">
-                            <div
-                                class="bg-white shadow-md rounded-lg p-6 {{ !$canView ? 'opacity-30 blur-sm pointer-events-none select-none' : '' }}"
+                            <div class="bg-white shadow-md rounded-lg p-6 {{ !$canView ? 'opacity-30 blur-sm pointer-events-none select-none' : '' }}"
                                 x-data="{ showExercise: false }">
                                 <div x-show="!showExercise">
                                     <h3 class="text-xl font-bold text-blue-600">{{ $lesson->title }}</h3>
@@ -105,7 +153,8 @@
                                             <div class="mt-4 w-full max-w-lg mx-auto">
                                                 <div class="relative w-full" style="padding-top: 56.25%;">
                                                     <iframe class="absolute top-0 left-0 w-full h-full rounded"
-                                                        src="https://www.youtube.com/embed/{{ $youtubeID }}" frameborder="0"
+                                                        src="https://www.youtube.com/embed/{{ $youtubeID }}"
+                                                        frameborder="0"
                                                         allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                         allowfullscreen>
                                                     </iframe>
@@ -130,7 +179,8 @@
                                                 <div class="mb-3">
                                                     <p class="text-gray-800 font-semibold">Ejemplo:</p>
                                                     <div class="prose text-gray-800">{!! $example->example !!}</div>
-                                                    <p class="text-gray-600 mt-1"><em>Traducción:</em> {!! $example->translation !!}</p>
+                                                    <p class="text-gray-600 mt-1"><em>Traducción:</em>
+                                                        {!! $example->translation !!}</p>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -139,15 +189,17 @@
 
                                 @auth
 
-                                <div x-show="showExercise">
-                                    @livewire('exercises', ['lesson' => $lesson], key('exercise-' . $lesson->id))
-                                </div>
+                                    <div x-show="showExercise">
+                                        @livewire('exercises', ['lesson' => $lesson], key('exercise-' . $lesson->id))
+                                    </div>
 
-                               
-                                <div class="mt-4 flex justify-center gap-4">
-                                    <button @click="showExercise = false" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Lección</button>
-                                    <button @click="showExercise = true" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Ejercicios</button>
-                                </div>
+
+                                    <div class="mt-4 flex justify-center gap-4">
+                                        <button @click="showExercise = false"
+                                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Lección</button>
+                                        <button @click="showExercise = true"
+                                            class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Ejercicios</button>
+                                    </div>
 
                                 @endauth
 
