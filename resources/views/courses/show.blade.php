@@ -66,6 +66,7 @@
             </div>
             @endauth
 
+            
             @php
                 use App\Models\ExerciseResult;
 
