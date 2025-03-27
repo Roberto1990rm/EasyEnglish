@@ -56,11 +56,11 @@ class CourseSeeder extends Seeder
         ]);
 
         $examples1 = [
-            ['example' => 'I <span style="color:blue;">am</span> tired.', 'translation' => 'Estoy <strong>cansado</strong>.'],
-            ['example' => 'She <span style="color:blue;">is</span> at home.', 'translation' => 'Ella <strong>está</strong> en casa.'],
-            ['example' => 'They <span style="color:blue;">are</span> my friends.', 'translation' => 'Ellos <strong>son</strong> mis amigos.'],
-            ['example' => 'It <span style="color:blue;">is</span> a beautiful day.', 'translation' => '<strong>Es</strong> un día hermoso.'],
-            ['example' => 'We <span style="color:blue;">are</span> ready.', 'translation' => '<strong>Estamos</strong> listos.'],
+            ['example' => 'I <span style="color:blue;">am</span> tired.', 'translation' => 'Estoy <strong>cansado</strong>.', 'solution' => 'am'],
+            ['example' => 'She <span style="color:blue;">is</span> at home.', 'translation' => 'Ella <strong>está</strong> en casa.', 'solution' => 'is'],
+            ['example' => 'They <span style="color:blue;">are</span> my friends.', 'translation' => 'Ellos <strong>son</strong> mis amigos.', 'solution' => 'are'],
+            ['example' => 'It <span style="color:blue;">is</span> a beautiful day.', 'translation' => '<strong>Es</strong> un día hermoso.', 'solution' => 'is'],
+            ['example' => 'We <span style="color:blue;">are</span> ready.', 'translation' => '<strong>Estamos</strong> listos.', 'solution' => 'are'],
         ];
 
         foreach ($examples1 as $item) {
@@ -103,10 +103,10 @@ class CourseSeeder extends Seeder
         ]);
 
         $examples2 = [
-            ['example' => '<span style="color:blue;">He</span> is my brother.', 'translation' => '<strong>Él</strong> es mi hermano.'],
-            ['example' => '<span style="color:blue;">We</span> are students.', 'translation' => '<strong>Nosotros</strong> somos estudiantes.'],
-            ['example' => '<span style="color:blue;">It</span> is a cat.', 'translation' => '<strong>Es</strong> un gato.'],
-            ['example' => '<span style="color:blue;">You</span> are my friend.', 'translation' => '<strong>Eres</strong> mi amigo.'],
+            ['example' => '<span style="color:blue;">He</span> is my brother.', 'translation' => '<strong>Él</strong> es mi hermano.', 'solution' => 'He'],
+            ['example' => '<span style="color:blue;">We</span> are students.', 'translation' => '<strong>Nosotros</strong> somos estudiantes.', 'solution' => 'We'],
+            ['example' => '<span style="color:blue;">It</span> is a cat.', 'translation' => '<strong>Es</strong> un gato.', 'solution' => 'It'],
+            ['example' => '<span style="color:blue;">You</span> are my friend.', 'translation' => '<strong>Eres</strong> mi amigo.', 'solution' => 'You'],
         ];
 
         foreach ($examples2 as $item) {
@@ -133,9 +133,9 @@ $lesson3 = Lesson::create([
 ]);
 
 $examples3 = [
-    ['example' => 'I saw <span style="color:blue;">a</span> bird.', 'translation' => 'Vi <strong>un</strong> pájaro.'],
-    ['example' => 'She has <span style="color:blue;">an</span> idea.', 'translation' => 'Ella tiene <strong>una</strong> idea.'],
-    ['example' => 'Please open <span style="color:blue;">the</span> window.', 'translation' => 'Por favor abre <strong>la</strong> ventana.'],
+    ['example' => 'I found <span style="color:blue;">a</span> bird.', 'translation' => 'Encontré <strong>un</strong> pájaro.', 'solution' => 'a'],
+    ['example' => 'She has <span style="color:blue;">an</span> idea.', 'translation' => 'Ella tiene <strong>una</strong> idea.', 'solution' => 'an'],
+    ['example' => 'Please open <span style="color:blue;">the</span> window.', 'translation' => 'Por favor abre <strong>la</strong> ventana.', 'solution' => 'the'],
 ];
 
 foreach ($examples3 as $item) {
@@ -169,8 +169,8 @@ $lesson4 = Lesson::create([
 ]);
 
 $examples4 = [
-    ['example' => '<span style="color:blue;">Hello</span>, how are you?', 'translation' => '<strong>Hola</strong>, ¿cómo estás?'],
-    ['example' => '<span style="color:blue;">Good morning</span>, class.', 'translation' => '<strong>Buenos días</strong>, clase.'],
+    ['example' => '<span style="color:blue;">Hello</span>, how are you?', 'translation' => '<strong>Hola</strong>, ¿cómo estás?', 'solution' => 'Hello'],
+    ['example' => '<span style="color:blue;">Good morning</span>, class.', 'translation' => '<strong>Buenos días</strong>, clase.', 'solution' => 'Good morning'],
 ];
 
 // Lección 2: Colores
@@ -192,8 +192,8 @@ $lesson5 = Lesson::create([
 ]);
 
 $examples5 = [
-    ['example' => 'The car is <span style="color:blue;">red</span>.', 'translation' => 'El coche es <strong>rojo</strong>.'],
-    ['example' => 'I like <span style="color:blue;">blue</span>.', 'translation' => 'Me gusta el <strong>azul</strong>.'],
+    ['example' => 'The car is <span style="color:blue;">red</span>.', 'translation' => 'El coche es <strong>rojo</strong>.', 'solution' => 'red'],
+    ['example' => 'I like <span style="color:blue;">blue</span>.', 'translation' => 'Me gusta el <strong>azul</strong>.', 'solution' => 'blue'],
 ];
 
 // Lección 3: Números del 1 al 10
@@ -209,8 +209,8 @@ $lesson6 = Lesson::create([
 ]);
 
 $examples6 = [
-    ['example' => 'I have <span style="color:blue;">three</span> dogs.', 'translation' => 'Tengo <strong>tres</strong> perros.'],
-    ['example' => 'She is <span style="color:blue;">five</span> years old.', 'translation' => 'Ella tiene <strong>cinco</strong> años.'],
+    ['example' => 'I have <span style="color:blue;">three</span> dogs.', 'translation' => 'Tengo <strong>tres</strong> perros.', 'solution' => 'three'],
+    ['example' => 'She is <span style="color:blue;">five</span> years old.', 'translation' => 'Ella tiene <strong>cinco</strong> años.', 'solution' => 'five'],
 ];
 
 // Asociar ejemplos
@@ -242,8 +242,8 @@ $lesson7 = Lesson::create([
     'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/2Fq13fFF4DY" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
 ]);
 $lesson7->examples()->createMany([
-    ['example' => 'I <span style="color:blue;">have</span> a dog.', 'translation' => 'Yo <strong>tengo</strong> un perro.'],
-    ['example' => 'She <span style="color:blue;">has</span> a cat.', 'translation' => 'Ella <strong>tiene</strong> un gato.'],
+    ['example' => 'I <span style="color:blue;">have</span> a dog.', 'translation' => 'Yo <strong>tengo</strong> un perro.', 'solution' => 'have'],
+    ['example' => 'She <span style="color:blue;">has</span> a cat.', 'translation' => 'Ella <strong>tiene</strong> un gato.', 'solution' => 'has'],
 ]);
 
 $lesson8 = Lesson::create([
@@ -257,8 +257,8 @@ $lesson8 = Lesson::create([
     'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/YhWTU7fFgQM" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
 ]);
 $lesson8->examples()->createMany([
-    ['example' => 'We <span style="color:blue;">like</span> English.', 'translation' => 'Nosotros <strong>gustamos</strong> del inglés.'],
-    ['example' => 'He <span style="color:blue;">likes</span> chocolate.', 'translation' => 'Él <strong>gusta</strong> del chocolate.'],
+    ['example' => 'We <span style="color:blue;">like</span> English.', 'translation' => 'Nos <strong>gusta</strong> el inglés.', 'solution' => 'like'],
+    ['example' => 'He <span style="color:blue;">likes</span> chocolate.', 'translation' => 'Le <strong>gusta</strong> el chocolate.', 'solution' => 'likes'],
 ]);
 
 $lesson9 = Lesson::create([
@@ -272,8 +272,8 @@ $lesson9 = Lesson::create([
     'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/8R5vDLTtqa8" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
 ]);
 $lesson9->examples()->createMany([
-    ['example' => 'I <span style="color:blue;">go</span> to the gym.', 'translation' => 'Yo <strong>voy</strong> al gimnasio.'],
-    ['example' => 'They <span style="color:blue;">go</span> shopping.', 'translation' => 'Ellos <strong>van</strong> de compras.'],
+    ['example' => 'I <span style="color:blue;">go</span> to the gym.', 'translation' => 'Yo <strong>voy</strong> al gimnasio.', 'solution' => 'go'],
+    ['example' => 'They <span style="color:blue;">go</span> shopping.', 'translation' => 'Ellos <strong>van</strong> de compras.', 'solution' => 'go'],
 ]);
 
 
@@ -299,8 +299,8 @@ $lesson10 = Lesson::create([
     'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/3uGmQp3lzaA" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
 ]);
 $lesson10->examples()->createMany([
-    ['example' => '<span style="color:blue;">Can you help me</span>, please?', 'translation' => '¿<strong>Puedes ayudarme</strong>, por favor?'],
-    ['example' => '<span style="color:blue;">I need help</span>.', 'translation' => '<strong>Necesito ayuda</strong>.'],
+    ['example' => '<span style="color:blue;">Can you help me</span>, please?', 'translation' => '¿<strong>Puedes ayudarme</strong>, por favor?', 'solution' => 'Can you help me'],
+    ['example' => '<span style="color:blue;">I need help</span>.', 'translation' => '<strong>Necesito ayuda</strong>.', 'solution' => 'need'],
 ]);
 
 $lesson11 = Lesson::create([
@@ -318,8 +318,8 @@ $lesson11 = Lesson::create([
     'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/S2lEtuS7o8o" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
 ]);
 $lesson11->examples()->createMany([
-    ['example' => '<span style="color:blue;">How much is it</span>?', 'translation' => '¿<strong>Cuánto cuesta</strong>?'],
-    ['example' => '<span style="color:blue;">I want this</span>.', 'translation' => '<strong>Quiero esto</strong>.'],
+    ['example' => '<span style="color:blue;">How much is it</span>?', 'translation' => '¿<strong>Cuánto cuesta</strong>?', 'solution' => 'How much'],
+    ['example' => '<span style="color:blue;">I want this</span>.', 'translation' => '<strong>Quiero esto</strong>.', 'solution' => 'want'],
 ]);
 
 $lesson12 = Lesson::create([
@@ -337,8 +337,8 @@ $lesson12 = Lesson::create([
     'video' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/hXre9F8a-Rc" title="YouTube video player" frameborder="0" allowfullscreen></iframe>',
 ]);
 $lesson12->examples()->createMany([
-    ['example' => '<span style="color:blue;">I would like</span> a sandwich.', 'translation' => '<strong>Quisiera</strong> un sándwich.'],
-    ['example' => '<span style="color:blue;">The bill</span>, please.', 'translation' => '<strong>La cuenta</strong>, por favor.'],
+    ['example' => '<span style="color:blue;">I would like</span> a sandwich.', 'translation' => '<strong>Quisiera</strong> un sándwich.', 'solution' => 'would'],
+    ['example' => '<span style="color:blue;">The bill</span>, please.', 'translation' => '<strong>La cuenta</strong>, por favor.', 'solution' => 'please'],
 ]);
 
 

@@ -77,22 +77,22 @@
 </head>
 <body class="flex flex-col min-h-screen bg-gray-100">
 
-<nav class=" bg-white shadow-md fixed w-full z-50">
+<nav class=" shadow-md fixed w-full z-50">
     <div style="font-size: 13.5px;" class="boldonse-regular max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <a href="{{ url('/') }}">
-                <img src="{{ asset('images/logo1.png') }}" alt="EasyEnglish Logo" class="h-10">
+                <img style="border-radius: 5px; opacity: 0.88;" src="{{ asset('images/logo1.png') }}" alt="EasyEnglish Logo" class="h-10">
             </a>
             
             <!-- Menú Escritorio con textos -->
-            <div style="text-shadow: black 2px 2px 4px;" class="hidden md:flex space-x-6">
-                <a href="{{ url('/') }}" class="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 transition">
+            <div style="text-shadow: rgb(132, 151, 132) 2px 2px 4px; font-size: 12px;" class="hidden md:flex space-x-4 boldonse-regular">
+                <a href="{{ url('/') }}" class="px-2 py-2 rounded-lg text-black font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 transition">
                     Inicio
                 </a>
-                <a href="{{ route('courses.index') }}" class="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-green-500 to-lime-500 hover:from-green-600 hover:to-lime-600 transition">
+                <a href="{{ route('courses.index') }}" class="px-2 py-2 rounded-lg text-danger font-semibold bg-gradient-to-r from-green-500 to-lime-500 hover:from-green-600 hover:to-lime-600 transition">
                     Cursos
                 </a>
-                <a href="{{ route('contact.show') }}" class="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 transition">
+                <a href="{{ route('contact.show') }}" class="px-2 py-2 rounded-lg text-grey font-semibold bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 transition">
                     Contacto
                 </a>
             </div> 

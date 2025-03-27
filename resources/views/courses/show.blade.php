@@ -34,53 +34,13 @@
             </div>
             <p class="text-sm text-gray-500 mt-2">Autor: {{ $course->author }}</p>
             
-            @php
-                use App\Models\Lesson;
-
-                $userId = auth()->id();
-                $totalLessons = $course->lessons->count();
-
-                $completedLessons = Lesson::whereHas('exerciseResults', function ($q) use ($userId) {
-                    $q->where('user_id', $userId)->where('completed', true);
-                })
-                    ->where('course_id', $course->id)
-                    ->count();
-
-                $percentage = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
-            @endphp
-
+        
 
 
             @auth
-            <div class="mt-4 text-center">
-                <p class="text-gray-600 mb-2">Progreso del curso</p>
-                <div class="flex justify-center items-center space-x-2">
-                    @for ($i = 0; $i < $totalLessons; $i++)
-                        <div class="w-5 h-5 rounded-full {{ $i < $completedLessons ? 'bg-blue-500' : 'bg-gray-300' }}">
-                        </div>
-                    @endfor
-                    <div class="text-xl ml-2">🏃</div>
-                </div>
-                <p class="text-sm text-gray-500 mt-1">{{ round($percentage) }}% completado ({{ $completedLessons }} de
-                    {{ $totalLessons }})</p>
-            </div>
-            @endauth
-
-            
-            @php
-                use App\Models\ExerciseResult;
-
-                $userId = auth()->id();
-                $totalLessons = $course->lessons->count();
-
-                $completedLessons = \App\Models\Lesson::whereHas('exerciseResults', function ($q) use ($userId) {
-                    $q->where('user_id', $userId)->where('completed', true);
-                })
-                    ->where('course_id', $course->id)
-                    ->count();
-
-                $percentage = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
-            @endphp
+            @livewire('course-progress', ['course' => $course])
+        @endauth
+        
 
         </div>
 
@@ -199,7 +159,7 @@
                                         <button @click="showExercise = false"
                                             class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Lección</button>
                                         <button @click="showExercise = true"
-                                            class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Ejercicios</button>
+                                            class="bg-red-600 text-white px-4 py-2 rounded hover:bg-green-700">Ejercicios</button>
                                     </div>
 
                                 @endauth

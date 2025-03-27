@@ -18,7 +18,7 @@ html, body {
 }
 
 nav{
-  background-image: url('/images/amarillo.jpg');
+  background-color: rgb(255, 251, 0);
   background-size: cover;       /* Expande la imagen completamente sin distorsionar demasiado */
   background-repeat: no-repeat; /* Evita repetición */
   background-position: center;  /* Centra la imagen */
