@@ -18,7 +18,7 @@ html, body {
 }
 
 nav{
-  background-color: rgb(225, 223, 69);
+  background-color: rgb(213, 213, 206);
   background-size: cover;       /* Expande la imagen completamente sin distorsionar demasiado */
   background-repeat: no-repeat; /* Evita repetición */
   background-position: center;  /* Centra la imagen */
@@ -74,7 +74,81 @@ footer {
   z-index: 40;
 }
 
+.lesson-description table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 
+.lesson-description th,
+.lesson-description td {
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.lesson-description th {
+  background-color: #f9fafb;
+  font-weight: 600;
+}
+
+.lesson-description tr:nth-child(even) {
+  background-color: #f3f4f6;
+}
+
+.menu-icon {
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.menu-icon:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+.tooltip {
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.boldonse-regular {
+font-family: "Boldonse", system-ui;
+font-weight: 400;
+font-style: normal;
+}
+
+.tektur {
+font-family: "Tektur", sans-serif;
+font-optical-sizing: auto;
+font-weight: <weight>;
+font-style: normal;
+font-variation-settings:
+"wdth" 100;
+}
+
+.honk- {
+font-family: "Honk", system-ui;
+font-optical-sizing: auto;
+font-weight: 400;
+font-style: normal;
+font-variation-settings:
+"MORF" 15,
+"SHLN" 50;
+}
 
 
 ------------- HOME ----

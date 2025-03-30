@@ -1,6 +1,7 @@
 <!-- resources/views/layouts/main.blade.php -->
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,190 +16,165 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Bungee+Tint&family=Honk&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Bungee+Tint&family=Honk&family=Tektur:wght@400..900&display=swap"
+    rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    @vite('resources/js/app.js')
+
+
+
+
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <style>
-        .menu-icon {
-            position: relative;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 8px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .menu-icon:hover .tooltip {
-            opacity: 1;
-            visibility: visible;
-        }
-        .tooltip {
-            position: absolute;
-            top: 110%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s ease-in-out;
-        }
 
-        .boldonse-regular {
-  font-family: "Boldonse", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.tektur {
-  font-family: "Tektur", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-}
-
-.honk- {
-  font-family: "Honk", system-ui;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings:
-    "MORF" 15,
-    "SHLN" 50;
-}
-
-
-    </style>
 </head>
+
 <body class="flex flex-col min-h-screen bg-gray-100">
 
-<nav class=" shadow-md fixed w-full z-50">
-    <div style="font-size: 13.5px;" class="boldonse-regular max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <a href="{{ url('/') }}">
-                <img style="border-radius: 5px; opacity: 0.88;" src="{{ asset('images/logo1.png') }}" alt="EasyEnglish Logo" class="h-10">
-            </a>
-            
-            <!-- Menú Escritorio con textos -->
-            <div style="text-shadow: rgb(132, 151, 132) 2px 2px 4px; font-size: 12px;" class="hidden md:flex space-x-4 boldonse-regular">
-                <a href="{{ url('/') }}" class="px-2 py-2 rounded-lg text-black font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 transition">
-                    Inicio
+    <nav class=" shadow-md fixed w-full z-50">
+        <div style="font-size: 13.5px;" class="boldonse-regular max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="{{ url('/') }}">
+                    <img style="border-radius: 5px; opacity: 0.88;" src="{{ asset('images/logo1.png') }}"
+                        alt="EasyEnglish Logo" class="h-10">
                 </a>
-                <a href="{{ route('courses.index') }}" class="px-2 py-2 rounded-lg text-danger font-semibold bg-gradient-to-r from-green-500 to-lime-500 hover:from-green-600 hover:to-lime-600 transition">
-                    Cursos
-                </a>
-                <a href="{{ route('contact.show') }}" class="px-2 py-2 rounded-lg text-grey font-semibold bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 transition">
-                    Contacto
-                </a>
-                <a style="background-color: rgb(235, 192, 192);"  class="menu-icon text-gray-700 hover:bg-gray-50" href="{{ route('pronunciacion') }}">
-                    🗣️ <span class="tooltip">Pronunciation</span>
-                </a>
-            </div> 
 
-            <!-- Menú Móvil con Iconos y Etiquetas -->
-            <div class="flex md:hidden justify-around items-center space-x-2">
-                <a style="background-color: rgb(250, 162, 0);" href="{{ url('/') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
-                    <i  class="bi bi-house-door-fill"></i>
+                <!-- Menú Escritorio con textos -->
+                <div style="text-shadow: rgb(132, 151, 132) 2px 2px 4px; font-size: 12px;"
+                    class="hidden md:flex space-x-4 boldonse-regular">
+                    <a style="background-color: rgb(246, 207, 133);" href="{{ url('/') }}"
+                    class="menu-icon text-gray-700 hover:bg-gray-50">
+                    <i class="bi bi-house-door-fill"></i>
                     <span class="tooltip">Inicio</span>
                 </a>
-                <a style="background-color: rgb(0, 250, 29);"  href="{{ route('courses.index') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
+                <a style="background-color: rgb(119, 233, 132);" href="{{ route('courses.index') }}"
+                    class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i class="bi bi-book-fill"></i>
                     <span class="tooltip">Cursos</span>
                 </a>
-    
 
-                <a style="background-color: rgb(246, 0, 250);"  href="{{ route('contact.show') }}" class="menu-icon text-gray-700 hover:bg-gray-50">
+
+                <a style="background-color: rgb(234, 118, 236);" href="{{ route('contact.show') }}"
+                    class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i class="bi bi-envelope-fill"></i>
                     <span class="tooltip">Contacto</span>
                 </a>
 
-                    <a style="background-color: rgb(250, 250, 250);"  class="menu-icon text-gray-700 hover:bg-gray-50" href="{{ route('pronunciacion') }}">
+                <a style="background-color: rgb(250, 250, 250);" class="menu-icon text-gray-700 hover:bg-gray-50"
+                    href="{{ route('pronunciacion') }}">
+                    🗣️ <span class="tooltip">Pronunciation</span>
+                </a>
+                </div>
+
+                <!-- Menú Móvil con Iconos y Etiquetas -->
+                <div class="flex md:hidden justify-around items-center space-x-2">
+                    <a style="background-color: rgb(237, 197, 124);" href="{{ url('/') }}"
+                        class="menu-icon text-gray-700 hover:bg-gray-50">
+                        <i class="bi bi-house-door-fill"></i>
+                        <span class="tooltip">Inicio</span>
+                    </a>
+                    <a style="background-color: rgb(145, 237, 156);" href="{{ route('courses.index') }}"
+                        class="menu-icon text-gray-700 hover:bg-gray-50">
+                        <i class="bi bi-book-fill"></i>
+                        <span class="tooltip">Cursos</span>
+                    </a>
+
+
+                    <a style="background-color: rgb(239, 132, 241);" href="{{ route('contact.show') }}"
+                        class="menu-icon text-gray-700 hover:bg-gray-50">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span class="tooltip">Contacto</span>
+                    </a>
+
+                    <a style="background-color: rgb(250, 250, 250);" class="menu-icon text-gray-700 hover:bg-gray-50"
+                        href="{{ route('pronunciacion') }}">
                         🗣️ <span class="tooltip">Pronunciation</span>
                     </a>
-            </div>
-
-
-          
-
-
-
-
-
-            <div class="relative flex items-center">
-                @auth
-                <div>
-                    @livewire('unread-messages-icon')
                 </div>
-                    <button id="userDropdownBtn" class="flex items-center space-x-2 text-gray-700 hover:text-blue-500">
-                        <i class="hidden md:inline  bi bi-person-circle text-xl"></i>
-                        <span class="flex items-center gap-1">
-                            {{ auth()->user()->name }}
-                            @if(auth()->user()->subscriber)
-                                <span class="text-blue-400" title="Usuario Premium">
-                                    <i class="bi bi-star-fill"></i>
-                                </span>
+
+
+
+
+
+
+
+
+                <div class="relative flex items-center">
+                    @auth
+                        <div>
+                            @livewire('unread-messages-icon')
+                        </div>
+                        <button id="userDropdownBtn" class="flex items-center space-x-2 text-gray-700 hover:text-blue-500">
+                            <i class="hidden md:inline  bi bi-person-circle text-xl"></i>
+                            <span class="flex items-center gap-1">
+                                {{ auth()->user()->name }}
+                                @if (auth()->user()->subscriber)
+                                    <span class="text-blue-400" title="Usuario Premium">
+                                        <i class="bi bi-star-fill"></i>
+                                    </span>
+                                @endif
+                            </span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+
+                        <div style="text-shadow: rgb(106, 104, 104) 1px 1px 2px;" id="userDropdown"
+                            class="tektur absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
+                            @if (auth()->user()->admin)
+                                <div class="px-4 py-2 text-sm text-gray-500">Admin</div>
+                                <a href="{{ route('courses.create') }}" class="block px-4 py-2 hover:bg-gray-100">Crear
+                                    curso</a>
+                                <a href="{{ route('lessons.create') }}" class="block px-4 py-2 hover:bg-gray-100">
+                                    Crear Lección
+                                </a>
+                                <a href="{{ route('courses.index') }}" class="block px-4 py-2 hover:bg-gray-100">Gestionar
+                                    cursos</a>
+                                <div class="border-t my-1"></div>
                             @endif
-                        </span>
-                        <i class="bi bi-chevron-down"></i>
-                    </button>
 
-                    <div style="text-shadow: rgb(106, 104, 104) 1px 1px 2px;" id="userDropdown" class="tektur absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
-                        @if(auth()->user()->admin)
-                            <div class="px-4 py-2 text-sm text-gray-500">Admin</div>
-                            <a href="{{ route('courses.create') }}" class="block px-4 py-2 hover:bg-gray-100">Crear curso</a>
-                            <a href="{{ route('lessons.create') }}" class="block px-4 py-2 hover:bg-gray-100">
-                               Crear Lección
-                            </a>
-                            <a href="{{ route('courses.index') }}" class="block px-4 py-2 hover:bg-gray-100">Gestionar cursos</a>
-                            <div class="border-t my-1"></div>
-                        @endif
+                            <a href="{{ route('profile') }}" class="block px-4 py-2 hover:bg-gray-100">Mi Perfil</a>
 
-                        <a href="{{ route('profile') }}" class="block px-4 py-2 hover:bg-gray-100">Mi Perfil</a>
 
-                        
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="w-full text-left block px-4 py-2 hover:bg-gray-100">Logout</button>
-                        </form>
-                    </div>
-                @else
-                    <a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-500">Login</a>
-                    <a href="{{ route('register') }}" class="ml-4 text-gray-700 hover:text-blue-500">Registro</a>
-                @endauth
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full text-left block px-4 py-2 hover:bg-gray-100">Logout</button>
+                            </form>
+                        </div>
+                    @else
+                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-500">Login</a>
+                        <a href="{{ route('register') }}" class="ml-4 text-gray-700 hover:text-blue-500">Registro</a>
+                    @endauth
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<main class="tektur flex-grow pt-20">
-    @yield('content')
-</main>
+    <main class="tektur flex-grow pt-20">
+        @yield('content')
+    </main>
     @livewire('chat-component')
 
-<footer class="bg-gray-800 text-white text-center mt-auto">
-    <p>&copy; {{ date('Y') }} EasyEnglish. Todos los derechos reservados.</p>
-</footer>
+    <footer class="bg-gray-800 text-white text-center mt-auto">
+        <p>&copy; {{ date('Y') }} EasyEnglish. Todos los derechos reservados.</p>
+    </footer>
 
-<script>
-    document.getElementById('userDropdownBtn').addEventListener('click', function(event) {
-        event.stopPropagation();
-        document.getElementById('userDropdown').classList.toggle('hidden');
-    });
+    <script>
+        document.getElementById('userDropdownBtn').addEventListener('click', function(event) {
+            event.stopPropagation();
+            document.getElementById('userDropdown').classList.toggle('hidden');
+        });
 
-    document.addEventListener('click', function(event) {
-        const dropdown = document.getElementById('userDropdown');
-        const btn = document.getElementById('userDropdownBtn');
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('userDropdown');
+            const btn = document.getElementById('userDropdownBtn');
 
-        if (!dropdown.contains(event.target) && !btn.contains(event.target)) {
-            dropdown.classList.add('hidden');
-        }
-    });
-</script>
+            if (!dropdown.contains(event.target) && !btn.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
 
 </body>
+
 </html>
