@@ -9,9 +9,24 @@ use Stripe\Checkout\Session as StripeSession;
 class SubscriptionController extends Controller
 {
     public function show()
-    {
-        return view('subscribe');
-    }
+{
+    $user = auth()->user();
+
+    // Verificar si tiene una fecha de suscripción y si es futura
+    $subscriptionEnd = $user->subscription_ends_at
+        ? \Carbon\Carbon::parse($user->subscription_ends_at)
+        : null;
+
+    $alreadySubscribed = $subscriptionEnd && $subscriptionEnd->isFuture();
+    $remainingDays = $alreadySubscribed ? now()->diffInDays($subscriptionEnd, false) : 0;
+
+    return view('subscribe', [
+        'alreadySubscribed' => $alreadySubscribed,
+        'subscriptionEnd' => $subscriptionEnd,
+        'remainingDays' => $remainingDays,
+    ]);
+}
+
 
     public function checkout(Request $request)
     {
@@ -63,7 +78,16 @@ class SubscriptionController extends Controller
 
         // Marcar como suscrito
         $user->subscriber = 1;
-        $user->subscription_ends_at = now()->addMonths($months);
+        $current = $user->subscription_ends_at;
+
+if ($current && \Carbon\Carbon::parse($current)->isFuture()) {
+    // Si ya tiene una suscripción activa, suma los meses a la fecha actual
+    $user->subscription_ends_at = \Carbon\Carbon::parse($current)->addMonths($months);
+} else {
+    // Si no tiene suscripción o está vencida, empieza desde ahora
+    $user->subscription_ends_at = now()->addMonths($months);
+}
+
         $user->save();
 
         return view('subscribe_success', ['months' => $months]);

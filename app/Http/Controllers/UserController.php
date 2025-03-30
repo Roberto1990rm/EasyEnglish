@@ -19,16 +19,24 @@ class UserController extends Controller
     }
 
     public function toggleSubscription(User $user)
-    {
-        if (!auth()->user()->admin) {
-            abort(403);
-        }
-
-        $user->subscriber = !$user->subscriber;
-        $user->save();
-
-        return back()->with('success', 'Estado de suscripción actualizado.');
+{
+    if (!auth()->user()->admin) {
+        abort(403);
     }
+
+    // Cambiar estado de suscripción
+    $user->subscriber = !$user->subscriber;
+
+    // Si se desactiva la suscripción, limpiar la fecha de fin
+    if (!$user->subscriber) {
+        $user->subscription_ends_at = null;
+    }
+
+    $user->save();
+
+    return back()->with('success', 'Estado de suscripción actualizado.');
+}
+
 
     public function destroy(User $user)
     {
