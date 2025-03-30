@@ -160,25 +160,32 @@
                                     <div x-show="view === 'pronunciation'">
                                         <h4 class="text-lg font-bold mb-2">🎤 Practica tu pronunciación</h4>
                                         @foreach ($lesson->examples as $example)
-                                            <div class="border rounded p-3 mb-3">
-                                                <p id="expected-{{ $example->id }}" class="font-semibold text-gray-800">
-                                                    {!! strip_tags($example->example) !!}
-                                                </p>
-                                                <div class="mt-2 flex gap-2">
-                                                    <button onclick="speak({{ $example->id }})"
-                                                        class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded">
-                                                        🔊 Escuchar
-                                                    </button>
-                                                    <button onclick="startSpeech({{ $example->id }})"
-                                                        class="px-3 py-1 bg-blue-600 text-white hover:bg-blue-700 rounded">
-                                                        🎙️ Pronunciar
-                                                    </button>
-                                                </div>
-                                                <p id="spokenText-{{ $example->id }}" class="text-sm text-gray-600 mt-1"></p>
-                                                <div id="feedback-{{ $example->id }}" class="text-lg mt-1 font-semibold">
-                                                </div>
-                                            </div>
-                                        @endforeach
+    @php
+        $hasPronounced = auth()->check() && \App\Models\ExerciseResult::where('user_id', auth()->id())
+            ->where('example_id', $example->id)
+            ->where('pronoun', 1)
+            ->exists();
+    @endphp
+
+    <div class="border rounded p-3 mb-3">
+        <p id="expected-{{ $example->id }}" class="font-semibold text-gray-800">
+            {!! strip_tags($example->example) !!}
+            @if($hasPronounced)
+                <span class="text-green-600 ms-2"><i class="bi bi-check-circle-fill"></i></span>
+            @endif
+        </p>
+        <div class="mt-2 flex gap-2">
+            <button onclick="speak({{ $example->id }})" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded">
+                🔊 Escuchar
+            </button>
+            <button onclick="startSpeech({{ $example->id }})" class="px-3 py-1 bg-blue-600 text-white hover:bg-blue-700 rounded">
+                🎙️ Pronunciar
+            </button>
+        </div>
+        <p id="spokenText-{{ $example->id }}" class="text-sm text-gray-600 mt-1"></p>
+        <div id="feedback-{{ $example->id }}" class="text-lg mt-1 font-semibold"></div>
+    </div>
+@endforeach
 
                                         <audio id="sound-start" src="{{ asset('sounds/start.mp3') }}"></audio>
                                         <audio id="sound-success" src="{{ asset('sounds/success.mp3') }}"></audio>
@@ -270,11 +277,166 @@
         </div>
 
     </div>
-    <style>
-        #carousel-wrapper {
-            height: auto;
-            transition: height 0.3s ease-in-out;
+   
+<script>
+    let currentIndex = 0;
+    
+    function updateCarousel() {
+        const track = document.getElementById('carousel-track');
+        const wrapper = document.getElementById('carousel-wrapper');
+        if (!track || !wrapper) return;
+    
+        const cards = track.children;
+        if (!cards.length) return;
+    
+        const width = cards[0].offsetWidth;
+        track.style.transform = `translateX(-${currentIndex * width}px)`;
+    
+        const currentCard = cards[currentIndex];
+        if (currentCard) {
+            const inner = currentCard.querySelector('.bg-white');
+            if (inner) {
+                wrapper.style.height = `${inner.offsetHeight}px`;
+            }
         }
-    </style>
-
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const track = document.getElementById('carousel-track');
+        const cards = track ? track.children : [];
+        const total = cards.length;
+    
+        if (prevBtn)
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+    
+        if (nextBtn)
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < total - 1) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+    
+        updateCarousel();
+        window.addEventListener('resize', updateCarousel);
+    });
+    
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+    }
+    
+    function openModal(imageSrc) {
+        const modal = document.getElementById('imageModal');
+        const img = document.getElementById('modalImage');
+        if (modal && img) {
+            img.src = imageSrc;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+    }
+    
+    function closeModal() {
+        const modal = document.getElementById('imageModal');
+        if (modal) {
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('imageModal');
+        if (modal) {
+            modal.addEventListener('click', function (e) {
+                if (e.target === this) closeModal();
+            });
+        }
+    });
+    
+    // Pronunciación
+    function cleanText(text) {
+        return text.replace(/[.,!?]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+    }
+    
+    function playSound(id) {
+        const sound = document.getElementById(id);
+        if (sound) sound.play();
+    }
+    
+    function speak(id) {
+        const text = document.getElementById('expected-' + id).innerText;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        speechSynthesis.speak(utterance);
+    }
+    
+    function startSpeech(id) {
+        const expectedRaw = document.getElementById('expected-' + id).innerText;
+        const expected = cleanText(expectedRaw);
+    
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+    
+        playSound('sound-start');
+        document.getElementById('feedback-' + id).innerHTML = "🎧 Escuchando...";
+    
+        recognition.onresult = (event) => {
+            const transcript = cleanText(event.results[0][0].transcript);
+            document.getElementById('spokenText-' + id).innerText = `"${event.results[0][0].transcript}"`;
+    
+            const correct = transcript === expected;
+    
+            if (correct) {
+                document.getElementById('feedback-' + id).innerHTML = "✅ ¡Bien hecho!";
+                playSound('sound-success');
+            } else {
+                document.getElementById('feedback-' + id).innerHTML = "❌ Intenta de nuevo.";
+                playSound('sound-error');
+            }
+    
+            @auth
+            fetch(`/save-pronunciation/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({ correct })
+            }).then(response => {
+                if (response.ok && correct) {
+                    const iconContainer = document.getElementById('expected-' + id);
+                    if (iconContainer && !iconContainer.querySelector('.pron-check')) {
+                        const check = document.createElement('span');
+                        check.className = 'text-green-600 ms-2 pron-check';
+                        check.innerHTML = '<i class="bi bi-check-circle-fill"></i>';
+                        iconContainer.appendChild(check);
+                    }
+                }
+            });
+            @endauth
+        };
+    
+        recognition.onerror = (event) => {
+            document.getElementById('feedback-' + id).innerText = "❌ Error: " + event.error;
+            playSound('sound-error');
+        };
+    
+        recognition.start();
+    }
+    
+    // Funciones globales accesibles
+    window.goToSlide = goToSlide;
+    window.openModal = openModal;
+    window.closeModal = closeModal;
+    window.speak = speak;
+    window.startSpeech = startSpeech;
+    </script>
+    
 @endsection

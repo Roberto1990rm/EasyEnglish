@@ -55,16 +55,19 @@
                 </a>
 
 
-                <a style="background-color: rgb(234, 118, 236);" href="{{ route('contact.show') }}"
+                <a style="background-color: rgb(234, 118, 236);" class="menu-icon text-gray-700 hover:bg-gray-50"
+                href="{{ route('pronunciacion') }}">
+                🗣️ <span class="tooltip">Pronunciation</span>
+            </a>
+
+
+                <a style="background-color: rgb(250, 250, 250);" href="{{ route('contact.show') }}"
                     class="menu-icon text-gray-700 hover:bg-gray-50">
                     <i class="bi bi-envelope-fill"></i>
                     <span class="tooltip">Contacto</span>
                 </a>
 
-                <a style="background-color: rgb(250, 250, 250);" class="menu-icon text-gray-700 hover:bg-gray-50"
-                    href="{{ route('pronunciacion') }}">
-                    🗣️ <span class="tooltip">Pronunciation</span>
-                </a>
+               
                 </div>
 
                 <!-- Menú Móvil con Iconos y Etiquetas -->

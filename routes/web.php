@@ -9,6 +9,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\PronunciationController;
 use App\Http\Controllers\ExerciseController;
 use App\Models\Example;
 
@@ -87,8 +88,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::get('/pronunciacion', [PronunciationController::class, 'index'])->name('pronunciacion');
+Route::post('/save-pronunciation/{example}', [PronunciationController::class, 'guardarPronunciacion']);
 
-Route::get('/pronunciacion', function () {
-    $examples = Example::all();
-    return view('pronunciation', compact('examples'));
-})->name('pronunciacion');
