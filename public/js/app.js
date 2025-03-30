@@ -2,12 +2,27 @@ let currentIndex = 0;
 
 function updateCarousel() {
     const track = document.getElementById('carousel-track');
-    if (!track) return;
+    const wrapper = document.getElementById('carousel-wrapper');
+    if (!track || !wrapper) return;
+
     const cards = track.children;
     if (!cards.length) return;
+
     const width = cards[0].offsetWidth;
     track.style.transform = `translateX(-${currentIndex * width}px)`;
+
+    const currentCard = cards[currentIndex];
+    if (currentCard) {
+        // Buscar el primer hijo con contenido dentro del slide
+        const inner = currentCard.querySelector('.bg-white');
+        if (inner) {
+            wrapper.style.height = `${inner.offsetHeight}px`;
+        }
+    }
 }
+
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.getElementById('prevBtn');

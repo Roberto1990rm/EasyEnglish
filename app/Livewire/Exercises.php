@@ -12,6 +12,8 @@ class Exercises extends Component
     public Lesson $lesson;
     public $answers = [];
     public $results = [];
+    public bool $submitted = false;
+
     public $completed = false;
 
     public function mount(Lesson $lesson)
@@ -40,39 +42,41 @@ class Exercises extends Component
     }
 
     public function submit()
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
 
-        foreach ($this->lesson->examples as $example) {
-            $userAnswer = $this->answers[$example->id] ?? '';
-            $correctAnswer = strtolower(trim($example->solution));
+    foreach ($this->lesson->examples as $example) {
+        $userAnswer = $this->answers[$example->id] ?? '';
+        $correctAnswer = strtolower(trim($example->solution));
 
-            $isCorrect = strtolower(trim($userAnswer)) === $correctAnswer;
-            $this->results[$example->id] = $isCorrect;
+        $isCorrect = strtolower(trim($userAnswer)) === $correctAnswer;
+        $this->results[$example->id] = $isCorrect;
 
-            ExerciseResult::updateOrCreate(
-                [
-                    'user_id' => $user->id,
-                    'example_id' => $example->id,
-                    'lesson_id' => $this->lesson->id,
-                ],
-                [
-                    'answer' => $userAnswer,
-                    'correct' => $isCorrect,
-                    'completed' => false,
-                ]
-            );
-        }
-
-        // Si todas están correctas
-        if (collect($this->results)->every(fn($val) => $val)) {
-            ExerciseResult::where('user_id', $user->id)
-                ->where('lesson_id', $this->lesson->id)
-                ->update(['completed' => true]);
-
-            $this->completed = true;
-        }
+        ExerciseResult::updateOrCreate(
+            [
+                'user_id' => $user->id,
+                'example_id' => $example->id,
+                'lesson_id' => $this->lesson->id,
+            ],
+            [
+                'answer' => $userAnswer,
+                'correct' => $isCorrect,
+                'completed' => false,
+            ]
+        );
     }
+
+    if (collect($this->results)->every(fn($val) => $val)) {
+        ExerciseResult::where('user_id', $user->id)
+            ->where('lesson_id', $this->lesson->id)
+            ->update(['completed' => true]);
+
+        $this->completed = true;
+    }
+
+    $this->submitted = true; // ✅ Añade esto
+}
+
 
     public function retry()
     {

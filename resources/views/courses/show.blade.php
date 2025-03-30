@@ -20,11 +20,11 @@
         <div class="bg-white shadow-md rounded-lg  mb-8 text-center pt-3 pb-3">
             <h1 class="text-3xl font-bold text-gray-800">{{ $course->title }}</h1>
             @php
-            $imagePath =
-                $course->image && Storage::disk('public')->exists($course->image)
-                    ? asset('storage/' . $course->image)
-                    : asset('images/default.jpg');
-        @endphp
+                $imagePath =
+                    $course->image && Storage::disk('public')->exists($course->image)
+                        ? asset('storage/' . $course->image)
+                        : asset('images/default.jpg');
+            @endphp
 
             <img src="{{ $imagePath }}" class="w-50 h-50 object-cover rounded-t my-4 block mx-auto"
                 alt="{{ $course->title }}">
@@ -33,10 +33,10 @@
                 {!! $course->description !!}
             </div>
             <p class="text-sm text-gray-500 mt-2">Autor: {{ $course->author }}</p>
-            
+
             @auth
-            @livewire('course-progress', ['course' => $course])
-        @endauth
+                @livewire('course-progress', ['course' => $course])
+            @endauth
         </div>
 
         <!-- Título de lecciones -->
@@ -61,9 +61,9 @@
         </div>
 
         <!-- Carrusel de Lecciones -->
-            <div class="relative text-center mb-8" id="lesson-carousel">
+        <div class="relative text-center mb-6" id="lesson-carousel">
 
-                <div id="carousel-wrapper" class="transition-all duration-500 ease-in-out relative">
+            <div id="carousel-wrapper" class="transition-all duration-500 ease-in-out relative overflow-hidden">
 
                 <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
                     @php
@@ -74,16 +74,24 @@
                         @php
                             $canView = $isSubscribed || $index === 0;
                         @endphp
-
-                        <div class="min-w-full px-4 box-border relative">
+                        <div class="min-w-full px-4 box-border relative" id="slide-{{ $index }}">
                             <div class="bg-white shadow-md rounded-lg p-6 {{ !$canView ? 'opacity-30 blur-sm pointer-events-none select-none' : '' }}"
-                                x-data="{ view: 'lesson' }">
+                                x-data="{
+                                    view: 'lesson',
+                                    init() {
+                                        this.$watch('view', () => {
+                                            setTimeout(() => updateCarousel(), 50);
+                                        });
+                                    }
+                                }">
+
                                 <div x-show="view === 'lesson'">
                                     <h3 class="text-xl font-bold text-blue-600">{{ $lesson->title }}</h3>
 
                                     <div class="lesson-description overflow-x-auto mt-4 text-gray-700">
                                         {!! $lesson->description !!}
                                     </div>
+
 
                                     <!-- Imágenes -->
                                     <div class="flex space-x-2 mt-3">
@@ -168,7 +176,8 @@
                                                     </button>
                                                 </div>
                                                 <p id="spokenText-{{ $example->id }}" class="text-sm text-gray-600 mt-1"></p>
-                                                <div id="feedback-{{ $example->id }}" class="text-lg mt-1 font-semibold"></div>
+                                                <div id="feedback-{{ $example->id }}" class="text-lg mt-1 font-semibold">
+                                                </div>
                                             </div>
                                         @endforeach
 
@@ -179,30 +188,40 @@
 
                                     <div class="mt-4 flex justify-center gap-4">
                                         <button @click="view = 'lesson'; $nextTick(() => updateCarousel())"
-                                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Lección</button>
+                                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center gap-2">
+                                            <i class="bi bi-book text-xl"></i>
+                                        </button>
                                         <button @click="view = 'exercise'; $nextTick(() => updateCarousel())"
-                                            class="bg-red-600 text-white px-4 py-2 rounded hover:bg-green-700">Ejercicios</button>
+                                            class="bg-red-600 text-white px-4 py-2 rounded hover:bg-green-700 flex items-center gap-2">
+                                            <i class="bi bi-pencil-square text-xl"></i>
+                                        </button>
                                         <button @click="view = 'pronunciation'; $nextTick(() => updateCarousel())"
-                                            class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Pronunciación</button>
+                                            class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 flex items-center gap-2">
+                                            <i class="bi bi-mic text-xl"></i>
+                                        </button>
                                     </div>
-                                    
+
+
                                 @endauth
 
                                 @auth
                                     @if (auth()->user()->admin)
                                         <div class="mt-4 flex justify-center gap-4">
                                             <a href="{{ route('lessons.edit', $lesson->id) }}"
-                                                class="text-blue-600 hover:text-blue-800">
+                                                class="text-blue-600 hover:text-blue-800" title="Editar lección">
                                                 <i class="bi bi-pencil-square text-xl"></i>
                                             </a>
+
                                             <form action="{{ route('lessons.destroy', $lesson) }}" method="POST"
                                                 onsubmit="return confirm('¿Estás seguro de eliminar esta lección?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-red-600 hover:text-red-800">
+                                                <button type="submit" class="text-red-600 hover:text-red-800"
+                                                    title="Eliminar lección">
                                                     <i class="bi bi-trash text-xl"></i>
                                                 </button>
                                             </form>
+
                                         </div>
                                     @endif
                                 @endauth
@@ -242,12 +261,19 @@
             </div>
         </div>
 
-        <div class="text-center mt-8 mb-6">
+        <div class="text-center mt-6 mb-6"> <!-- no uses mt-20 o mb-20 -->
             <a href="{{ route('courses.index') }}"
                 class="inline-flex items-center px-5 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">
                 <i class="bi bi-arrow-left-circle-fill mr-2 text-xl"></i> Cursos
             </a>
         </div>
+
     </div>
-   
+    <style>
+        #carousel-wrapper {
+            height: auto;
+            transition: height 0.3s ease-in-out;
+        }
+    </style>
+
 @endsection
