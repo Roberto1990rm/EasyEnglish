@@ -25,6 +25,12 @@
             </div>
         </div>
     @endforeach
+    <div class="text-center mt-8 mb-14">
+        <a href="{{ route('courses.index') }}"
+            class="inline-flex items-center px-5 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">
+            <i class="bi bi-arrow-left-circle-fill mr-2 text-xl"></i> Cursos
+        </a>
+    </div>
 </div>
 
 <audio id="sound-start" src="{{ asset('sounds/start.mp3') }}"></audio>
