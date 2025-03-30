@@ -89,6 +89,6 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/pronunciacion', function () {
-    $examples = Example::all(); // puedes usar ->take(10) si quieres solo algunas
+    $examples = Example::all();
     return view('pronunciation', compact('examples'));
-});
+})->name('pronunciacion');

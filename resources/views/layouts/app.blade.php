@@ -95,6 +95,9 @@
                 <a href="{{ route('contact.show') }}" class="px-2 py-2 rounded-lg text-grey font-semibold bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 transition">
                     Contacto
                 </a>
+                <a style="background-color: rgb(235, 192, 192);"  class="menu-icon text-gray-700 hover:bg-gray-50" href="{{ route('pronunciacion') }}">
+                    🗣️ <span class="tooltip">Pronunciation</span>
+                </a>
             </div> 
 
             <!-- Menú Móvil con Iconos y Etiquetas -->
@@ -113,6 +116,10 @@
                     <i class="bi bi-envelope-fill"></i>
                     <span class="tooltip">Contacto</span>
                 </a>
+
+                    <a style="background-color: rgb(250, 250, 250);"  class="menu-icon text-gray-700 hover:bg-gray-50" href="{{ route('pronunciacion') }}">
+                        🗣️ <span class="tooltip">Pronunciation</span>
+                    </a>
             </div>
 
 

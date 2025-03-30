@@ -18,7 +18,7 @@ html, body {
 }
 
 nav{
-  background-color: rgb(255, 251, 0);
+  background-color: rgb(225, 223, 69);
   background-size: cover;       /* Expande la imagen completamente sin distorsionar demasiado */
   background-repeat: no-repeat; /* Evita repetición */
   background-position: center;  /* Centra la imagen */
