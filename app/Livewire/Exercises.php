@@ -17,11 +17,12 @@ class Exercises extends Component
     public $completed = false;
 
     public function mount(Lesson $lesson)
-    {
-        $this->lesson = $lesson;
+{
+    $this->lesson = $lesson;
 
-        $user = Auth::user();
+    $user = Auth::user();
 
+    if ($user) {
         // Cargar respuestas previas si existen
         foreach ($lesson->examples as $example) {
             $result = ExerciseResult::where('user_id', $user->id)
@@ -39,57 +40,67 @@ class Exercises extends Component
             ->where('lesson_id', $lesson->id)
             ->where('completed', true)
             ->exists();
+    } else {
+        $this->completed = false;
     }
+}
 
-    public function submit()
+
+public function submit()
 {
     $user = Auth::user();
+    $this->results = [];
 
     foreach ($this->lesson->examples as $example) {
         $userAnswer = $this->answers[$example->id] ?? '';
         $correctAnswer = strtolower(trim($example->solution));
-
         $isCorrect = strtolower(trim($userAnswer)) === $correctAnswer;
+
         $this->results[$example->id] = $isCorrect;
 
-        ExerciseResult::updateOrCreate(
-            [
-                'user_id' => $user->id,
-                'example_id' => $example->id,
-                'lesson_id' => $this->lesson->id,
-            ],
-            [
-                'answer' => $userAnswer,
-                'correct' => $isCorrect,
-                'completed' => false,
-            ]
-        );
+        // Solo guarda si el usuario está autenticado
+        if ($user) {
+            ExerciseResult::updateOrCreate(
+                [
+                    'user_id' => $user->id,
+                    'example_id' => $example->id,
+                    'lesson_id' => $this->lesson->id,
+                ],
+                [
+                    'answer' => $userAnswer,
+                    'correct' => $isCorrect,
+                    'completed' => false,
+                ]
+            );
+        }
     }
 
-    if (collect($this->results)->every(fn($val) => $val)) {
+    // Marcar como completado si todo es correcto (solo si está logueado)
+    if ($user && collect($this->results)->every(fn($val) => $val)) {
         ExerciseResult::where('user_id', $user->id)
             ->where('lesson_id', $this->lesson->id)
             ->update(['completed' => true]);
 
         $this->completed = true;
     }
-
-    $this->submitted = true; // ✅ Añade esto
 }
 
 
-    public function retry()
-    {
-        $user = Auth::user();
+public function retry()
+{
+    $user = Auth::user();
 
+    if ($user) {
         ExerciseResult::where('user_id', $user->id)
             ->where('lesson_id', $this->lesson->id)
             ->delete();
-
-        $this->answers = [];
-        $this->results = [];
-        $this->completed = false;
     }
+
+    $this->answers = [];
+    $this->results = [];
+    $this->completed = false;
+}
+
 
     public function render()
     {

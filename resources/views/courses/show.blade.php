@@ -153,7 +153,6 @@
                                     @endif
                                 </div>
 
-                                @auth
                                     <div x-show="view === 'exercise'">
                                         @livewire('exercises', ['lesson' => $lesson], key('exercise-' . $lesson->id))
                                     </div>
@@ -186,6 +185,8 @@
                                         <audio id="sound-error" src="{{ asset('sounds/error.mp3') }}"></audio>
                                     </div>
 
+                                    
+
                                     <div class="mt-4 flex justify-center gap-4">
                                         <button @click="view = 'lesson'; $nextTick(() => updateCarousel())"
                                             class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center gap-2">
@@ -202,7 +203,7 @@
                                     </div>
 
 
-                                @endauth
+                                
 
                                 @auth
                                     @if (auth()->user()->admin)
