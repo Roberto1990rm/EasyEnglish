@@ -10,6 +10,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\ExerciseController;
+use App\Models\Example;
 
 // ==========================
 // Página principal y estáticas
@@ -83,4 +84,11 @@ Route::get('/subscribe/success', [SubscriptionController::class, 'success'])->na
 Route::middleware('auth')->group(function () {
     Route::post('/lessons/{lesson}/submit-exercises', [ExerciseController::class, 'submit'])->name('exercise.submit');
     Route::delete('/lessons/{lesson}/reset-exercises', [ExerciseController::class, 'retry'])->name('exercise.retry');
+});
+
+
+
+Route::get('/pronunciacion', function () {
+    $examples = Example::all(); // puedes usar ->take(10) si quieres solo algunas
+    return view('pronunciation', compact('examples'));
 });

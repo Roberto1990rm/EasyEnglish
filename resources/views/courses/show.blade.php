@@ -133,6 +133,9 @@
                                         </div>
                                     @endif
 
+
+                                    
+
                                     <!-- Ejemplos -->
                                     @if ($lesson->examples->count())
                                         <div class="mt-4 p-4 bg-gray-100 rounded">
