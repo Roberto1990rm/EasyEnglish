@@ -18,32 +18,35 @@ class ChatComponent extends Component
     protected $listeners = ['loadMoreMessages', 'deleteConversation'];
 
     public function loadUsers()
-    {
-        $auth = auth()->user();
-    
-        if ($auth->admin) {
-            // Admin: mostrar solo admins y usuarios con los que ya haya conversación
-            $this->users = User::where('id', '!=', $auth->id)
-                ->where(function ($query) use ($auth) {
-                    $query->where('admin', true)
-                        ->orWhereHas('sentMessages', function ($q) use ($auth) {
-                            $q->where('recipient_id', $auth->id);
-                        })
-                        ->orWhereHas('receivedMessages', function ($q) use ($auth) {
-                            $q->where('user_id', $auth->id);
-                        });
-                })
-                ->get()
-                ->sortByDesc(fn($u) => $u->isOnline());
-        } else {
-            // Usuario normal: solo admins
-            $this->users = User::where('admin', true)
-                ->where('id', '!=', $auth->id)
-                ->get()
-                ->sortByDesc(fn($u) => $u->isOnline());
-        }
+{
+    $auth = auth()->user();
+
+    if (!$auth) {
+        $this->users = collect(); // o simplemente no hacer nada si no hay usuario
+        return;
     }
-    
+
+    if ($auth->admin) {
+        // Admin: mostrar solo admins y usuarios con los que ya haya conversación
+        $this->users = User::where('id', '!=', $auth->id)
+            ->where(function ($query) use ($auth) {
+                $query->where('admin', true)
+                    ->orWhereHas('sentMessages', function ($q) use ($auth) {
+                        $q->where('recipient_id', $auth->id);
+                    })
+                    ->orWhereHas('receivedMessages', function ($q) use ($auth) {
+                        $q->where('user_id', $auth->id);
+                    });
+            })
+            ->get();
+    } else {
+        // Usuario normal: solo ver admins
+        $this->users = User::where('admin', true)
+            ->where('id', '!=', $auth->id)
+            ->get();
+    }
+}
+
 
     public function getMessagesProperty()
     {
