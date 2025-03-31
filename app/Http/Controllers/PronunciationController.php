@@ -23,28 +23,26 @@ public function index()
 }
 
 public function guardarPronunciacion(Request $request, $exampleId)
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
 
-        if (!$user) {
-            return response()->json(['error' => 'No autenticado'], 403);
-        }
+    if (!$user) return response()->json(['error' => 'Unauthorized'], 401);
 
-        $example = Example::findOrFail($exampleId);
+    $lessonId = \App\Models\Example::findOrFail($exampleId)->lesson_id;
+    $status = $request->input('status', 0); // por defecto 0
 
-        $pronounCorrect = $request->input('correct') ? 1 : 0;
+    ExerciseResult::updateOrCreate(
+        [
+            'user_id' => $user->id,
+            'lesson_id' => $lessonId,
+            'example_id' => $exampleId,
+        ],
+        [
+            'pronoun' => $status,
+        ]
+    );
 
-        ExerciseResult::updateOrCreate(
-            [
-                'user_id' => $user->id,
-                'example_id' => $example->id,
-            ],
-            [
-                'lesson_id' => $example->lesson_id,
-                'pronoun' => $pronounCorrect,
-            ]
-        );
+    return response()->json(['ok' => true]);
+}
 
-        return response()->json(['saved' => true]);
-    }
 }

@@ -47,4 +47,15 @@ class User extends Authenticatable
             ->whereNull('read_at')
             ->exists();
     }
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'recipient_id');
+    }
+    
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'user_id');
+    }
+    
+
 }
