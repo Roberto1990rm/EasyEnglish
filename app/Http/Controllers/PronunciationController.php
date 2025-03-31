@@ -10,39 +10,37 @@ use App\Models\Example;
 
 class PronunciationController extends Controller
 {
+    public function index()
+    {
+        $lessons = Lesson::with(['examples' => function ($query) {
+            $query->with(['exerciseResult' => function ($q) {
+                $q->where('user_id', Auth::id());
+            }]);
+        }])->has('examples')->orderBy('title')->paginate(5);
 
+        return view('pronunciation', compact('lessons'));
+    }
 
-public function index()
-{
-    $lessons = Lesson::with('examples')
-        ->has('examples')
-        ->orderBy('title')
-        ->paginate(5); // 5 lecciones por página
+    public function guardarPronunciacion(Request $request, $exampleId)
+    {
+        $user = Auth::user();
 
-    return view('pronunciation', compact('lessons'));
-}
+        if (!$user) return response()->json(['error' => 'Unauthorized'], 401);
 
-public function guardarPronunciacion(Request $request, $exampleId)
-{
-    $user = Auth::user();
+        $lessonId = Example::findOrFail($exampleId)->lesson_id;
+        $pronounStatus = $request->input('pronoun', 0); // Asegura que usamos 'pronoun'
 
-    if (!$user) return response()->json(['error' => 'Unauthorized'], 401);
+        ExerciseResult::updateOrCreate(
+            [
+                'user_id' => $user->id,
+                'lesson_id' => $lessonId,
+                'example_id' => $exampleId,
+            ],
+            [
+                'pronoun' => $pronounStatus,
+            ]
+        );
 
-    $lessonId = \App\Models\Example::findOrFail($exampleId)->lesson_id;
-    $status = $request->input('status', 0); // por defecto 0
-
-    ExerciseResult::updateOrCreate(
-        [
-            'user_id' => $user->id,
-            'lesson_id' => $lessonId,
-            'example_id' => $exampleId,
-        ],
-        [
-            'pronoun' => $status,
-        ]
-    );
-
-    return response()->json(['ok' => true]);
-}
-
+        return response()->json(['ok' => true]);
+    }
 }

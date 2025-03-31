@@ -376,60 +376,60 @@
         utterance.lang = 'en-US';
         speechSynthesis.speak(utterance);
     }
-    
     function startSpeech(id) {
-        const expectedRaw = document.getElementById('expected-' + id).innerText;
-        const expected = cleanText(expectedRaw);
-    
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'en-US';
-    
-        playSound('sound-start');
-        document.getElementById('feedback-' + id).innerHTML = "🎧 Escuchando...";
-    
-        recognition.onresult = (event) => {
-            const transcript = cleanText(event.results[0][0].transcript);
-            document.getElementById('spokenText-' + id).innerText = `"${event.results[0][0].transcript}"`;
-    
-            const correct = transcript === expected;
-    
-            if (correct) {
-                document.getElementById('feedback-' + id).innerHTML = "✅ ¡Bien hecho!";
-                playSound('sound-success');
-            } else {
-                document.getElementById('feedback-' + id).innerHTML = "❌ Intenta de nuevo.";
-                playSound('sound-error');
-            }
-    
-            @auth
-            fetch(`/save-pronunciation/${id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                },
-                body: JSON.stringify({ correct })
-            }).then(response => {
-                if (response.ok && correct) {
-                    const iconContainer = document.getElementById('expected-' + id);
-                    if (iconContainer && !iconContainer.querySelector('.pron-check')) {
-                        const check = document.createElement('span');
-                        check.className = 'text-green-600 ms-2 pron-check';
-                        check.innerHTML = '<i class="bi bi-check-circle-fill"></i>';
-                        iconContainer.appendChild(check);
-                    }
-                }
-            });
-            @endauth
-        };
-    
-        recognition.onerror = (event) => {
-            document.getElementById('feedback-' + id).innerText = "❌ Error: " + event.error;
+    const expectedRaw = document.getElementById('expected-' + id).innerText;
+    const expected = cleanText(expectedRaw);
+
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'en-US';
+
+    playSound('sound-start');
+    document.getElementById('feedback-' + id).innerHTML = "🎧 Escuchando...";
+
+    recognition.onresult = (event) => {
+        const transcript = cleanText(event.results[0][0].transcript);
+        document.getElementById('spokenText-' + id).innerText = `"${event.results[0][0].transcript}"`;
+
+        const correct = transcript === expected;
+
+        if (correct) {
+            document.getElementById('feedback-' + id).innerHTML = "✅ ¡Bien hecho!";
+            playSound('sound-success');
+        } else {
+            document.getElementById('feedback-' + id).innerHTML = "❌ Intenta de nuevo.";
             playSound('sound-error');
-        };
-    
-        recognition.start();
-    }
+        }
+
+        @auth
+        fetch(`/save-pronunciation/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            },
+            body: JSON.stringify({ pronoun: correct ? 1 : 0 })
+        }).then(response => {
+            if (response.ok && correct) {
+                const iconContainer = document.getElementById('expected-' + id);
+                if (iconContainer && !iconContainer.querySelector('.pron-check')) {
+                    const check = document.createElement('span');
+                    check.className = 'text-green-600 ms-2 pron-check';
+                    check.innerHTML = '<i class="bi bi-check-circle-fill"></i>';
+                    iconContainer.appendChild(check);
+                }
+            }
+        });
+        @endauth
+    };
+
+    recognition.onerror = (event) => {
+        document.getElementById('feedback-' + id).innerText = "❌ Error: " + event.error;
+        playSound('sound-error');
+    };
+
+    recognition.start();
+}
+
     
     // Funciones globales accesibles
     window.goToSlide = goToSlide;
