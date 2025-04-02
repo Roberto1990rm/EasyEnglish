@@ -3,34 +3,20 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Password;
-use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
-class SendResetEmailTest extends Command
+class SendTestEmail extends Command
 {
-    protected $signature = 'test:reset-email {email}';
-
-    protected $description = 'Envía un email de recuperación de contraseña a una dirección específica';
+    protected $signature = 'mail:send-test';
+    protected $description = 'Enviar un correo de prueba';
 
     public function handle()
     {
-        $email = $this->argument('email');
+        Mail::raw('Este es un email de prueba desde EasyEnglish.', function ($message) {
+            $message->to('robertoramirezmoreno@gmail.com')
+                    ->subject('Correo de prueba');
+        });
 
-        $user = User::where('email', $email)->first();
-
-        if (!$user) {
-            $this->error("❌ No se encontró el usuario con ese email.");
-            return Command::FAILURE;
-        }
-
-        $status = Password::sendResetLink(['email' => $email]);
-
-        if ($status === Password::RESET_LINK_SENT) {
-            $this->info("✅ Enlace de recuperación enviado correctamente a $email");
-            return Command::SUCCESS;
-        }
-
-        $this->error("⚠️ Error al enviar el enlace: $status");
-        return Command::FAILURE;
+        $this->info('📨 Correo enviado correctamente (si la configuración SMTP es válida).');
     }
 }
