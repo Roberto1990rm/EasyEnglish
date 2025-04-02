@@ -15,6 +15,7 @@ class ContactController extends Controller
             'message' => 'required|string',
         ]);
 
+        
         // Enviar el correo
         Mail::send('emails.contact', [
             'name' => $validated['name'],
