@@ -437,6 +437,12 @@
     window.closeModal = closeModal;
     window.speak = speak;
     window.startSpeech = startSpeech;
+
+    document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        updateCarousel();
+    }, 100); // pequeño delay para asegurarse que Alpine ha montado todo
+});
     </script>
     
 @endsection
