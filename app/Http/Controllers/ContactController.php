@@ -21,7 +21,7 @@ class ContactController extends Controller
             'email' => $validated['email'],
             'messageContent' => $validated['message'],
         ], function ($message) use ($validated) {
-            $message->to('robertoargentina90@gmail.com')
+            $message->to('robertoramirezmoreno@gmail.com')
                     ->subject('Nuevo mensaje de contacto desde EasyEnglish');
         });
 
